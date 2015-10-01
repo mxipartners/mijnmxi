@@ -1,4 +1,4 @@
 # mijnmxi
 Mijn M&amp;I/Partners app
 
-Application for clients and consultants.
+Application for M&I clients and consultants.
