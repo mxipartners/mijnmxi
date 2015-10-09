@@ -1,0 +1,61 @@
+html, body {
+  height: 100%;
+  background-color: #eee ! important;
+  color: #666666; }
+
+.grid-block, .main, .project, .item, .item-form {
+  background-color: #fff;
+  border-radius: 3px;
+  padding: 10px;
+  margin-bottom: 10px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15); }
+
+#main {
+  position: relative;
+}
+
+.page {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+}
+
+#spinner {
+  height: 300px; }
+
+.add-kind {
+  margin-right: 10px;
+}
+
+.dropdown-menu span {
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  line-height: 20px;
+  color: #bbb;
+  white-space: nowrap; }
+
+.jumbotron {
+  text-align: center;
+}
+
+.jumbotron h2{
+  font-size: 60px;
+  font-weight: 100;
+}
+
+@-webkit-keyframes fadeOut {
+  0% {opacity: 0;}
+  10% {opacity: 1;}
+  90% {opacity: 1;}
+  100% {opacity: 0;}
+}
+
+@keyframes fadeOut {
+  0% {opacity: 0;}
+  10% {opacity: 1;}
+  90% {opacity: 1;}
+  100% {opacity: 0;}
+}

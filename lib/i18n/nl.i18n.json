@@ -1,0 +1,37 @@
+{
+  "add_kind": "Voeg %s toe",
+  "Cancel": "Annuleren",
+  "Delete": "Verwijder",
+  "delete_kind": "Verwijder %s?",
+  "Description": "Beschrijving",
+  "description_placeholder": "Beschrijving van uw %s",
+  "Edit": "Bewerk",
+  "If this is your first time here, join by creating an account":
+    "Als u hier voor het eerst bent, maak dan een account aan",
+  "item_added_notification": "%s voegde %s %s toe aan %s",
+  "Mark all notifications as read": "Markeer alle meldingen als gelezen",
+  "New project": "Nieuw project",
+  "No notifications": "Geen meldingen",
+  "Notifications": "Meldingen",
+  "Open": "Open",
+  "page_not_found": "Sorry, we konden geen pagina vinden op dit adres.",
+  "Please create a project or have another user add you to one of theirs":
+    "Maak een project of vraag een andere gebruiker u toe te voegen aan één van hun projecten",
+  "Please provide a title": "Vul een titel in",
+  "Please select at least one project member":
+    "Selecteer ten minste één projectlid",
+  "Please sign in to access your projects":
+    "Log in om toegang te krijgen tot uw projecten",
+  "Project members": "Projectleden",
+  "Select project members": "Selectie van projectleden",
+  "Items can be reordered by drag and drop":
+    "Items kunnen met drag en drop van volgorde worden veranderd",
+  "Submit": "Voeg toe",
+  "submitted_by": "Ingevoerd door <span class='author'>%s</span> op <span class='date'>%s</span>.",
+  "submitted_on": "Ingevoerd op <span class='date'>%s</span>.",
+  "Title": "Titel",
+  "title_placeholder": "Titel van uw %s",
+  "url_placeholder": "Specificeer de URL",
+  "Welcome!": "Welkom!",
+  "You have no projects": "U heeft geen projecten"
+}

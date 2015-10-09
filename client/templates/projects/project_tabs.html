@@ -1,0 +1,25 @@
+<template name="projectTabs">
+  <div role="tabpanel">
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation">
+        <a href="#news" aria-controls="news" role="tab" data-toggle="tab">
+          {{_ "News"}} <span class="badge">0</span>
+        </a>
+      </li>
+      {{#if can_add_item}}
+        <li class="pull-right">
+          <button class="btn btn-primary add-kind">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> {{_ "add_kind" translated_kind}}
+          </button>
+        </li>
+      {{/if}}
+    </ul>
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane fade" id="news" aria-labelled-by="news">
+        <div class="jumbotron">
+          <p>{{_ "Not implemented yet"}}.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

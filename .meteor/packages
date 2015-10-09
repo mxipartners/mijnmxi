@@ -1,0 +1,34 @@
+# Meteor packages used by this project, one per line.
+# Check this file (and the other files in this directory) into your repository.
+#
+# 'meteor add' and 'meteor remove' will edit this file for you,
+# but you can also edit it by hand.
+
+underscore
+iron:router
+sacha:spin
+ian:accounts-ui-bootstrap-3
+accounts-password
+audit-argument-checks
+natestrauser:select2
+zimme:select2-bootstrap3-css
+tap:i18n
+tap:i18n-ui
+coffeescript
+mizzao:jquery-ui
+dsyko:jquery-ui-touch-punch
+sanjo:jasmine
+velocity:html-reporter
+standard-minifiers
+meteor-base
+mobile-experience
+mongo
+blaze-html-templates
+session
+jquery
+tracker
+logging
+reload
+random
+spacebars
+check
