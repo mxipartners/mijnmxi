@@ -11,10 +11,10 @@ Projects.deny
 
 Projects.deny
   update: (userId, project, fieldNames, modifier) ->
-      if modifier.$set == undefined
-        return ""
-      errors = validateProject modifier.$set
-      errors.title or errors.members
+    if modifier.$set == undefined
+      return ""
+    errors = validateProject modifier.$set
+    return errors.title or errors.members
 
 Meteor.methods
   projectInsert: (projectAttributes) ->
