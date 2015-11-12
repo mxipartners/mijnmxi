@@ -1,2 +1,2 @@
 Template.photospage.helpers
-  photos: -> Photos.find {}, {}
+  photos: -> Photos.find {}
