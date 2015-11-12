@@ -2,8 +2,8 @@
   <div role="tabpanel">
     <ul class="nav nav-tabs" role="tablist">
       <li role="presentation">
-        <a href="#news" aria-controls="news" role="tab" data-toggle="tab">
-          {{_ "News"}} <span class="badge">0</span>
+        <a href="#members" aria-controls="members" role="tab" data-toggle="tab">
+          {{_ "Members"}} <span class="badge">{{member_count}}</span>
         </a>
       </li>
       {{#if can_add_item}}
@@ -15,10 +15,8 @@
       {{/if}}
     </ul>
     <div class="tab-content">
-      <div role="tabpanel" class="tab-pane fade" id="news" aria-labelled-by="news">
-        <div class="jumbotron">
-          <p>{{_ "Not implemented yet"}}.</p>
-        </div>
+      <div role="tabpanel" class="tab-pane fade" id="members" aria-labelled-by="members">
+        {{> members}}
       </div>
     </div>
   </div>
