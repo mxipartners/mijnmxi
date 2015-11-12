@@ -59,3 +59,8 @@ html, body {
   90% {opacity: 1;}
   100% {opacity: 0;}
 }
+
+.photo-content img{
+  max-width: 95%;
+  max-height: 90%;
+}

@@ -1,7 +1,7 @@
 <template name="photoItem">
-    <div class="photo">
-      <div class="photo-content">
-        {{photo}}
-      </div>
+    <div class="photo-content">
+      <img src="data:image/png;base64,{{bitmap}}" alt="nog geen alt" /> <br>
+      userid: {{userId}}
+      uploadTimestamp: {{uploadTimestamp}}
     </div>
 </template>

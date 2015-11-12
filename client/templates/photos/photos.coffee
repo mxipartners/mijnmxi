@@ -1,2 +1,2 @@
-Template.photos.helpers
-  photos: -> Photos.find {}, {}
+Template.photospage.helpers
+  photos: -> Photos.find {}
