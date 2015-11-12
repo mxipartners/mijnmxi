@@ -1,9 +1,9 @@
-<template name="photos">
+<template name="photospage">
   {{#if kind_submitting 'photo'}}
     {{> photoNew}}
   {{/if}}
   {{#each photos}}
-    {{> photoItem extendContext 'photoItemIsOpen' false}}
+      {{> photoItem}}
   {{else}}
     <div class="jumbotron">
       <h2>{{_ "You have no photo's"}}</h2>
