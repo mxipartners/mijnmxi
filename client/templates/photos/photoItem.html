@@ -1,7 +1,10 @@
 <template name="photoItem">
-    <div class="photo-content">
+  <div class="item">
+    <div class="item-content">
       <img src="data:image/png;base64,{{bitmap}}" alt="nog geen alt" /> <br>
-      userid: {{userId}}
-      uploadTimestamp: {{uploadTimestamp}}
+        <div class="submitted-date">
+          <p>{{{_ "submitted_by" author_name submitted_date}}}</p>
+        </div>
     </div>
+  </div>
 </template>
