@@ -12,6 +12,7 @@ Template.projectTabs.events
     start_submitting Session.get 'currentProjectTab'
 
 Template.projectTabs.helpers
+  photos: -> Photos.find {}, {sort: {uploadTimestamp: -1}}
   translated_kind: -> TAPi18n.__ Session.get 'currentProjectTab'
   member_count: ->
     project = Template.parentData()
