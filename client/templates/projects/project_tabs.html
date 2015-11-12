@@ -6,6 +6,11 @@
           {{_ "News"}} <span class="badge">0</span>
         </a>
       </li>
+	  <li role="presentation">
+        <a href="#photos" aria-controls="photos" role="tab" data-toggle="tab">
+          Fotos <span class="badge">0</span>
+        </a>
+      </li>
       {{#if can_add_item}}
         <li class="pull-right">
           <button class="btn btn-primary add-kind">
@@ -16,6 +21,11 @@
     </ul>
     <div class="tab-content">
       <div role="tabpanel" class="tab-pane fade" id="news" aria-labelled-by="news">
+        <div class="jumbotron">
+          <p>{{_ "Not implemented yet"}}.</p>
+        </div>
+      </div>
+	  <div role="tabpanel" class="tab-pane fade" id="photos" aria-labelled-by="photos">
         <div class="jumbotron">
           <p>{{_ "Not implemented yet"}}.</p>
         </div>
