@@ -1,5 +1,5 @@
 Template.projectTabs.onCreated ->
-  Session.setDefault 'currentProjectTab', 'news'
+  Session.setDefault 'currentProjectTab', 'members'
 
 Template.projectTabs.onRendered ->
   current = this.$('a[href="#' + Session.get('currentProjectTab') + '"]')
@@ -14,6 +14,10 @@ Template.projectTabs.events
 Template.projectTabs.helpers
   photos: -> Photos.find {}, {sort: {uploadTimestamp: -1}}
   translated_kind: -> TAPi18n.__ Session.get 'currentProjectTab'
+  member_count: ->
+    project = Template.parentData()
+    return project.members.length
+
   can_add_item: ->
     currentTab = Session.get 'currentProjectTab'
     return false
