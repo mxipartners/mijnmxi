@@ -25,6 +25,11 @@
             </form>
           </li>
           {{> loginButtons}}
+          {{#if currentUser}}
+            <li>
+              <a class="profile" href="#">Profile</a>
+            </li>
+          {{/if}}
         </ul>
       </div>
     </div>
