@@ -20,4 +20,5 @@ Template.projectTabs.helpers
 
   can_add_item: ->
     currentTab = Session.get 'currentProjectTab'
-    return false
+    ## Check if add-functionality is allowed. Now alwyas true
+    return true

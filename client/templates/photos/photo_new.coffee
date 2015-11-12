@@ -32,8 +32,7 @@ Template.photoNew.events
         fileReader = new FileReader
         fileReader.onload = (evt) ->
           console.log (typeof evt.target.result)
-          ##photo = { bitmap: evt.target.result }
-          photo = { bitmap: "hello" }
+          photo = { bitmap: evt.target.result }
           Meteor.call 'createPhoto', photo, (error, result) ->
             if error
               throwError error.reason
