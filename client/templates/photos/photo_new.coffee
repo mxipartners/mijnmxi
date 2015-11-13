@@ -8,6 +8,8 @@ Template.photoNew.helpers
   errorMessage: (field) -> Session.get('photoNewErrors')[field]
   errorClass: (field) ->
     if Session.get('photoNewErrors')[field] then 'has-error' else ''
+  selectedMemberCount: ->
+    return (Session.get "selectedMembers").length
 
 Template.photoNew.onRendered ->
   target = document.getElementById "fileinput"
