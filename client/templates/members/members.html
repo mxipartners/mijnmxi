@@ -2,7 +2,7 @@
   {{#each project_members}}
     <div class="item">
       <div class="item-content">
-        <input type="checkbox" class="select_member" id="{{_id}}" />
+        <input type="checkbox" class="select_member" value="{{_id}}" />
         {{username}}
         {{#if telephone_nr}}
           , Telefoonnummer: <a href="tel:{{telephone_nr}}">{{telephone_nr}}</a>
