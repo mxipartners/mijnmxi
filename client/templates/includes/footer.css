@@ -1,0 +1,6 @@
+.navbar-footer .white, .navbar-footer .white a {
+  color: #fff;
+}
+.navbar-footer .white:hover {
+  color: #ffcf00;
+}
