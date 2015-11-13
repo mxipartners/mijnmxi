@@ -1,19 +1,20 @@
 Template.photoNew.onCreated ->
   Session.set 'photoNewErrors', {}
+  Session.setDefault "photosUploaded", false
 
 Template.photoNew.helpers
   userIsCurrentUser: -> this._id == Meteor.userId()
-  hasUploadedPhotos: false
-  photoCount: 0
+  photosUploaded: ->
+    Session.get "photosUploaded"
   errorMessage: (field) -> Session.get('photoNewErrors')[field]
   errorClass: (field) ->
     if Session.get('photoNewErrors')[field] then 'has-error' else ''
 
 Template.photoNew.onRendered ->
+  Session.set "photosUploaded", false
   target = document.getElementById "fileinput"
   target.addEventListener "change", (event) ->
-    Template.photoNew.helpers.photoCount = target.files.length
-    Template.photoNew.helpers.hasUploadedPhotos = target.files.length > 0
+    Session.set "photosUploaded", true
 #    for file in target.files
 #      do (file) ->
 #        console.log("Filename: " + file.name)
