@@ -10,3 +10,4 @@ Template.profilePage.events
     Router.go 'home'
 
   'click .cancel': (e) -> Router.go 'home'
+ 
