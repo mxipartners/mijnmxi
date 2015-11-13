@@ -9,7 +9,6 @@ Template.photoNew.helpers
   errorClass: (field) ->
     if Session.get('photoNewErrors')[field] then 'has-error' else ''
   selectedMemberCount: ->
-    console.log (Session.get "selectedMembers")
     return (Session.get "selectedMembers").length
 
 Template.photoNew.onRendered ->
