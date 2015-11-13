@@ -5,10 +5,10 @@
         <input type="checkbox" class="select_member" value="{{_id}}" />
         {{username}}
         {{#if telephone_nr}}
-          , Telefoonnummer: <a href="tel:{{telephone_nr}}">{{telephone_nr}}</a>
+          , {{_ "Telefoonnummer"}}: <a href="tel:{{telephone_nr}}">{{telephone_nr}}</a>
         {{/if}}
 	      {{#if skype_id}}
-          , Skype_ID: <a href="skype:{{skype_id}}?call">{{skype_id}}</a>
+          , {{_ "Skype ID"}}: <a href="skype:{{skype_id}}?call">{{skype_id}}</a>
         {{/if}}
       </div>
     </div>
