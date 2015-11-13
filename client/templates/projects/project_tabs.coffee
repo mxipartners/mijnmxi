@@ -1,5 +1,8 @@
 Template.projectTabs.onCreated ->
   Session.setDefault 'currentProjectTab', 'members'
+  self = this
+  self.autorun ->
+    self.subscribe "photos", Template.parentData()._id
 
 Template.projectTabs.onRendered ->
   current = this.$('a[href="#' + Session.get('currentProjectTab') + '"]')
