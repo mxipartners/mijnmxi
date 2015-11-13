@@ -4,3 +4,5 @@
 .navbar-footer .white:hover, .navbar-footer .white:active {
   color: #ffcf00;
 }
+
+.navbar-footer img {width: 100%; height: auto; border: 0px}
