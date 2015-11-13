@@ -15,3 +15,11 @@
   opacity: 0;
   filter: alpha(opacity=0);
 }
+
+.bottom {
+  vertical-align: bottom;
+}
+
+.top-room {
+  margin-top: 10px;
+}
