@@ -1,6 +1,6 @@
-.navbar-footer .white, .navbar-footer .white a {
+.navbar-footer .white, .navbar-footer .white:visited {
   color: #fff;
 }
-.navbar-footer .white:hover {
+.navbar-footer .white:hover, .navbar-footer .white:active {
   color: #ffcf00;
 }
