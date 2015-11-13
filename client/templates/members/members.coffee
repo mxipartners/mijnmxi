@@ -1,3 +1,6 @@
+Template.members.onCreated
+  Session.setDefault 'selectedMembers', [Meteor.userId]
+
 Template.members.helpers
   project_members: ->
     project = Template.parentData()
