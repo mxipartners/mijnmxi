@@ -6,6 +6,9 @@
         {{#if telephone_nr}}
           , <a href="tel:{{telephone_nr}}">{{telephone_nr}}</a>
         {{/if}}
+	    {{#if skype_id}}
+          , <a href="skype:{{skype_id}}?call">{{skype_id}}</a>
+        {{/if}}
       </div>
     </div>
   {{/each}}
