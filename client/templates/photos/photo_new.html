@@ -2,21 +2,28 @@
   <form name="photo" class="item-form form" enctype="multipart/form-data">
 	  <div class="form-group">
       <div class="controls">
-        <label for="photo">Foto</label>
-        <input id="fileinput" type="file" name="bitmap">
-          <BR>
-          <BR>
-            Voor wie is deze foto bestemd?
-          <BR>
-          <BR>
-            <div class="btn-group" data-toggle="buttons">
-              <label class="btn btn-primary active">
-                <input type="radio" name="radio 1" id="Everyone" autocomplete="off" checked> Iedereen
-              </label>
-              <label class="btn btn-primary">
-                <input type="radio" name="radio 2" id="Select" autocomplete="off"> Selecteer leden
-              </label>
-            </div>
+        <div class="fileUpload btn btn-primary btn-lg">
+          <span class="glyphicon glyphicon-camera"></span>
+          <input class="upload" id="fileinput" type="file" name="bitmap" accept="image/*">
+        </div>
+        {{#if hasUploadedPhotos}}
+          <div>
+            <label>{{photoCount}} foto(s) zijn geupload. Klik op OK om foto(s) te bewaren.</label>
+          </div>
+        {{/if}}
+        <BR>
+        <BR>
+          Voor wie is deze foto bestemd?
+        <BR>
+        <BR>
+          <div class="btn-group" data-toggle="buttons">
+            <label class="btn btn-primary active">
+              <input type="radio" name="radio 1" id="Everyone" autocomplete="off" checked> Iedereen
+            </label>
+            <label class="btn btn-primary">
+              <input type="radio" name="radio 2" id="Select" autocomplete="off"> Selecteer leden
+            </label>
+          </div>
       </div>
     </div>
     <button type="submit" class="btn btn-primary submit">{{_ "OK"}}</button>
