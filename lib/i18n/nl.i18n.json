@@ -6,6 +6,9 @@
   "Submit": "Voeg toe",
   "Cancel": "Annuleren",
   "Delete": "Verwijder",
+  "photos": "foto",
+  "members": "projectlid",
+  "Members": "Projectleden",
   "Description": "Beschrijving",
   "description_placeholder": "Beschrijving van uw %s",
   "If this is your first time here, join by creating an account":
