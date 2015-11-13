@@ -1,4 +1,4 @@
-Template.members.onCreated
+Template.members.onCreated ->
   Session.setDefault 'selectedMembers', [Meteor.userId]
 
 Template.members.helpers
