@@ -1,7 +1,7 @@
 Accounts.onCreateUser (options, user) ->
   tutorial =
     title: "Welcome to Mijn M&I/Partners, #{user.username}!"
-    description: "Mijn M&I/Partners is #{user.telephone_nr}..."
+    description: "Mijn M&I/Partners is een applicatie om..."
     members: [user._id]
     userId: user._id
     submitted: new Date
