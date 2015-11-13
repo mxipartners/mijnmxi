@@ -10,11 +10,12 @@ Template.members.events
   'change .select_member': (e) ->
     e.preventDefault()
 
-    user_id = $(e.target).find('[name=id]').val()
-    selected_members = Session.get('selectedMembers')
+    user_id = $(e.target).val()
+    selected_members = Session.get('selectedMembers').slice()
     if e.target.checked
-      selected_members.push e.target.id
+      selected_members.push user_id
     else
-      index = selected_members.indexOf e.target.id
-      selected_members.splice index, 1
+      index = selected_members.indexOf user_id
+      selected_members.splice(index, 1)
     Session.set('selectedMembers', selected_members)
+    console.log Session.get('selectedMembers')
