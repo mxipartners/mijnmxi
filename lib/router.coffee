@@ -3,12 +3,17 @@ Router.configure
   loadingTemplate: 'loading'
   notFoundTemplate: 'notFound'
   waitOn: -> [Meteor.subscribe('projects'),
+              Meteor.subscribe('photos'),
               Meteor.subscribe('notifications'),
               Meteor.subscribe('usernames')]
 
 Router.route '/projects/:_id',
   name: 'projectPage'
   data: -> Projects.findOne this.params._id
+
+Router.route '/users/:_id',
+  name: 'profilePage'
+  data: -> Meteor.users.findOne this.params._id
 
 Router.route '/', name: 'home'
 
