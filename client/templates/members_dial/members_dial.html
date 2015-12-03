@@ -27,4 +27,18 @@
       {{/each}}
     </div>
   </div>
+  {{#if add_members}}
+    <div style="position: absolute;">
+      <div class="form-group">
+        <div class="controls">
+          <label for="members">Projectleden</label>
+          <select name="members" multiple="multiple" class="form-control member-select">
+            {{#each users}}
+              <option selected="{{userIsMember}}" value="{{_id}}">{{email}}</option>
+            {{/each}}
+          </select>
+        </div>
+      </div>
+    </div>
+  {{/if}}
 </template>

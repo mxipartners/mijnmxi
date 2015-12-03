@@ -3,12 +3,20 @@ Template.members_dial.onCreated ->
 
 Template.members_dial.onRendered ->
   SVGInjector $(".embed_svg"), { evalScipts: 'never' }
+  $(".member-select").select2
+    placeholder: "Selecteer projectleden"
 
 Template.members_dial.helpers
   project_members: ->
     project = Template.parentData()
     return Meteor.users.find {_id: {$in: project.members}}
   email: -> @emails[0].address
+  add_members: -> Session.get 'add_members'
+  users: -> Meteor.users.find {}
+  userIsMember: ->
+    project = Template.parentData()
+    this._id in project.members
+
 
 Template.members_dial.events
   'click .dial_member': (e) ->

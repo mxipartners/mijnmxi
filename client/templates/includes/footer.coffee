@@ -16,3 +16,7 @@ Template.footer.events
     e.preventDefault()
     Meteor.logout()
     Router.go 'home'
+
+  'click .add_member': (e) ->
+    e.preventDefault()
+    Session.set 'add_members', not Session.get 'add_members'
