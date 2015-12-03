@@ -15,9 +15,9 @@
     <div class="center">
       {{#each project_members}}
         <div class="circular" style="{{positionCircular @index project_members.count 120}}">
-          <div class="dial_member">
+          <div class="dial_member" user_id="{{_id}}">
             <div>
-              <img class="embed_svg" src="/images/Personicon.svg" alt="{{username}}">
+              <img class="embed_svg" src="/images/Personicon.svg" alt="{{email}}">
             </div>
             <div class="text_unselectable">
               {{email}}

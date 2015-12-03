@@ -1,6 +1,3 @@
-Template.members.onCreated ->
-  Session.setDefault 'selectedMembers', []
-
 Template.members.helpers
   email: -> @emails[0].address
   project_members: ->
