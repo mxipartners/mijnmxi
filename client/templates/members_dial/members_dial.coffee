@@ -1,12 +1,19 @@
 Template.members_dial.onCreated ->
   Session.setDefault 'selectedMembers', []
 
+Template.members_dial.onRendered ->
+  SVGInjector $(".embed_svg"), { evalScipts: 'never' }
+
 Template.members_dial.helpers
   project_members: ->
     project = Template.parentData()
     return Meteor.users.find {_id: {$in: project.members}}, {sort: {username: 1}}
-  test_items: ->
-    return [ "aap", "noot" ]
+
+Template.members_dial.events
+  'click .dial_member': (e) ->
+    e.preventDefault
+
+    $(e.currentTarget).toggleClass "selected"
 
 Handlebars.registerHelper "positionCircular", (index, count, radius) ->
   angle = Math.PI * 2 / count * index - Math.PI / 2
