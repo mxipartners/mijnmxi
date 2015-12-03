@@ -1,20 +1,27 @@
 <template name="accessDenied">
-  <div class="access-denied page jumbotron">
-    <h2>Welkom!</h2>
-    <p>Log in om uw projecten te zien.</p>
-    <form name="login">
-      <div class="form-group {{errorClass 'login'}}">
-        <div class="controls">
-          <input type="text" name="email" placeholder="Email"/>
+  <div class="access-denied page">
+    <img src="images/Logobig.svg" class="img-responsive center-block" alt="Logo"
+         style="max-width: 50%; max-height: 50%" vspace="50"/>
+    <center>
+      <form>
+        <span class="help-block mxi">{{errorMessage}}</span>
+        <div class="form-group">
+          <input class="form-control" type="text" name="email" placeholder="Email"
+                  required="required"/>
         </div>
-        <div class="controls">
-          <input type="password" name="password" placeholder="Wachtwoord"/>
+        <div class="form-group">
+          <input class="form-control" type="password" name="password"
+                 placeholder="Wachtwoord" required="required"/>
         </div>
-        <div class="controls">
-          <input type="submit" id="login-button" value="Login" />
-        </div>
-        <span class="help-block">{{errorMessage 'login'}}</span>
-      </div>
-    </form>
+        {{#if newUser}}
+          <div class="form-group">
+            <input class="form-control" type="password" name="password2"
+                   placeholder="Nogmaals wachtwoord" required="required"/>
+          </div>
+        {{/if}}
+        <button class="btn btn-default" type="submit">{{loginButtonText}}</button>
+        <a class="btn btn-default new-user">{{newUserButtonText}}</a>
+      </form>
+    </center>
   </div>
 </template>
