@@ -1,6 +1,6 @@
 html, body {
   height: 100%;
-  background-color: #eee ! important;
+  background-color: #4A5C68 ! important;
   color: #666666; }
 
 .grid-block, .main, .project, .item, .item-form {
@@ -33,6 +33,10 @@ html, body {
 
 .add-kind {
   margin-right: 10px;
+}
+
+.help-block.mxi {
+  color: #FFCF00;
 }
 
 .dropdown-menu span {
