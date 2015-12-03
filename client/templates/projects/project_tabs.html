@@ -2,22 +2,10 @@
   <div role="tabpanel">
     <ul class="nav nav-tabs" role="tablist">
       <li role="presentation">
-        <a href="#projectlid" aria-controls="projectlid" role="tab" data-toggle="tab">
-          Projectleden <span class="badge">{{member_count}}</span>
-        </a>
-      </li>
-      <li role="presentation">
         <a href="#foto" aria-controls="foto" role="tab" data-toggle="tab">
           Foto's <span class="badge">{{photos.count}}</span>
         </a>
       </li>
-      {{#if can_add_item}}
-        <li class="pull-right">
-          <button class="btn btn-primary add-kind">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Voeg {{kind}} toe
-          </button>
-        </li>
-      {{/if}}
       <li role="presentation">
         <a href="#members_dial" aria-controls="members_dial" role="tab" data-toggle="tab">
           Dial
@@ -25,9 +13,6 @@
       </li>
     </ul>
     <div class="tab-content">
-      <div role="tabpanel" class="tab-pane fade" id="projectlid" aria-labelled-by="projectlid">
-        {{> members}}
-      </div>
       <div role="tabpanel" class="tab-pane fade" id="foto" aria-labelled-by="foto">
         {{> photospage}}
       </div>

@@ -1,5 +1,5 @@
 Template.projectTabs.onCreated ->
-  Session.setDefault 'currentProjectTab', 'projectlid'
+  Session.setDefault 'currentProjectTab', 'foto'
   self = this
   self.autorun ->
     self.subscribe "photos", Template.parentData()._id
@@ -17,11 +17,3 @@ Template.projectTabs.events
 Template.projectTabs.helpers
   photos: -> Photos.find {}, {sort: {uploadTimestamp: -1}}
   kind: -> Session.get 'currentProjectTab'
-  member_count: ->
-    project = Template.parentData()
-    return project.members.length
-
-  can_add_item: ->
-    currentTab = Session.get 'currentProjectTab'
-    # Check if add-functionality is allowed. Now always true
-    return currentTab != 'projectlid'
