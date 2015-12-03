@@ -17,17 +17,22 @@
 
 .dial_member {
   position: absolute;
-  width: 10em;
-  left: -5em;
+  width: 6em;
+  left: -3em;
   text-align: center;
-  height: 1em;
-  top: -0.5em; 
+  height: 4em;
+  top: -2em; 
   vertical-align: middle;
   color: #FFFFFF;
 }
 
 .dial_member img {
+  margin-top: 0.5em;
   width: 2em;
+}
+
+.dial_member img .selected {
+  fill: #FFCF00;
 }
 
 .circle, .line {
