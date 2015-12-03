@@ -8,7 +8,8 @@ Template.projectNew.onRendered ->
 
 
 Template.projectNew.helpers
-  usernames: -> Meteor.users.find {}, {sort: {username: 1}}
+  users: -> Meteor.users.find {}
+  email: -> @emails[0].address
   userIsCurrentUser: -> this._id == Meteor.userId()
   errorMessage: (field) -> Session.get('projectNewErrors')[field]
   errorClass: (field) ->

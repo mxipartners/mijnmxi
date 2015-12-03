@@ -1,6 +1,6 @@
 html, body {
   height: 100%;
-  background-color: #eee ! important;
+  background-color: #4A5C68 ! important;
   color: #666666; }
 
 .grid-block, .main, .project, .item, .item-form {
@@ -12,14 +12,20 @@ html, body {
   -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15); }
 
+.container {
+  height: 100%;
+}
+
 #main {
   position: relative;
+  height: 100%;
 }
 
 .page {
   position: absolute;
   top: 0px;
   width: 100%;
+  height: 100%;
 }
 
 #spinner {
@@ -27,6 +33,10 @@ html, body {
 
 .add-kind {
   margin-right: 10px;
+}
+
+.help-block.mxi {
+  color: #FFCF00;
 }
 
 .dropdown-menu span {
