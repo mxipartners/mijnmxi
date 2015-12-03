@@ -2,6 +2,19 @@
   <div class="access-denied page jumbotron">
     <h2>Welkom!</h2>
     <p>Log in om uw projecten te zien.</p>
-    <p>Als dit uw eerste keer hier is, maak dan een account.</p>
+    <form name="login">
+      <div class="form-group {{errorClass 'login'}}">
+        <div class="controls">
+          <input type="text" name="email" placeholder="Email"/>
+        </div>
+        <div class="controls">
+          <input type="password" name="password" placeholder="Wachtwoord"/>
+        </div>
+        <div class="controls">
+          <input type="submit" id="login-button" value="Login" />
+        </div>
+        <span class="help-block">{{errorMessage 'login'}}</span>
+      </div>
+    </form>
   </div>
 </template>

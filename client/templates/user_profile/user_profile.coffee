@@ -1,3 +1,6 @@
+Template.profilePage.helpers
+  email: -> @emails[0].address
+  
 Template.profilePage.events
   'submit form': (e) ->
     e.preventDefault()
