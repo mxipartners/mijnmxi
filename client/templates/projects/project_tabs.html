@@ -6,7 +6,7 @@
           Projectleden <span class="badge">{{member_count}}</span>
         </a>
       </li>
-	  <li role="presentation">
+      <li role="presentation">
         <a href="#foto" aria-controls="foto" role="tab" data-toggle="tab">
           Foto's <span class="badge">{{photos.count}}</span>
         </a>
@@ -18,6 +18,11 @@
           </button>
         </li>
       {{/if}}
+      <li role="presentation">
+        <a href="#members_dial" aria-controls="members_dial" role="tab" data-toggle="tab">
+          Dial
+        </a>
+      </li>
     </ul>
     <div class="tab-content">
       <div role="tabpanel" class="tab-pane fade" id="projectlid" aria-labelled-by="projectlid">
@@ -25,6 +30,9 @@
       </div>
       <div role="tabpanel" class="tab-pane fade" id="foto" aria-labelled-by="foto">
         {{> photospage}}
+      </div>
+      <div role="tabpanel" class="tab-pane fade" id="members_dial" aria-labelled-by="members_dial">
+        {{> members_dial}}
       </div>
     </div>
   </div>
