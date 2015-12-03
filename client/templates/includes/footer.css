@@ -1,8 +1,4 @@
-.navbar-footer .white, .navbar-footer .white:visited {
-  color: #fff;
+.navbar-footer {
+  background-color: #4A5C68 ! important;
 }
-.navbar-footer .white:hover, .navbar-footer .white:active {
-  color: #ffcf00;
-}
-
 .navbar-footer img {width: 100%; max-height: 38px; border: 0px}
