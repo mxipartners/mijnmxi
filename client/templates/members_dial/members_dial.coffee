@@ -5,12 +5,14 @@ Template.members_dial.onCreated ->
 Template.members_dial.onRendered ->
   SVGInjector $(".embed_svg"), { evalScipts: 'never' }
   $(".dial_member").each(->
-    offset = $(this).position()
-    console.log offset
-    $(this).attr("data-orig-x", $(this).css("left"))
-    $(this).attr("data-orig-y", offset.top)
+    $(this).attr("data-orig-x", "" + $(this).css("left"))
+    $(this).attr("data-orig-y", "" + $(this).css("top"))
   )
   $(".dial_member").draggable()
+  $(".dial_member").on("dragstop", ->
+    $(this).css("left", $(this).attr("data-orig-x"))
+    $(this).css("top", $(this).attr("data-orig-y"))
+  )
   $(".member-select").select2
     placeholder: "Selecteer projectleden"
 
