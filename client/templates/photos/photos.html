@@ -1,13 +1,13 @@
 <template name="photospage">
-  {{#if kind_submitting 'photos'}}
+  {{#if kind_submitting 'foto'}}
     {{> photoNew}}
   {{/if}}
   {{#each photos}}
       {{> photoItem}}
   {{else}}
     <div class="jumbotron">
-      <h2>{{_ "You have no photo's"}}</h2>
-      <p>{{_ "Please add a photo..."}}.</p>
+      <h2>U heeft geen foto's</h2>
+      <p>Voeg foto's toe met de foto knop.</p>
     </div>
   {{/each}}
 </template>

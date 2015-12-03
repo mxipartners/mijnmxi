@@ -1,6 +1,6 @@
 <template name="notifications">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-    {{_ "Notifications"}}
+    Meldingen
     {{#if notificationCount}}
       <span class="badge badge-inverse">{{notificationCount}}</span>
     {{/if}}
@@ -9,14 +9,14 @@
   <ul class="notification dropdown-menu">
     {{#if notificationCount}}
       <li>
-        <a href="#" class="markread">{{_ "Mark all notifications as read"}}</a>
+        <a href="#" class="markread">Markeer alle meldingen als gelezen</a>
       </li>
       <li role="presentation" class="divider"></li>
       {{#each notifications}}
         {{> notificationItem}}
       {{/each}}
     {{else}}
-      <li><span>{{_ "No notifications"}}</span></li>
+      <li><span>Geen meldingen</span></li>
     {{/if}}
   </ul>
 </template>

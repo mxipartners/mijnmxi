@@ -4,12 +4,12 @@
       <ul class="nav nav-tabs" role="tablist">
         <li role="presentation">
           <a href="#project" aria-controls="projects" role="tab" data-toggle="tab">
-            {{_ "Projects"}} <span class="badge">{{projects.count}}</span>
+            Projecten <span class="badge">{{projects.count}}</span>
           </a>
         </li>
         <li class="pull-right">
           <button class="btn btn-primary add-kind">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> {{_ "add_kind" translated_kind}}
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Voeg {{kind}} toe
           </button>
         </li>
       </ul>
@@ -23,8 +23,8 @@
           {{> projectItem extendContext 'projectItemIsOpen' false}}
         {{else}}
           <div class="jumbotron">
-            <h2>{{_ "You have no projects"}}</h2>
-            <p>{{_ "Please create a project or have another user add you to one of theirs"}}.</p>
+            <h2>U heeft geen projecten</h2>
+            <p>Maak een project of laat een andere gebruiker u aan een project toevoegen.</p>
           </div>
         {{/each}}
       </div>

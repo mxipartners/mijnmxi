@@ -2,28 +2,28 @@
   <div role="tabpanel">
     <ul class="nav nav-tabs" role="tablist">
       <li role="presentation">
-        <a href="#members" aria-controls="members" role="tab" data-toggle="tab">
-          {{_ "Members"}} <span class="badge">{{member_count}}</span>
+        <a href="#projectlid" aria-controls="projectlid" role="tab" data-toggle="tab">
+          Projectleden <span class="badge">{{member_count}}</span>
         </a>
       </li>
 	  <li role="presentation">
-        <a href="#photos" aria-controls="photos" role="tab" data-toggle="tab">
-          Fotos <span class="badge">{{photos.count}}</span>
+        <a href="#foto" aria-controls="foto" role="tab" data-toggle="tab">
+          Foto's <span class="badge">{{photos.count}}</span>
         </a>
       </li>
       {{#if can_add_item}}
         <li class="pull-right">
           <button class="btn btn-primary add-kind">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> {{_ "add_kind" translated_kind}}
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Voeg {{kind}} toe
           </button>
         </li>
       {{/if}}
     </ul>
     <div class="tab-content">
-      <div role="tabpanel" class="tab-pane fade" id="members" aria-labelled-by="members">
+      <div role="tabpanel" class="tab-pane fade" id="projectlid" aria-labelled-by="projectlid">
         {{> members}}
       </div>
-      <div role="tabpanel" class="tab-pane fade" id="photos" aria-labelled-by="photos">
+      <div role="tabpanel" class="tab-pane fade" id="foto" aria-labelled-by="foto">
         {{> photospage}}
       </div>
     </div>

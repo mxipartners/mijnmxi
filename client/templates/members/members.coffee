@@ -18,4 +18,3 @@ Template.members.events
       index = selected_members.indexOf user_id
       selected_members.splice(index, 1)
     Session.set('selectedMembers', selected_members)
-    console.log Session.get('selectedMembers')

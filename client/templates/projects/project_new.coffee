@@ -4,7 +4,7 @@ Template.projectNew.onCreated ->
 
 Template.projectNew.onRendered ->
   $(".member-select").select2
-    placeholder: TAPi18n.__ "Select project members"
+    placeholder: "Select projectleden"
 
 
 Template.projectNew.helpers

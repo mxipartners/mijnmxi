@@ -1,25 +1,25 @@
 <template name="profilePage">
-   <h2>{{_ "Profile"}}: {{username}}</h2>
+   <h2>Profiel: {{username}}</h2>
 	 <form name="profile" class="form-horizontal" role="form">
 
 	  <div class="form-group">
-        <label class="control-label col-sm-2" for="telephone_nr">{{_ "Phone number"}}:</label>
+        <label class="control-label col-sm-2" for="telephone_nr">Telefoonnummer:</label>
           <div class="col-sm-3">
-           <input type="tel" class="form-control" name="telephone_nr" placeholder="{{_ 'Phone number'}}" value="{{telephone_nr}}">
+           <input type="tel" class="form-control" name="telephone_nr" placeholder="Telefoonnummer" value="{{telephone_nr}}">
           </div>
       </div>
 
 	   <div class="form-group">
-        <label class="control-label col-sm-2" for="skype_id">{{_ "Skype ID"}}:</label>
+        <label class="control-label col-sm-2" for="skype_id">Skype ID</label>
           <div class="col-sm-3">
-           <input type="text" class="form-control" name="skype_id" placeholder="{{_ 'Skype ID'}}" value="{{skype_id}}">
+           <input type="text" class="form-control" name="skype_id" placeholder="Skype ID" value="{{skype_id}}">
           </div>
        </div>
 
     <div class="form-group">
        <div class="col-sm-offset-2 col-sm-10">
-	     <button type="submit" class="btn btn-primary submit">{{_ "OK"}}</button>
-         <button type="button" class="btn btn-default cancel">{{_ "Cancel"}}</button>
+	     <button type="submit" class="btn btn-primary submit">OK</button>
+         <button type="button" class="btn btn-default cancel">Annuleer</button>
 	   </div>
     </div>
   </form>

@@ -12,8 +12,6 @@ accounts-password
 audit-argument-checks
 natestrauser:select2
 zimme:select2-bootstrap3-css
-tap:i18n
-tap:i18n-ui
 coffeescript
 mizzao:jquery-ui
 dsyko:jquery-ui-touch-punch
