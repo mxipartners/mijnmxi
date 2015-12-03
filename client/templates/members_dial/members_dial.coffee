@@ -1,14 +1,27 @@
 Template.members_dial.onCreated ->
   Session.setDefault 'selectedMembers', []
+  Session.setDefault 'context', 'members'
 
 Template.members_dial.onRendered ->
   SVGInjector $(".embed_svg"), { evalScipts: 'never' }
+  $(".dial_member").each(->
+    offset = $(this).position()
+    console.log offset
+    $(this).attr("data-orig-x", $(this).css("left"))
+    $(this).attr("data-orig-y", offset.top)
+  )
+  $(".dial_member").draggable()
 
 Template.members_dial.helpers
-  project_members: ->
-    project = Template.parentData()
-    return Meteor.users.find {_id: {$in: project.members}}
+  context: ->
+    if ((Session.get 'context') is 'members') then Template.parentData().title else 'Gebruiker'
   email: -> @emails[0].address
+  items: ->
+    if ((Session.get 'context') is 'members')
+      project = Template.parentData()
+      return Meteor.users.find {_id: {$in: project.members}}
+    else
+      return projects
 
 Template.members_dial.events
   'click .dial_member': (e) ->

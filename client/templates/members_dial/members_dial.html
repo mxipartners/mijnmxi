@@ -13,8 +13,8 @@
       </svg>
     </div>
     <div class="center">
-      {{#each project_members}}
-        <div class="circular" style="{{positionCircular @index project_members.count 120}}">
+      {{#each items}}
+        <div class="circular" style="{{positionCircular @index items.count 120}}">
           <div class="dial_member">
             <div>
               <img class="embed_svg" src="/images/Personicon.svg">
@@ -25,6 +25,9 @@
           </div>
         </div>
       {{/each}}
+      <div class="context">
+        <span>{{context}}</span>
+      </div>
     </div>
   </div>
 </template>
