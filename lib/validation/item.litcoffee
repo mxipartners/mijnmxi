@@ -25,5 +25,5 @@ When running on the server, a missing title is a fatal error.
 
 When running on the client, we will tell the user to provide a title.
 
-          errors.title = TAPi18n.__ "Please provide a title"
+          errors.title = "Een titel is verplicht"
       return errors

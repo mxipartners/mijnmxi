@@ -2,6 +2,7 @@ Template.members.onCreated ->
   Session.setDefault 'selectedMembers', []
 
 Template.members.helpers
+  email: -> @emails[0].address
   project_members: ->
     project = Template.parentData()
     return Meteor.users.find {_id: {$in: project.members}}, {sort: {username: 1}}
@@ -18,4 +19,3 @@ Template.members.events
       index = selected_members.indexOf user_id
       selected_members.splice(index, 1)
     Session.set('selectedMembers', selected_members)
-    console.log Session.get('selectedMembers')

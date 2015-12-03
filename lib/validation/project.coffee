@@ -7,5 +7,5 @@
       throw new Meteor.Error('invalid-project',
                              'You must select at least one project member')
     else
-      errors.members = TAPi18n.__ "Please select at least one project member"
+      errors.members = "Selecteer ten minste een projectlid"
   return errors

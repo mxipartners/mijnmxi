@@ -3,12 +3,12 @@
     <div class="item">
       <div class="item-content">
         <input type="checkbox" class="select_member" value="{{_id}}" />
-        {{username}}
+        {{email}}
         {{#if telephone_nr}}
-          , {{_ "Telefoonnummer"}}: <a href="tel:{{telephone_nr}}">{{telephone_nr}}</a>
+          , Telefoonnummer: <a href="tel:{{telephone_nr}}">{{telephone_nr}}</a>
         {{/if}}
 	      {{#if skype_id}}
-          , {{_ "Skype ID"}}: <a href="skype:{{skype_id}}?call">{{skype_id}}</a>
+          , Skype ID: <a href="skype:{{skype_id}}?call">{{skype_id}}</a>
         {{/if}}
       </div>
     </div>

@@ -3,7 +3,7 @@ Template.projectEdit.onCreated ->
 
 Template.projectEdit.onRendered ->
   $(".member-select").select2
-    placeholder: TAPi18n.__ "Select project members"
+    placeholder: "Selecteer projectleden"
 
 Template.projectEdit.helpers
   usernames: -> Meteor.users.find {}, {sort: {username: 1}}
@@ -42,10 +42,6 @@ Template.projectEdit.events
         stop_editing()
 
   'click .cancel': (e) -> stop_editing()
-
-
-Template.deleteProject.helpers
-  translated_kind: -> TAPi18n.__ this.kind
 
 
 Template.deleteProject.events

@@ -9,6 +9,3 @@ Template.urlControl.helpers
 
   errorClass: (field) ->
     if errorMessage(field) then 'has-error' else ''
-
-  translated_kind: ->
-    TAPi18n.__ this.kind
