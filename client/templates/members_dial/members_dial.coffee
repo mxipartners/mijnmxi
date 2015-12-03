@@ -7,7 +7,8 @@ Template.members_dial.onRendered ->
 Template.members_dial.helpers
   project_members: ->
     project = Template.parentData()
-    return Meteor.users.find {_id: {$in: project.members}}, {sort: {username: 1}}
+    return Meteor.users.find {_id: {$in: project.members}}
+  email: -> @emails[0].address
 
 Template.members_dial.events
   'click .dial_member': (e) ->
