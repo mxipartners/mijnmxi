@@ -1,0 +1,38 @@
+.login {
+  border: 2px #FFCF00 solid;
+  -webkit-border-radius: 10;
+  -moz-border-radius: 10;
+  border-radius: 10px;
+  width: 400px;
+  padding: 5px;
+  background-color: #66757E;
+}
+
+.login input {
+  color: #FFFFFF;
+  width: 370px;
+  padding: 10px;
+  background-color: #66757E;
+  border: none;
+}
+
+.login input:not(:last-child) {
+  border-bottom: 1px #FFFFFF solid;
+}
+
+.login-button {
+  width: 200px;
+  background: #66757E;
+  -webkit-border-radius: 5;
+  -moz-border-radius: 5;
+  border-radius: 5px;
+  font-family: Arial;
+  color: #ffffff;
+  border: solid #ffffff 0px;
+  padding: 5px 20px 5px 20px;
+  text-decoration: none;
+}
+
+.login-button:active {
+  color: #FFCF00;
+}

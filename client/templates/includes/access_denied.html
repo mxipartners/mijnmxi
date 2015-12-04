@@ -1,27 +1,23 @@
 <template name="accessDenied">
-  <div class="access-denied page">
-    <img src="/images/Logobig.svg" class="img-responsive center-block" alt="Logo"
-         style="max-width: 50%; max-height: 50%" vspace="50"/>
-    <center>
-      <form>
+  <img src="/images/Logobig.svg" class="img-responsive center-block" alt="Logo"
+       style="max-width: 50%; max-height: 50%" vspace="50"/>
+  <center>
+    <form>
+      <p class="login">
         <span class="help-block mxi">{{errorMessage}}</span>
-        <div class="form-group">
-          <input class="form-control" type="text" name="email" placeholder="Email"
-                  required="required"/>
-        </div>
-        <div class="form-group">
-          <input class="form-control" type="password" name="password"
-                 placeholder="Wachtwoord" required="required"/>
-        </div>
+        <input type="text" name="email" placeholder="Email"
+                required="required"/>
+        <input type="password" name="password"
+               placeholder="Wachtwoord" required="required"/>
         {{#if newUser}}
-          <div class="form-group">
-            <input class="form-control" type="password" name="password2"
-                   placeholder="Nogmaals wachtwoord" required="required"/>
-          </div>
+          <input type="password" name="password2"
+                 placeholder="Nogmaals wachtwoord" required="required"/>
         {{/if}}
-        <button class="btn btn-default" type="submit">{{loginButtonText}}</button>
-        <a class="btn btn-default new-user">{{newUserButtonText}}</a>
-      </form>
-    </center>
-  </div>
+      </p>
+      <p>
+        <button class="login-button" type="submit">{{loginButtonText}}</button>
+        <button class="login-button new-user">{{newUserButtonText}}</button>
+      </p>
+    </form>
+  </center>
 </template>
