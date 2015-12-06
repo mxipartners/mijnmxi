@@ -36,3 +36,7 @@
 .login-button:active {
   color: #FFCF00;
 }
+
+.login .help-block:empty {
+	display: none;
+}
