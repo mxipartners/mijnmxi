@@ -11,6 +11,26 @@
   top: 50%;
 }
 
+.context {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  left: -100px;
+  top: -100px;
+  line-height: 200px;
+  border-radius: 100px;
+  text-align: center;
+  vertical-align: middle;
+  overflow: hidden;
+  color: #FFFFFF;
+}
+
+.context span {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1.2em;
+}
+
 .circular {
   position: absolute;
 }
@@ -21,7 +41,7 @@
   left: -3em;
   text-align: center;
   height: 4em;
-  top: -2em; 
+  top: -2em;
   vertical-align: middle;
   color: #FFFFFF;
   cursor: pointer;

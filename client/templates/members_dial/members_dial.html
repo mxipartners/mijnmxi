@@ -13,11 +13,11 @@
       </svg>
     </div>
     <div class="center">
-      {{#each project_members}}
-        <div class="circular" style="{{positionCircular @index project_members.count 120}}">
-          <div class="dial_member">
+      {{#each items}}
+        <div class="circular" style="{{positionCircular @index items.count 120}}">
+          <div class="dial_member" user_id="{{_id}}">
             <div>
-              <img class="embed_svg" src="/images/Personicon.svg" alt="{{username}}">
+              <img class="embed_svg" src="/images/Personicon.svg" alt="{{email}}">
             </div>
             <div class="text_unselectable">
               {{email}}
@@ -25,6 +25,23 @@
           </div>
         </div>
       {{/each}}
+      <div class="context">
+        <span>{{context}}</span>
+      </div>
     </div>
   </div>
+  {{#if add_members}}
+    <div style="position: absolute;">
+      <div class="form-group">
+        <div class="controls">
+          <label for="members">Projectleden</label>
+          <select name="members" multiple="multiple" class="form-control member-select">
+            {{#each users}}
+              <option selected="{{userIsMember}}" value="{{_id}}">{{email}}</option>
+            {{/each}}
+          </select>
+        </div>
+      </div>
+    </div>
+  {{/if}}
 </template>

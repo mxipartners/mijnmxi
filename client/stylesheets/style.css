@@ -69,3 +69,8 @@ html, body {
   90% {opacity: 1;}
   100% {opacity: 0;}
 }
+
+/* Prevent 'glow' on input elements on Safari */
+*:focus {
+	outline: none;
+}
