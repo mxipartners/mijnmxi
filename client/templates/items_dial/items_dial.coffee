@@ -62,6 +62,12 @@ Template.items_dial.events
       selected_items.splice(index, 1)
     Session.set 'selectedItems', selected_items
 
+  'click .title': (e) ->
+    e.preventDefault()
+    if Router.current().route.getName() is "projectPage"
+      Router.go 'projectEdit', {_id: @_id}
+
+
 Handlebars.registerHelper "positionCircular", (index, count, radius) ->
   angle = Math.PI * 2 / count * index - Math.PI / 2
   top = (Math.sin angle) * radius
