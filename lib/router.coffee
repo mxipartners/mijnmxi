@@ -10,6 +10,10 @@ Router.route '/projects/:_id/add_member',
   name: 'addMember'
   data: -> Projects.findOne this.params._id
 
+Router.route '/projects/:_id/edit',
+  name: 'projectEdit'
+  data: -> Projects.findOne this.params._id
+
 Router.route '/projects/:_id',
   name: 'projectPage'
   data: -> Projects.findOne this.params._id

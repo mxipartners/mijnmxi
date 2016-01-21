@@ -1,7 +1,7 @@
 <template name="projectPage">
   <div class="project-page page">
     {{#if item_is_edited}}
-      {{> projectEdit}}
+      {{> projectEditOld}}
     {{else}}
       {{> projectItem extendContext 'projectItemIsOpen' true}}
     {{/if}}

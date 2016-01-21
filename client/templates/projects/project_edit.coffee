@@ -1,13 +1,13 @@
-Template.projectEdit.onCreated ->
+Template.projectEditOld.onCreated ->
   Session.set 'projectEditErrors', {}
 
-Template.projectEdit.helpers
+Template.projectEditOld.helpers
   errorMessage: (field) ->
     Session.get('projectEditErrors')[field]
   errorClass: (field) ->
     if Session.get('projectEditErrors')[field] then 'has-error' else ''
 
-Template.projectEdit.events
+Template.projectEditOld.events
   'submit form': (e) ->
     e.preventDefault()
 
