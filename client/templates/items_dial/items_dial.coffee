@@ -12,14 +12,12 @@ dragStop = ->
   top = parseFloat $(this).css "top"
   if length(left, top) < 70
     template = if Router.current().route.getName() is "projectPage" then "memberPage" else "projectPage"
-    console.log "Go to: " + $(this).attr("data-id")
     Router.go template, { _id: $(this).attr("data-id") }
   else
     $(this).css("left", $(this).attr "data-orig-x")
     $(this).css("top", $(this).attr "data-orig-y")
 
 Template.items_dial.onRendered ->
-  console.log Router.current().route.getName()
   SVGInjector $(".embed_svg"), { evalScipts: 'never' }
   $(".circular").each(->
     $(this).attr("data-orig-x", "" + $(this).css("left"))
