@@ -26,6 +26,4 @@ Meteor.methods
       submitted: new Date()
       kind: 'project'
     projectId = Projects.insert project
-    text = user.username + ' added you as project member to ' + project.title
-    createNotification(member, user._id, projectId, text) for member in project.members
     return {_id: projectId}
