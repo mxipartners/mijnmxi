@@ -1,11 +1,12 @@
 Template.footer.helpers
   phone_url: ->
-    members = Session.get 'selectedMembers'
+    members = Session.get 'selectedItems'
     selected_users = Meteor.users.find({_id: {$in: members}}).fetch()
     if selected_users.length == 0
       "#"
     else if selected_users.length == 1
       phone_number = selected_users[0].telephone_nr
+      console.log phone_number
       "tel:#{phone_number}"
     else
       skype_ids = (user.skype_id for user in selected_users when user.skype_id).join(';')
