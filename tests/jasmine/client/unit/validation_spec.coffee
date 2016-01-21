@@ -1,12 +1,6 @@
 title_error =
   title: jasmine.any(String)
 
-url_error =
-  url: jasmine.any(String)
-
-type_error =
-  type: jasmine.any(String)
-
 
 describe 'An item', ->
 
