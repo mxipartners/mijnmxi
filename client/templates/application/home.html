@@ -1,34 +1,5 @@
 <template name="home">
   <div>
-    <div role="tabpanel">
-      <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation">
-          <a href="#project" aria-controls="projects" role="tab" data-toggle="tab">
-            Projecten <span class="badge">{{projects.count}}</span>
-          </a>
-        </li>
-        <li class="pull-right">
-          <button class="btn btn-primary add-kind">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Voeg {{kind}} toe
-          </button>
-        </li>
-      </ul>
-    </div>
-    <div class="tab-content">
-      <div role="tabpanel" class="tab-pane fade" id="project" aria-labelled-by="projects">
-        {{#if kind_submitting 'project'}}
-          {{> projectNew}}
-        {{/if}}
-        {{#each projects}}
-          {{> projectItem extendContext 'projectItemIsOpen' false}}
-        {{else}}
-          <div class="jumbotron">
-            <h2>U heeft geen projecten</h2>
-            <p>Maak een project of laat een andere gebruiker u aan een project toevoegen.</p>
-          </div>
-        {{/each}}
-      </div>
-    </div>
     {{> items_dial}}
   </div>
 </template>
