@@ -14,7 +14,7 @@ login = (email, password) ->
       Session.set 'login', 'Email en/of wachtwoord fout'
     else
       Session.set 'login', null
-      Router.go 'home'
+      Router.go 'memberPage', {_id: Meteor.userId()}
 
 register = (email, password, password2) ->
   if password != password2
@@ -26,7 +26,7 @@ register = (email, password, password2) ->
       if error
         Session.set 'login', 'Email bestaat al'
       else
-        Router.go 'home'
+        Router.go 'memberPage', {_id: Meteor.userId()}
 
 Template.login.events
   'submit form': (e) ->

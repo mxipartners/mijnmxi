@@ -5,7 +5,7 @@ Template.projectEdit.events
     projectProperties =
       title: $(e.target).find('[name=title]').val()
       description: $(e.target).find('[name=description]').val()
-    Projects.update this._id, {$set: projectProperties}, (error) ->
+    Projects.update projectId, {$set: projectProperties}, (error) ->
       if error
         throwError error.reason
       else
