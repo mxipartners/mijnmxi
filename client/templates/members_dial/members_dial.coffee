@@ -13,8 +13,6 @@ Template.members_dial.onRendered ->
     $(this).css("left", $(this).attr("data-orig-x"))
     $(this).css("top", $(this).attr("data-orig-y"))
   )
-  $(".member-select").select2
-    placeholder: "Selecteer projectleden"
 
 Template.members_dial.helpers
   context: ->
@@ -26,7 +24,6 @@ Template.members_dial.helpers
       return Meteor.users.find {_id: {$in: project.members}}
     else
       return projects
-  add_members: -> Session.get 'add_members'
   users: -> Meteor.users.find {}
   userIsMember: ->
     project = Template.parentData()

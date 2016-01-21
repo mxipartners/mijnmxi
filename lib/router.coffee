@@ -6,6 +6,10 @@ Router.configure
               Meteor.subscribe('notifications'),
               Meteor.subscribe('usernames')]
 
+Router.route '/projects/:_id/add_member',
+  name: 'addMember'
+  data: -> Projects.findOne this.params._id
+
 Router.route '/projects/:_id',
   name: 'projectPage'
   data: -> Projects.findOne this.params._id

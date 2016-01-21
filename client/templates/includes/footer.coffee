@@ -19,4 +19,4 @@ Template.footer.events
 
   'click .add_member': (e) ->
     e.preventDefault()
-    Session.set 'add_members', not Session.get 'add_members'
+    Router.go 'addMember', {_id: Router.current().params._id}
