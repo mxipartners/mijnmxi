@@ -3,7 +3,6 @@ Router.configure
   loadingTemplate: 'loading'
   notFoundTemplate: 'notFound'
   waitOn: -> [Meteor.subscribe('projects'),
-              Meteor.subscribe('photos'),
               Meteor.subscribe('notifications'),
               Meteor.subscribe('usernames')]
 
