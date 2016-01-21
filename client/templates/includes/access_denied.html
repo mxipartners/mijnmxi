@@ -3,7 +3,7 @@
        style="max-width: 50%; max-height: 50%" vspace="50"/>
   <center>
     <form>
-      <p class="login">
+      <div class="login">
         <span class="help-block mxi">{{errorMessage}}</span>
         <input type="text" name="email" placeholder="Email"
                 required="required"/>
@@ -13,11 +13,11 @@
           <input type="password" name="password2"
                  placeholder="Nogmaals wachtwoord" required="required"/>
         {{/if}}
-      </p>
-      <p>
+      </div>
+      <div class="buttons">
         <button class="login-button" type="submit">{{loginButtonText}}</button>
         <button class="login-button new-user">{{newUserButtonText}}</button>
-      </p>
+      </div>
     </form>
   </center>
 </template>

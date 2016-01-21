@@ -1,16 +1,21 @@
+.login, .buttons {
+  width: 80vw;
+  max-width: 400px;
+}
+
 .login {
   border: 2px #FFCF00 solid;
   -webkit-border-radius: 10;
   -moz-border-radius: 10;
   border-radius: 10px;
-  width: 400px;
   padding: 5px;
   background-color: #66757E;
 }
 
 .login input {
   color: #FFFFFF;
-  width: 370px;
+  width: 93%;
+  max-width: 370px;
   padding: 10px;
   background-color: #66757E;
   border: none;
@@ -21,7 +26,10 @@
 }
 
 .login-button {
-  width: 200px;
+  display: inline-block;
+  width: 48%;
+  min-width: 150px;
+  max-width: 200px;
   background: #66757E;
   -webkit-border-radius: 5;
   -moz-border-radius: 5;
@@ -30,7 +38,9 @@
   color: #ffffff;
   border: solid #ffffff 0px;
   padding: 5px 20px 5px 20px;
+  margin-top: 5px;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .login-button:active {
