@@ -52,7 +52,7 @@
   width: 3em;
 }
 
-.dial_item.selected svg * {
+.circular.selected svg * {
   fill: #FFCF00;
   stroke: #FFCF00;
 }
