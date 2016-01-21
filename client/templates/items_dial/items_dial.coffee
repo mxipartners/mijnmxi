@@ -31,14 +31,19 @@ Template.items_dial.onRendered ->
 Template.items_dial.helpers
   title: ->
     if Router.current().route.getName() is "projectPage"
-      @title
+        @title
     else
-      @emails[0].address
+        @emails[0].address
   item_title: ->
     if Router.current().route.getName() is "projectPage"
         @emails[0].address
     else
         @title
+  svg_icon: ->
+    if Router.current().route.getName() is "projectPage"
+      "/images/Personicon.svg"
+    else
+      "/images/Personicon.svg"
   items: ->
     if Router.current().route.getName() is "projectPage"
       project = Template.parentData()
