@@ -1,6 +1,5 @@
 Template.items_dial.onCreated ->
   Session.setDefault 'selectedItems', []
-  Session.setDefault 'context', 'project'  # 'member' or 'project'
 
 # Calculate length of vector
 length = (a, b) ->
@@ -9,13 +8,17 @@ length = (a, b) ->
 # Handle drag stop on item(s)
 dragStop = ->
   # Test if item is dropped within circle
-  left = $(this).css "left"
-  top = $(this).css "top"
-  console.log left + " " + top
-  $(this).css("left", $(this).attr "data-orig-x")
-  $(this).css("top", $(this).attr "data-orig-y")
+  left = parseFloat $(this).css "left"
+  top = parseFloat $(this).css "top"
+  if length(left, top) < 70
+    template = if Router.current().route.getName() is "projectPage" then "home" else "projectPage"
+    Router.go template, { _id: $(this).attr("data-id") }
+  else
+    $(this).css("left", $(this).attr "data-orig-x")
+    $(this).css("top", $(this).attr "data-orig-y")
 
 Template.items_dial.onRendered ->
+  console.log Router.current().route.getName()
   SVGInjector $(".embed_svg"), { evalScipts: 'never' }
   $(".circular").each(->
     $(this).attr("data-orig-x", "" + $(this).css("left"))
@@ -26,27 +29,27 @@ Template.items_dial.onRendered ->
 
 Template.items_dial.helpers
   title: ->
-    if ((Session.get 'context') is 'project')
+    if Router.current().route.getName() is "projectPage"
         @emails[0].address
     else
         @title
   items: ->
-    if ((Session.get 'context') is 'project')
+    if Router.current().route.getName() is "projectPage"
       project = Template.parentData()
       return Meteor.users.find {_id: {$in: project.members}}
     else  # 'member'
       return Projects.find {}, {sort: {submitted: -1}}
 
 Template.items_dial.events
-  'click .dial_item': (e) ->
+  'click .circular': (e) ->
     e.preventDefault()
     $(e.currentTarget).toggleClass "selected"
-    user_id = $(e.currentTarget).attr("user_id")
+    item_id = $(e.currentTarget).attr("data-id")
     selected_items = Session.get('selectedItems').slice()
     if $(e.currentTarget).hasClass "selected"
-      selected_items.push user_id
+      selected_items.push item_id
     else
-      index = selected_items.indexOf user_id
+      index = selected_items.indexOf item_id
       selected_items.splice(index, 1)
     Session.set 'selectedItems', selected_items
 

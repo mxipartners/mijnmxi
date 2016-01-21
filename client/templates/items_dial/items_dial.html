@@ -14,8 +14,8 @@
     </div>
     <div class="center">
       {{#each items}}
-        <div class="circular" style="{{positionCircular @index items.count 120}}">
-          <div class="dial_item" user_id="{{_id}}">
+        <div class="circular" data-id="{{_id}}" style="{{positionCircular @index items.count 120}}">
+          <div class="dial_item">
             <div>
               <img class="embed_svg" src="/images/Personicon.svg" alt="{{email}}">
             </div>
