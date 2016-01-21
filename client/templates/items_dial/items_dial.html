@@ -13,6 +13,9 @@
       </svg>
     </div>
     <div class="center">
+      <div class="title">
+        <span>{{title}}</span>
+      </div>
       {{#each items}}
         <div class="circular" data-id="{{_id}}" style="{{positionCircular @index items.count 120}}">
           <div class="dial_item">
@@ -20,7 +23,7 @@
               <img class="embed_svg" src="/images/Personicon.svg" alt="{{email}}">
             </div>
             <div class="text_unselectable">
-              {{title}}
+              {{item_title}}
             </div>
           </div>
         </div>

@@ -30,6 +30,15 @@ Template.items_dial.onRendered ->
 Template.items_dial.helpers
   title: ->
     if Router.current().route.getName() is "projectPage"
+        @title
+    else
+        email = @emails[0].address
+        if not email
+          email = Meteor.user().emails[0].address
+        console.log email
+        return email
+  item_title: ->
+    if Router.current().route.getName() is "projectPage"
         @emails[0].address
     else
         @title
