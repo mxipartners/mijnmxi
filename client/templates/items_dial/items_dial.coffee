@@ -49,7 +49,8 @@ Template.items_dial.helpers
       project = Template.parentData()
       return Meteor.users.find {_id: {$in: project.members}}
     else
-      return Projects.find {}, {sort: {submitted: -1}}
+      user = Template.parentData()
+      return Projects.find {members: user._id}
 
 Template.items_dial.events
   'click .circular': (e) ->
