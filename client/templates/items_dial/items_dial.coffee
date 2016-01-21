@@ -1,6 +1,6 @@
-Template.members_dial.onCreated ->
-  Session.setDefault 'selectedMembers', []
-  Session.setDefault 'context', 'members'
+Template.items_dial.onCreated ->
+  Session.setDefault 'selectedItems', []
+  Session.setDefault 'context', 'project'  # 'member' or 'project'
 
 # Calculate length of vector
 length = (a, b) ->
@@ -15,7 +15,7 @@ dragStop = ->
   $(this).css("left", $(this).attr "data-orig-x")
   $(this).css("top", $(this).attr "data-orig-y")
 
-Template.members_dial.onRendered ->
+Template.items_dial.onRendered ->
   SVGInjector $(".embed_svg"), { evalScipts: 'never' }
   $(".circular").each(->
     $(this).attr("data-orig-x", "" + $(this).css("left"))
@@ -24,33 +24,31 @@ Template.members_dial.onRendered ->
   $(".circular").draggable()
   $(".circular").on("dragstop", dragStop)
 
-Template.members_dial.helpers
-  context: ->
-    if ((Session.get 'context') is 'members') then Template.parentData().title else 'Gebruiker'
-  email: -> @emails[0].address
+Template.items_dial.helpers
+  title: ->
+    if ((Session.get 'context') is 'project')
+        @emails[0].address
+    else
+        @title
   items: ->
-    if ((Session.get 'context') is 'members')
+    if ((Session.get 'context') is 'project')
       project = Template.parentData()
       return Meteor.users.find {_id: {$in: project.members}}
-    else
-      return projects
-  users: -> Meteor.users.find {}
-  userIsMember: ->
-    project = Template.parentData()
-    this._id in project.members
+    else  # 'member'
+      return Projects.find {}, {sort: {submitted: -1}}
 
-Template.members_dial.events
-  'click .dial_member': (e) ->
+Template.items_dial.events
+  'click .dial_item': (e) ->
     e.preventDefault()
     $(e.currentTarget).toggleClass "selected"
     user_id = $(e.currentTarget).attr("user_id")
-    selected_members = Session.get('selectedMembers').slice()
+    selected_items = Session.get('selectedItems').slice()
     if $(e.currentTarget).hasClass "selected"
-      selected_members.push user_id
+      selected_items.push user_id
     else
-      index = selected_members.indexOf user_id
-      selected_members.splice(index, 1)
-    Session.set 'selectedMembers', selected_members
+      index = selected_items.indexOf user_id
+      selected_items.splice(index, 1)
+    Session.set 'selectedItems', selected_items
 
 Handlebars.registerHelper "positionCircular", (index, count, radius) ->
   angle = Math.PI * 2 / count * index - Math.PI / 2
