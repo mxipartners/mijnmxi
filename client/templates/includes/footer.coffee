@@ -17,6 +17,16 @@ Template.footer.events
     Meteor.logout()
     Router.go 'home'
 
-  'click .add_member': (e) ->
+  'click .add': (e) ->
     e.preventDefault()
-    Router.go 'addMember', {_id: Router.current().params._id}
+    if Router.current().route.getName() == "projectPage"
+      Router.go 'addMember', {_id: Router.current().params._id}
+    else
+      project =
+        title: 'Nieuw project'
+        members: [Meteor.user()._id]
+      Meteor.call 'projectInsert', project, (error, result) ->
+        if error
+          throwError error.reason
+        else
+          Router.go 'projectEdit', {_id: result._id}
