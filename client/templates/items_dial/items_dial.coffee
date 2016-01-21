@@ -63,6 +63,8 @@ Template.items_dial.events
     e.preventDefault()
     if Router.current().route.getName() is "projectPage"
       Router.go 'projectEdit', {_id: @_id}
+    else
+      Router.go 'profilePage', {_id: Meteor.userId()}
 
 
 Handlebars.registerHelper "positionCircular", (index, count, radius) ->
