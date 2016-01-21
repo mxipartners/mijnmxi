@@ -1,7 +1,7 @@
-Template.accessDenied.onCreated ->
+Template.login.onCreated ->
   Session.set 'newUser', false
 
-Template.accessDenied.helpers
+Template.login.helpers
   errorMessage: -> Session.get 'login'
   newUser: -> Session.get 'newUser'
   newUserButtonText: -> if Session.get 'newUser' then 'Annuleer' else 'Nieuwe gebruiker'
@@ -28,7 +28,7 @@ register = (email, password, password2) ->
       else
         Router.go 'home'
 
-Template.accessDenied.events
+Template.login.events
   'submit form': (e) ->
     e.preventDefault()
 

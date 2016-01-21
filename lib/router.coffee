@@ -20,6 +20,6 @@ requireLogin = ->
   if Meteor.user()
     this.next()
   else
-    this.render(if Meteor.loggingIn() then this.loadingTemplate else 'accessDenied')
+    this.render(if Meteor.loggingIn() then this.loadingTemplate else 'login')
 
 Router.onBeforeAction requireLogin
