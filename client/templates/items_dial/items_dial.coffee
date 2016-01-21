@@ -11,7 +11,8 @@ dragStop = ->
   left = parseFloat $(this).css "left"
   top = parseFloat $(this).css "top"
   if length(left, top) < 70
-    template = if Router.current().route.getName() is "projectPage" then "home" else "projectPage"
+    template = if Router.current().route.getName() is "projectPage" then "memberPage" else "projectPage"
+    console.log "Go to: " + $(this).attr("data-id")
     Router.go template, { _id: $(this).attr("data-id") }
   else
     $(this).css("left", $(this).attr "data-orig-x")
@@ -30,13 +31,9 @@ Template.items_dial.onRendered ->
 Template.items_dial.helpers
   title: ->
     if Router.current().route.getName() is "projectPage"
-        @title
+      @title
     else
-        email = @emails[0].address
-        if not email
-          email = Meteor.user().emails[0].address
-        console.log email
-        return email
+      @emails[0].address
   item_title: ->
     if Router.current().route.getName() is "projectPage"
         @emails[0].address
@@ -46,7 +43,7 @@ Template.items_dial.helpers
     if Router.current().route.getName() is "projectPage"
       project = Template.parentData()
       return Meteor.users.find {_id: {$in: project.members}}
-    else  # 'member'
+    else
       return Projects.find {}, {sort: {submitted: -1}}
 
 Template.items_dial.events
