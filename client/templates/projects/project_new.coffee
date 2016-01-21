@@ -1,16 +1,7 @@
 Template.projectNew.onCreated ->
   Session.set 'projectNewErrors', {}
 
-
-Template.projectNew.onRendered ->
-  $(".member-select").select2
-    placeholder: "Select projectleden"
-
-
 Template.projectNew.helpers
-  users: -> Meteor.users.find {}
-  email: -> @emails[0].address
-  userIsCurrentUser: -> this._id == Meteor.userId()
   errorMessage: (field) -> Session.get('projectNewErrors')[field]
   errorClass: (field) ->
     if Session.get('projectNewErrors')[field] then 'has-error' else ''
@@ -23,7 +14,7 @@ Template.projectNew.events
     project =
       title: $(e.target).find('[name=title]').val()
       description: $(e.target).find('[name=description]').val()
-      members: $(e.target).find('[name=members]').val() or []
+      members: [Meteor.user()._id]
 
     Session.set 'project_title', {}
     Session.set 'projectNewErrors', {}
@@ -32,7 +23,7 @@ Template.projectNew.events
       Session.set 'project_title', errors
     if errors.members
       Session.set 'projectNewErrors', errors
-    if errors.title or errors.members
+    if errors.title
       return false
 
     Meteor.call 'projectInsert', project, (error, result) ->

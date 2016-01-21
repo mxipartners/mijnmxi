@@ -2,17 +2,6 @@
   <form name="project" class="main form">
     {{> titleControl extendContext 'control_id' 'project_title'}}
     {{> descriptionControl extendContext 'control_id' 'project_description'}}
-    <div class="form-group {{errorClass 'members'}}">
-      <div class="controls">
-        <label for="members">Projectleden</label>
-        <select name="members" multiple="multiple" class="form-control member-select">
-          {{#each users}}
-            <option selected="{{userIsMember}}" value="{{_id}}">{{email}}</option>
-          {{/each}}
-        </select>
-        <span class="help-block">{{errorMessage 'members'}}</span>
-      </div>
-    </div>
     <div class="form-group">
       <button type="submit" class="btn btn-primary submit">OK</button>
       <button type="button" class="btn btn-default cancel">Annuleer</button>

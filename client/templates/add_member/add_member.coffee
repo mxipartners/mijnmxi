@@ -13,7 +13,6 @@ Template.addMember.events
       members: $(e.target).find('[name=members]').val() or []
     Projects.update this._id, {$set: projectProperties}, (error) ->
       if error
-        console.log error.reason
         throwError error.reason
       else
         Router.go 'projectPage', {_id: projectId}

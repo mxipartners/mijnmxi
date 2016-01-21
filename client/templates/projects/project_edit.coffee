@@ -1,16 +1,7 @@
 Template.projectEdit.onCreated ->
   Session.set 'projectEditErrors', {}
 
-Template.projectEdit.onRendered ->
-  $(".member-select").select2
-    placeholder: "Selecteer projectleden"
-
 Template.projectEdit.helpers
-  users: -> Meteor.users.find {}
-  email: -> this.emails[0].address
-  userIsMember: ->
-    project = Template.parentData()
-    this._id in project.members
   errorMessage: (field) ->
     Session.get('projectEditErrors')[field]
   errorClass: (field) ->
@@ -23,7 +14,6 @@ Template.projectEdit.events
     projectProperties =
       title: $(e.target).find('[name=title]').val()
       description: $(e.target).find('[name=description]').val()
-      members: $(e.target).find('[name=members]').val() or []
 
     Session.set 'project_title', {}
     Session.set 'projectEditErrors', {}
@@ -33,7 +23,7 @@ Template.projectEdit.events
       Session.set 'project_title', errors
     if errors.members
       Session.set 'projectEditErrors', errors
-    if errors.title or errors.members
+    if errors.title
       return false
 
     Projects.update this._id, {$set: projectProperties}, (error) ->

@@ -1,8 +1,8 @@
 @validateProject = (project) ->
   check project, Match.ObjectIncluding
-    members: [String]
+    members: Match.Optional([String])
   errors = validateItem project
-  if project.members.length == 0
+  if project.members?.length == 0
     if Meteor.isServer
       throw new Meteor.Error('invalid-project',
                              'You must select at least one project member')
