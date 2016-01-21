@@ -9,6 +9,6 @@ Template.profilePage.events
     skype_id = $(e.target).find('[name=skype_id]').val()
 
     Meteor.users.update this._id, {$set: {telephone_nr: telephone_nr, skype_id: skype_id}}
-    Router.go 'membersPage', {_id: Meteor.userId()}
+    Router.go 'memberPage', {_id: Meteor.userId()}
 
-  'click .cancel': (e) -> Router.go 'membersPage', {_id: Meteor.userId()}
+  'click .cancel': (e) -> Router.go 'memberPage', {_id: Meteor.userId()}
