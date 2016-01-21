@@ -18,6 +18,7 @@ dragStop = ->
     $(this).css("top", $(this).attr "data-orig-y")
 
 Template.items_dial.onRendered ->
+  Session.set 'selectedItems', []
   SVGInjector $(".embed_svg"), { evalScipts: 'never' }
   $(".circular").each(->
     $(this).attr("data-orig-x", "" + $(this).css("left"))
