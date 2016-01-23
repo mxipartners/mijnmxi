@@ -7,11 +7,8 @@
 underscore
 iron:router
 sacha:spin
-ian:accounts-ui-bootstrap-3
 accounts-password
 audit-argument-checks
-natestrauser:select2
-zimme:select2-bootstrap3-css
 coffeescript
 mizzao:jquery-ui
 dsyko:jquery-ui-touch-punch
@@ -30,4 +27,3 @@ reload
 random
 spacebars
 check
-twbs:bootstrap
