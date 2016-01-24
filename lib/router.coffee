@@ -25,8 +25,11 @@ Router.route '/users/:_id',
   name: 'profilePage'
   data: -> Meteor.users.findOne this.params._id
 
-Router.route '/',
-  name: 'login'
+Router.route '/', ->
+  if Meteor.user()
+    this.redirect 'memberPage', {_id: Meteor.userId()}
+  else:
+    this.render 'login'
 
 requireLogin = ->
   if Meteor.user()
