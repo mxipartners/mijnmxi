@@ -2,16 +2,18 @@
   <center>
     <h2>Profiel: {{email}}</h2>
     <form>
-       <div class="login">
-         <input type="tel" name="telephone_nr" placeholder="Telefoonnummer"
-                value="{{telephone_nr}}">
-         <input type="text" name="skype_id" placeholder="Skype ID"
-                value="{{skype_id}}">
-       </div>
-       <div class="buttons">
-         <button type="submit" class="login-button">OK</button>
-         <button class="login-button cancel">Annuleer</button>
-       </div>
-     </form>
-   </center>
- </template>
+      <div class="login">
+        <input type="tel" name="telephone_nr" placeholder="Telefoonnummer"
+               value="{{telephone_nr}}" {{readonly}}>
+        <input type="text" name="skype_id" placeholder="Skype ID"
+               value="{{skype_id}}" {{readonly}}>
+      </div>
+      <div class="buttons">
+        <button type="submit" class="login-button">OK</button>
+        {{#unless readonly}}
+          <button class="login-button cancel">Annuleer</button>
+        {{/unless}}
+      </div>
+    </form>
+  </center>
+</template>
