@@ -6,13 +6,28 @@ length = (a, b) ->
   Math.sqrt a * a + b * b
 
 # Handle drag stop on item(s)
-dragStop = ->
+dragStop = (center_item_id) ->
   # Test if item is dropped within circle
   left = parseFloat $(this).css "left"
   top = parseFloat $(this).css "top"
   if length(left, top) < 70
     template = if Router.current().route.getName() is "projectPage" then "memberPage" else "projectPage"
     Router.go template, { _id: $(this).attr("data-id") }
+  else if length(left, top) > 200
+    if Router.current().route.getName() is "projectPage"
+      projectId = center_item_id
+      projectMembers = Projects.findOne(projectId).members
+      userId = $(this).attr("data-id")
+      projectMembers = (member for member in projectMembers when member != userId)
+      projectProperties =
+        members: projectMembers
+      Projects.update projectId, {$set: projectProperties}, (error) ->
+        if error
+          throwError error.reason
+        else
+          Router.go 'projectPage', {_id: projectId}
+    else
+      console.log("Delete project from member")
   else
     $(this).css("left", $(this).attr "data-orig-x")
     $(this).css("top", $(this).attr "data-orig-y")
@@ -25,7 +40,8 @@ Template.items_dial.onRendered ->
     $(this).attr("data-orig-y", "" + $(this).css("top"))
   )
   $(".circular").draggable()
-  $(".circular").on("dragstop", dragStop)
+  center_item_id = Template.parentData()._id
+  $(".circular").on("dragstop", -> dragStop.apply this, [center_item_id])
 
 Template.items_dial.helpers
   title: ->
