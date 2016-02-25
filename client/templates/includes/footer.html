@@ -18,7 +18,11 @@
             {{/if}}
           </a>
           <a href="#" class="btn btn-inverse btn-lg white add">
-            <img src="/images/Addbutton.svg" alt="Voeg toe">
+            {{#if project_or_member_page}}
+              <img src="/images/Addbutton.svg" alt="Voeg toe">
+            {{else}}
+              <img src="/images/Addbutton - disabled.svg" alt="Navigeer eerst naar persoon of project">
+            {{/if}}
           </a>
           <a class="btn btn-inverse btn-lg white logout">
             <img src="/images/Logoutbutton.svg" alt="Log uit">

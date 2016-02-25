@@ -3,7 +3,9 @@ selected_users = ->
 
 Template.footer.helpers
   selected_users: -> selected_users()
-
+  project_or_member_page: ->
+    Router.current().route.getName() in ["projectPage", "memberPage"]
+    
   phone_url: ->
     users = selected_users()
     if users.length == 0
@@ -34,5 +36,5 @@ Template.footer.events
     e.preventDefault()
     if Router.current().route.getName() == "projectPage"
       Router.go 'addMember', {_id: Router.current().params._id}
-    else
+    else if Router.current().route.getName() == "memberPage"
       Router.go 'addProject', {_id: Router.current().params._id}
