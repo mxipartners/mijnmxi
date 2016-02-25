@@ -16,18 +16,15 @@ dragStop = (center_item_id) ->
   else if length(left, top) > 200
     if Router.current().route.getName() is "projectPage"
       projectId = center_item_id
-      projectMembers = Projects.findOne(projectId).members
+      project = Projects.findOne projectId
       userId = $(this).attr("data-id")
-      projectMembers = (member for member in projectMembers when member != userId)
       projectProperties =
-        members: projectMembers
+        members: (member for member in project.members when member != userId)
       Projects.update projectId, {$set: projectProperties}, (error) ->
         if error
           throwError error.reason
-        else
-          Router.go 'projectPage', {_id: projectId}
     else
-      console.log("Delete project from member")
+      console.log("Delete project from member not implemented yet")
   else
     $(this).css("left", $(this).attr "data-orig-x")
     $(this).css("top", $(this).attr "data-orig-y")
@@ -41,6 +38,7 @@ Template.items_dial.onRendered ->
   )
   $(".circular").draggable()
   center_item_id = Template.parentData()._id
+  console.log center_item_id
   $(".circular").on("dragstop", -> dragStop.apply this, [center_item_id])
 
 Template.items_dial.helpers

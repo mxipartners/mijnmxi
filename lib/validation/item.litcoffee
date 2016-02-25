@@ -9,7 +9,7 @@ singular items such as sources and subjects.
 First, check that the item has the right structure.
 
       check item, Match.ObjectIncluding
-        title: String
+        title: Match.Optional(String)
         description: Match.Optional(String)
 
 Then, check that a title is present (null and '' are both considered error).

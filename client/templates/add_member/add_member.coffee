@@ -1,17 +1,18 @@
 Template.addMember.helpers
   email: -> @emails[0].address
-  users: -> Meteor.users.find {}
-  userIsMember: ->
+  users: ->
     project = Template.parentData()
-    this._id in project.members
+    Meteor.users.find {_id: {$nin: project.members}}
 
 Template.addMember.events
   'submit form': (e) ->
     e.preventDefault()
     projectId = this._id
+    project = Projects.findOne projectId
+    extra_members = $(e.target).find('[name=members]').val() or []
     projectProperties =
-      members: $(e.target).find('[name=members]').val() or []
-    Projects.update this._id, {$set: projectProperties}, (error) ->
+      members: project.members.concat extra_members
+    Projects.update projectId, {$set: projectProperties}, (error) ->
       if error
         throwError error.reason
       else
