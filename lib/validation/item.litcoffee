@@ -12,10 +12,10 @@ First, check that the item has the right structure.
         title: Match.Optional(String)
         description: Match.Optional(String)
 
-Then, check that a title is present.
+Then, check that a title is present (null and '' are both considered error).
 
       errors = {}
-      if item.title == ''
+      if !item.title
         if Meteor.isServer
 
 When running on the server, a missing title is a fatal error.
