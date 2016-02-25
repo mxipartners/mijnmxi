@@ -13,8 +13,8 @@ describe 'An item', ->
   it 'is invalid when it has an empty title', ->
     expect(validateItem({title: ''})).toEqual title_error
 
-  it 'is invalid when it had no title', ->
-    expect( -> validateItem({})).toThrowError Match.Error
+  it 'is invalid when it has no title', ->
+    expect(validateItem({})).toEqual {title: 'Een titel is verplicht' }
 
   it 'is invalid when the title is not a string', ->
     expect( -> validateItem({title: 10})).toThrowError Match.Error
