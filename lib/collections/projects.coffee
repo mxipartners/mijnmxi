@@ -13,7 +13,7 @@ Projects.deny
   update: (userId, project, fieldNames, modifier) ->
     if modifier.$set == undefined
       return ""
-    errors = validateProject modifier.$set
+    errors = validateProjectUpdate modifier.$set
     return errors.title or errors.members
 
 Meteor.methods
