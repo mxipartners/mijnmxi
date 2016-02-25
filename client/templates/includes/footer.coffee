@@ -6,9 +6,10 @@ selected_users = ->
 
 Template.footer.helpers
   selected_users: -> selected_users()
+  one_selected_user: -> selected_users().length == 1
   project_or_member_page: ->
     Router.current().route.getName() in ["projectPage", "memberPage"]
-    
+
   phone_url: ->
     users = selected_users()
     if users.length == 0

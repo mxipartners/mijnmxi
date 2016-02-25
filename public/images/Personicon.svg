@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 19.1.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!-- Generator: Adobe Illustrator 19.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 155 145.3" style="enable-background:new 0 0 155 145.3;" xml:space="preserve">
+	 viewBox="0 0 162 151" style="enable-background:new 0 0 162 151;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:#FFFFFF;stroke:#FFFFFF;stroke-width:9;stroke-miterlimit:10;}
+	.st0{fill:#FFFFFF;}
 </style>
-<g>
-	<circle class="st0" cx="73.5" cy="21.6" r="16.4"/>
-	<polygon class="st0" points="88.2,75.1 102.8,133.3 72.7,97 42.6,133.3 57.2,75.1 11.7,62.9 71.9,49.8 72.7,49.6 73.5,49.8 
-		133.7,62.9 	"/>
-	<polygon class="st0" points="73.5,49.5 73.5,49.8 72.7,49.6 	"/>
-	<polygon class="st0" points="72.7,49.6 71.9,49.8 71.9,49.5 	"/>
-</g>
+<polygon class="st0" points="99.9,78 118.2,151 80.5,105.5 42.7,151 61,78 4,62.7 79.5,46.3 80.5,46 81.5,46.3 157,62.7 "/>
+<circle class="st0" cx="80.5" cy="21.6" r="20.8"/>
 </svg>

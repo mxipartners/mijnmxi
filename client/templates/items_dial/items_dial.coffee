@@ -58,6 +58,11 @@ Template.items_dial.helpers
         @title
   svg_icon: ->
     if Router.current().route.getName() is "projectPage"
+      "/images/Projecticon.svg"
+    else
+      "/images/Personicon.svg"
+  item_svg_icon: ->
+    if Router.current().route.getName() is "projectPage"
       "/images/Personicon.svg"
     else
       "/images/Projecticon.svg"
@@ -79,15 +84,16 @@ Template.items_dial.helpers
 Template.items_dial.events
   'click .circular': (e) ->
     e.preventDefault()
-    $(e.currentTarget).toggleClass "selected"
     item_id = $(e.currentTarget).attr("data-id")
-    selected_items = Session.get('selectedItems').slice()
-    if $(e.currentTarget).hasClass "selected"
-      selected_items.push item_id
-    else
-      index = selected_items.indexOf item_id
-      selected_items.splice(index, 1)
-    Session.set 'selectedItems', selected_items
+    if Router.current().route.getName() is "projectPage" and item_id != Meteor.userId()
+      $(e.currentTarget).toggleClass "selected"
+      selected_items = Session.get('selectedItems').slice()
+      if $(e.currentTarget).hasClass "selected"
+        selected_items.push item_id
+      else
+        index = selected_items.indexOf item_id
+        selected_items.splice(index, 1)
+      Session.set 'selectedItems', selected_items
 
   'click .title': (e) ->
     e.preventDefault()
@@ -115,17 +121,3 @@ Handlebars.registerHelper "positionCircular", (index, count, radius) ->
   left = positionX index, count, radius
   top = positionY index, count, radius
   "left:" + left + "px;top:" + top + "px"
-
-Handlebars.registerHelper "circularTick", (items, radiusStart, radiusEnd, fn) ->
-  buffer = ""
-  if items
-    count = items.count
-    for item, index in items
-      do (item, index) ->
-        angle = Math.PI * 2 / count * index - Math.PI / 2
-        item.x1 = ((Math.cos angle) * radiusStart).toFixed 5
-        item.y1 = ((Math.sin angle) * radiusStart).toFixed 5
-        item.x2 = ((Math.cos angle) * radiusEnd).toFixed 5
-        item.y2 = ((Math.sin angle) * radiusEnd).toFixed 5
-        buffer += fn item
-  buffer
