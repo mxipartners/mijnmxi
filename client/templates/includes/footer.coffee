@@ -1,6 +1,8 @@
 Template.footer.helpers
   phone_url: ->
     members = Session.get 'selectedItems'
+    if !members
+      members = []
     selected_users = Meteor.users.find({_id: {$in: members}}).fetch()
     if selected_users.length == 0
       "#"
@@ -13,13 +15,15 @@ Template.footer.helpers
 
   sms_url: ->
     members = Session.get 'selectedItems'
+    if !members
+      members = []
     selected_users = Meteor.users.find({_id: {$in: members}}).fetch()
     if selected_users.length == 0
       "#"
     else if selected_users.length == 1
       phone_number = selected_users[0].telephone_nr
+      #      "whatsapp://send?abid=#{phone_number}"
       "sms:#{phone_number}"
-#      "whatsapp://send?abid=#{phone_number}"
 
 Template.footer.events
   'click .logout': (e) ->
