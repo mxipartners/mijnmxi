@@ -15,4 +15,5 @@ Template.addProject.events
         Router.go 'projectPage', {_id: result._id}
 
   'click .cancel': (e) ->
+    e.preventDefault()
     Router.go 'memberPage', {_id: this._id}
