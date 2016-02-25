@@ -19,6 +19,7 @@
   padding: 10px;
   background-color: #66757E;
   border: none;
+  border-radius: 0px;
 }
 
 .login input:not(:last-child) {
