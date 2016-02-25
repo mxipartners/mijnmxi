@@ -17,6 +17,10 @@ Router.route '/projects/:_id',
   name: 'projectPage'
   data: -> Projects.findOne this.params._id
 
+Router.route '/members/:_id/add_project',
+  name: 'addProject'
+  data: -> Meteor.users.findOne this.params._id
+
 Router.route '/members/:_id',
   name: 'memberPage'
   data: -> Meteor.users.findOne this.params._id

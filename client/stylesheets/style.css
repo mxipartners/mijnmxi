@@ -81,6 +81,11 @@ html, body {
 .dialog .help-block:empty {
 	display: none;
 }
+
+center h2 {
+  color: #fff;
+}
+
 #spinner {
   height: 300px; }
 
