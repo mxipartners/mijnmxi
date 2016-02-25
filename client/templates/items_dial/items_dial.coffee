@@ -18,11 +18,20 @@ dragStop = (center_item_id) ->
       projectId = center_item_id
       project = Projects.findOne projectId
       userId = $(this).attr("data-id")
-      projectProperties =
-        members: (member for member in project.members when member != userId)
-      Projects.update projectId, {$set: projectProperties}, (error) ->
-        if error
-          throwError error.reason
+      members = (member for member in project.members when member != userId)
+      if members.length > 0
+        projectProperties =
+          members: members
+        Projects.update projectId, {$set: projectProperties}, (error) ->
+          if error
+            throwError error.reason
+        if Meteor.userId not in members
+          Router.go 'memberPage', {_id: Meteor.userId}
+      else
+        Projects.remove projectId, (error) ->
+          if error
+            throwError error.reason
+        Router.go 'memberPage', {_id: userId}
     else
       console.log("Delete project from member not implemented yet")
   else
