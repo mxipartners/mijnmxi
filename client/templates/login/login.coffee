@@ -4,7 +4,7 @@ Template.login.onCreated ->
 Template.login.helpers
   errorMessage: -> Session.get 'login'
   newUser: -> Session.get 'newUser'
-  newUserButtonText: -> if Session.get 'newUser' then 'Annuleer' else 'Nieuwe gebruiker'
+  newUserButtonText: -> if Session.get 'newUser' then 'Annuleer' else 'Nieuw'
   loginButtonText: -> if Session.get 'newUser' then 'Registreer' else 'Login'
 
 
