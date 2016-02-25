@@ -17,7 +17,7 @@
         <span>{{title}}</span>
       </div>
       {{#each items}}
-        <div class="circular" data-id="{{_id}}" style="{{positionCircular @index items.count 120}}">
+        <div class="circular" data-id="{{_id}}" data-orig-x="{{positionX @index items.count 120}}" data-orig-y="{{positionY @index items.count 120}}" style="{{positionCircular @index items.count 120}}">
           <div class="dial_item">
             <div>
               <img class="embed_svg" src="{{svg_icon}}" alt="{{email}}">
@@ -27,6 +27,7 @@
             </div>
           </div>
         </div>
+        {{redraw}}
       {{/each}}
     </div>
   </div>

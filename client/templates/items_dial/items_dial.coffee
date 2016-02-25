@@ -39,19 +39,11 @@ dragStop = (center_item_id) ->
         else
           Router.go 'memberPage', {_id: userId}
   else
-    $(this).css("left", $(this).attr "data-orig-x")
-    $(this).css("top", $(this).attr "data-orig-y")
+    $(this).css("left", $(this).attr("data-orig-x") + "px")
+    $(this).css("top", $(this).attr("data-orig-y") + "px")
 
 Template.items_dial.onRendered ->
   Session.set 'selectedItems', []
-  SVGInjector $(".embed_svg"), { evalScipts: 'never' }
-  $(".circular").each(->
-    $(this).attr("data-orig-x", "" + $(this).css("left"))
-    $(this).attr("data-orig-y", "" + $(this).css("top"))
-  )
-  $(".circular").draggable()
-  center_item_id = Template.parentData()._id
-  $(".circular").on("dragstop", -> dragStop.apply this, [center_item_id])
 
 Template.items_dial.helpers
   title: ->
@@ -72,10 +64,17 @@ Template.items_dial.helpers
   items: ->
     if Router.current().route.getName() is "projectPage"
       project = Template.parentData()
-      return Meteor.users.find {_id: {$in: project.members}}
+      Meteor.users.find {_id: {$in: project.members}}
     else
       user = Template.parentData()
-      return Projects.find {members: user._id}
+      Projects.find {members: user._id}
+  redraw: ->
+    center_item_id = Template.parentData()._id
+    Meteor.defer ->
+      SVGInjector $(".embed_svg:not(.injected-svg)"), { evalScipts: 'never' }
+      $(".circular").draggable()
+      $(".circular").on("dragstop", -> dragStop.apply this, [center_item_id])
+    ""
 
 Template.items_dial.events
   'click .circular': (e) ->
@@ -97,12 +96,25 @@ Template.items_dial.events
     else
       Router.go 'profilePage', {_id: @_id}
 
+angle = (index, count) ->
+  Math.PI * 2 / count * index - Math.PI / 2
+
+positionX = (index, count, radius) ->
+  Math.cos(angle(index, count)) * radius
+  
+positionY = (index, count, radius) ->
+  Math.sin(angle(index, count)) * radius
+
+Handlebars.registerHelper "positionX", (index, count, radius) ->
+  positionX index, count, radius
+
+Handlebars.registerHelper "positionY", (index, count, radius) ->
+  positionY index, count, radius
 
 Handlebars.registerHelper "positionCircular", (index, count, radius) ->
-  angle = Math.PI * 2 / count * index - Math.PI / 2
-  top = (Math.sin angle) * radius
-  left = (Math.cos angle) * radius
-  return "left:" + left + "px;top:" + top + "px";
+  left = positionX index, count, radius
+  top = positionY index, count, radius
+  "left:" + left + "px;top:" + top + "px"
 
 Handlebars.registerHelper "circularTick", (items, radiusStart, radiusEnd, fn) ->
   buffer = ""
@@ -116,4 +128,4 @@ Handlebars.registerHelper "circularTick", (items, radiusStart, radiusEnd, fn) ->
         item.x2 = ((Math.cos angle) * radiusEnd).toFixed 5
         item.y2 = ((Math.sin angle) * radiusEnd).toFixed 5
         buffer += fn item
-  return buffer
+  buffer
