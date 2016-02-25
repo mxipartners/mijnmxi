@@ -8,7 +8,7 @@ Template.footer.helpers
   selected_users: -> selected_users()
   project_or_member_page: ->
     Router.current().route.getName() in ["projectPage", "memberPage"]
-    
+
   phone_url: ->
     users = selected_users()
     if users.length == 0
@@ -26,7 +26,7 @@ Template.footer.helpers
       "#"
     else if users.length == 1
       phone_number = users[0].telephone_nr
-      "sms:#{phone_number}"
+      "sms:#{phone_number};body=Hello there"
     # "whatsapp://send?abid=#{phone_number}"
 
 Template.footer.events
