@@ -16,24 +16,28 @@ dragStop = (center_item_id) ->
   else if length(left, top) > 200
     if Router.current().route.getName() is "projectPage"
       projectId = center_item_id
-      project = Projects.findOne projectId
       userId = $(this).attr("data-id")
-      members = (member for member in project.members when member != userId)
-      if members.length > 0
-        projectProperties =
-          members: members
-        Projects.update projectId, {$set: projectProperties}, (error) ->
-          if error
-            throwError error.reason
-        if Meteor.userId not in members
-          Router.go 'memberPage', {_id: Meteor.userId}
-      else
-        Projects.remove projectId, (error) ->
-          if error
-            throwError error.reason
-        Router.go 'memberPage', {_id: userId}
     else
-      console.log("Delete project from member not implemented yet")
+      projectId = $(this).attr("data-id")
+      userId = center_item_id
+
+    project = Projects.findOne projectId
+    members = (member for member in project.members when member != userId)
+    if members.length > 0
+      projectProperties =
+        members: members
+      Projects.update projectId, {$set: projectProperties}, (error) ->
+        if error
+          throwError error.reason
+        else
+          if Meteor.userId() not in members
+            Router.go 'memberPage', {_id: Meteor.userId}
+    else
+      Projects.remove projectId, (error) ->
+        if error
+          throwError error.reason
+        else
+          Router.go 'memberPage', {_id: userId}
   else
     $(this).css("left", $(this).attr "data-orig-x")
     $(this).css("top", $(this).attr "data-orig-y")
