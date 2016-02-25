@@ -3,7 +3,7 @@
        style="max-width: 50%; max-height: 50%" vspace="50"/>
   <center>
     <form>
-      <div class="login">
+      <div class="dialog">
         <span class="help-block mxi">{{errorMessage}}</span>
         <input type="text" name="email" placeholder="Email"
                 required="required"/>
@@ -15,8 +15,8 @@
         {{/if}}
       </div>
       <div class="buttons">
-        <button class="login-button" type="submit">{{loginButtonText}}</button>
-        <button class="login-button new-user">{{newUserButtonText}}</button>
+        <button class="dialog-button" type="submit">{{loginButtonText}}</button>
+        <button class="dialog-button new-user">{{newUserButtonText}}</button>
       </div>
     </form>
   </center>

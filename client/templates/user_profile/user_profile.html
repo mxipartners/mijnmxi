@@ -2,16 +2,16 @@
   <center>
     <h2>Profiel: {{email}}</h2>
     <form>
-      <div class="login">
+      <div class="dialog">
         <input type="tel" name="telephone_nr" placeholder="Telefoonnummer"
                value="{{telephone_nr}}" {{readonly}}>
         <input type="text" name="skype_id" placeholder="Skype ID"
                value="{{skype_id}}" {{readonly}}>
       </div>
       <div class="buttons">
-        <button type="submit" class="login-button">OK</button>
+        <button type="submit" class="dialog-button">OK</button>
         {{#unless readonly}}
-          <button class="login-button cancel">Annuleer</button>
+          <button class="dialog-button cancel">Annuleer</button>
         {{/unless}}
       </div>
     </form>

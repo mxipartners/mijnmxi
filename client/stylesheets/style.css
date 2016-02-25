@@ -28,6 +28,59 @@ html, body {
   height: 100%;
 }
 
+.dialog, .buttons {
+  width: 80vw;
+  max-width: 400px;
+}
+
+.dialog {
+  border: 2px #FFCF00 solid;
+  -webkit-border-radius: 10;
+  -moz-border-radius: 10;
+  border-radius: 10px;
+  padding: 5px;
+  background-color: #66757E;
+}
+
+.dialog input {
+  color: #FFFFFF;
+  width: 93%;
+  max-width: 370px;
+  padding: 10px;
+  background-color: #66757E;
+  border: none;
+  border-radius: 0px;
+}
+
+.dialog input:not(:last-child) {
+  border-bottom: 1px #FFFFFF solid;
+}
+
+.dialog-button {
+  display: inline-block;
+  width: 47%;
+  min-width: 130px;
+  max-width: 200px;
+  background: #66757E;
+  -webkit-border-radius: 5;
+  -moz-border-radius: 5;
+  border-radius: 5px;
+  font-family: Arial;
+  color: #ffffff;
+  border: solid #ffffff 0px;
+  padding: 5px 20px 5px 20px;
+  margin-top: 5px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.dialog-button:active {
+  color: #FFCF00;
+}
+
+.dialog .help-block:empty {
+	display: none;
+}
 #spinner {
   height: 300px; }
 
