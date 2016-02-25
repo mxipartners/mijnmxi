@@ -1,5 +1,8 @@
 selected_users = ->
-  Meteor.users.find({_id: {$in: Session.get 'selectedItems'}}).fetch()
+  members = Session.get 'selectedItems'
+  if !members
+    members = []
+  Meteor.users.find({_id: {$in: members}}).fetch()
 
 Template.footer.helpers
   selected_users: -> selected_users()
