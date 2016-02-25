@@ -38,7 +38,6 @@ Template.items_dial.onRendered ->
   )
   $(".circular").draggable()
   center_item_id = Template.parentData()._id
-  console.log center_item_id
   $(".circular").on("dragstop", -> dragStop.apply this, [center_item_id])
 
 Template.items_dial.helpers
