@@ -1,25 +1,28 @@
+selected_users = ->
+  Meteor.users.find({_id: {$in: Session.get 'selectedItems'}}).fetch()
+
 Template.footer.helpers
+  selected_users: -> selected_users()
+
   phone_url: ->
-    members = Session.get 'selectedItems'
-    selected_users = Meteor.users.find({_id: {$in: members}}).fetch()
-    if selected_users.length == 0
+    users = selected_users()
+    if users.length == 0
       "#"
-    else if selected_users.length == 1
-      phone_number = selected_users[0].telephone_nr
+    else if users.length == 1
+      phone_number = users[0].telephone_nr
       "tel:#{phone_number}"
     else
-      skype_ids = (user.skype_id for user in selected_users when user.skype_id).join(';')
+      skype_ids = (user.skype_id for user in users when user.skype_id).join(';')
       "skype:#{skype_ids}?call"
 
   sms_url: ->
-    members = Session.get 'selectedItems'
-    selected_users = Meteor.users.find({_id: {$in: members}}).fetch()
-    if selected_users.length == 0
+    users = selected_users()
+    if users.length == 0
       "#"
-    else if selected_users.length == 1
-      phone_number = selected_users[0].telephone_nr
+    else if users.length == 1
+      phone_number = users[0].telephone_nr
       "sms:#{phone_number}"
-#      "whatsapp://send?abid=#{phone_number}"
+    # "whatsapp://send?abid=#{phone_number}"
 
 Template.footer.events
   'click .logout': (e) ->

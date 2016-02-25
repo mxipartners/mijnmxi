@@ -4,10 +4,18 @@
       <div class="container-fluid">
         <div class="btn-group btn-group-justified">
           <a href="{{sms_url}}" class="btn btn-inverse btn-lg white">
-            <img src="/images/Messagebutton.svg" alt="Stuur bericht">
+            {{#if selected_users}}
+              <img src="/images/Messagebutton.svg" alt="Stuur bericht">
+            {{else}}
+              <img src="/images/Messagebutton - disabled.svg" alt="Selecteer eerst een persoon">
+            {{/if}}
           </a>
           <a href="{{phone_url}}" class="btn btn-inverse btn-lg white">
-            <img src="/images/Callbutton.svg" alt="Bel">
+            {{#if selected_users}}
+              <img src="/images/Callbutton.svg" alt="Bel">
+            {{else}}
+              <img src="/images/Callbutton - disabled.svg" alt="Selecteer eerst een persoon">
+            {{/if}}
           </a>
           <a href="#" class="btn btn-inverse btn-lg white add">
             <img src="/images/Addbutton.svg" alt="Voeg toe">
