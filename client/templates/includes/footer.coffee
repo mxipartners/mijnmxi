@@ -26,7 +26,7 @@ Template.footer.helpers
       "#"
     else if users.length == 1
       phone_number = users[0].telephone_nr
-      "sms:#{phone_number};body=Hello there"
+      "sms:#{phone_number}"
     # "whatsapp://send?abid=#{phone_number}"
 
 Template.footer.events
