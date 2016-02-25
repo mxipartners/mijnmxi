@@ -61,7 +61,7 @@ Template.items_dial.helpers
         if @name then @name else @emails[0].address
   item_title: ->
     if Router.current().route.getName() is "projectPage"
-        @emails[0].address
+        if @name then @name else @emails[0].address
     else
         @title
   svg_icon: ->
