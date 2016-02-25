@@ -1,6 +1,5 @@
 Template.profilePage.helpers
   email: -> @emails[0].address
-  nameOrEmail: -> if @name then @name else @emails[0].address
   readonly: -> if @_id == Meteor.userId() then '' else 'readonly'
 
 Template.profilePage.events

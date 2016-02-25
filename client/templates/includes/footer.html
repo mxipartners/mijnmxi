@@ -3,14 +3,29 @@
     <div class="navbar navbar-footer navbar-default navbar-fixed-bottom" role="navigation">
       <div class="container-fluid">
         <div class="btn-group btn-group-justified">
+          <a href="tel:+31302270500" class="btn btn-inverse brn-lg white">
+            <img src="/images/CallMXIbutton.svg">
+          </a>
           <a href="{{sms_url}}" class="btn btn-inverse btn-lg white">
-            <img src="/images/Messagebutton.svg" alt="Stuur bericht">
+            {{#if selected_users}}
+              <img src="/images/Messagebutton.svg" alt="Stuur bericht">
+            {{else}}
+              <img src="/images/Messagebutton - disabled.svg" alt="Selecteer eerst een persoon">
+            {{/if}}
           </a>
           <a href="{{phone_url}}" class="btn btn-inverse btn-lg white">
-            <img src="/images/Callbutton.svg" alt="Bel">
+            {{#if selected_users}}
+              <img src="/images/Callbutton.svg" alt="Bel">
+            {{else}}
+              <img src="/images/Callbutton - disabled.svg" alt="Selecteer eerst een persoon">
+            {{/if}}
           </a>
           <a href="#" class="btn btn-inverse btn-lg white add">
-            <img src="/images/Addbutton.svg" alt="Voeg toe">
+            {{#if project_or_member_page}}
+              <img src="/images/Addbutton.svg" alt="Voeg toe">
+            {{else}}
+              <img src="/images/Addbutton - disabled.svg" alt="Navigeer eerst naar persoon of project">
+            {{/if}}
           </a>
           <a class="btn btn-inverse btn-lg white logout">
             <img src="/images/Logoutbutton.svg" alt="Log uit">
