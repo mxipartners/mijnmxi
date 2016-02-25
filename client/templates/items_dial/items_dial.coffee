@@ -80,15 +80,16 @@ Template.items_dial.helpers
 Template.items_dial.events
   'click .circular': (e) ->
     e.preventDefault()
-    $(e.currentTarget).toggleClass "selected"
     item_id = $(e.currentTarget).attr("data-id")
-    selected_items = Session.get('selectedItems').slice()
-    if $(e.currentTarget).hasClass "selected"
-      selected_items.push item_id
-    else
-      index = selected_items.indexOf item_id
-      selected_items.splice(index, 1)
-    Session.set 'selectedItems', selected_items
+    if Router.current().route.getName() is "projectPage" and item_id != Meteor.userId()
+      $(e.currentTarget).toggleClass "selected"
+      selected_items = Session.get('selectedItems').slice()
+      if $(e.currentTarget).hasClass "selected"
+        selected_items.push item_id
+      else
+        index = selected_items.indexOf item_id
+        selected_items.splice(index, 1)
+      Session.set 'selectedItems', selected_items
 
   'click .title': (e) ->
     e.preventDefault()
