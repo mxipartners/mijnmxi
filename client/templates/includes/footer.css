@@ -1,4 +1,6 @@
-.navbar-footer {
-  background-color: #4A5C68 ! important;
+
+.navbar.navbar-footer {
+  background-color: #4A5C68 ;
+  border: none;
 }
 .navbar-footer img {width: 100%; max-height: 38px; border: 0px}
