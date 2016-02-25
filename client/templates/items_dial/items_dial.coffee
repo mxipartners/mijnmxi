@@ -42,7 +42,7 @@ Template.items_dial.helpers
     if Router.current().route.getName() is "projectPage"
       "/images/Personicon.svg"
     else
-      "/images/Personicon.svg"
+      "/images/Projecticon.svg"
   items: ->
     if Router.current().route.getName() is "projectPage"
       project = Template.parentData()
