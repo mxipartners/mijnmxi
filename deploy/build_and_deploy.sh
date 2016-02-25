@@ -1,6 +1,6 @@
 #!/bin/bash
 
-./build.sh
+./build.sh $*
 if [ $? -eq 0 ] ; then
-	./deploy.sh
+	./deploy.sh $*
 fi
