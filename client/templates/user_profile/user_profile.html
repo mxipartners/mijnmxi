@@ -1,12 +1,14 @@
 <template name="profilePage">
   <center>
-    <h2>Profiel: {{email}}</h2>
+    <h2>Profiel: {{nameOrEmail}}</h2>
     <form>
       <div class="dialog">
+        <input type="text" name="name" placeholder="Naam"
+            value="{{name}}" {{readonly}}>
         <input type="tel" name="telephone_nr" placeholder="Telefoonnummer"
-               value="{{telephone_nr}}" {{readonly}}>
+            value="{{telephone_nr}}" {{readonly}}>
         <input type="text" name="skype_id" placeholder="Skype ID"
-               value="{{skype_id}}" {{readonly}}>
+            value="{{skype_id}}" {{readonly}}>
       </div>
       <div class="buttons">
         <button type="submit" class="dialog-button">OK</button>
