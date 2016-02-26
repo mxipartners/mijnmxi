@@ -1,6 +1,10 @@
 <template name="profilePage">
   <center>
-    <h2>Bewerk profiel</h2>
+    {{#if readonly}}
+      <h2>Profiel</h2>
+    {{else}}
+      <h2>Bewerk profiel</h2>
+    {{/if}}
     <form>
       <div class="dialog">
         <input type="text" name="name" placeholder="Naam"
