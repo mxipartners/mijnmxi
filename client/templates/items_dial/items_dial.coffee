@@ -63,9 +63,17 @@ Template.items_dial.helpers
       "/images/Personicon.svg"
   item_svg_icon: ->
     if Router.current().route.getName() is "projectPage"
-      "/images/Personicon.svg"
+      if @_id == Meteor.userId()
+        "/images/Selficon.svg"
+      else
+        "/images/Personicon.svg"
     else
       "/images/Projecticon.svg"
+  self: ->
+    if @_id == Meteor.userId()
+      "self"
+    else
+      ""
   items: ->
     if Router.current().route.getName() is "projectPage"
       project = Template.parentData()

@@ -9,19 +9,21 @@
       <div class="title">
         <span>{{title}}</span>
       </div>
-      {{#each items}}
-        <div class="circular" data-id="{{_id}}" data-orig-x="{{positionX @index items.count 120}}" data-orig-y="{{positionY @index items.count 120}}" style="{{positionCircular @index items.count 120}}">
-          <div class="dial_item">
-            <div>
-              <img class="embed_svg" src="{{item_svg_icon}}" alt="{{email}}">
-            </div>
-            <div class="text_unselectable">
-              {{item_title}}
+      <div class="items">
+        {{#each items}}
+          <div class="circular" data-id="{{_id}}" data-orig-x="{{positionX @index items.count 120}}" data-orig-y="{{positionY @index items.count 120}}" style="{{positionCircular @index items.count 120}}">
+            <div class="dial_item">
+              <div>
+                <img class="embed_svg {{self}}" src="{{item_svg_icon}}" alt="{{title}}">
+              </div>
+              <div class="text_unselectable">
+                {{item_title}}
+              </div>
             </div>
           </div>
-        </div>
-        {{redraw}}
-      {{/each}}
+          {{redraw}}
+        {{/each}}
+      </div>
     </div>
   </div>
 </template>

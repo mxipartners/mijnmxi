@@ -57,6 +57,11 @@
   stroke: #FFCF00;
 }
 
+.items svg.self ellipse:first-of-type {
+  fill: #FFCF00;
+  stroke: #FFCF00;
+}
+
 .text_unselectable {
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
