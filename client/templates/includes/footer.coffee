@@ -4,6 +4,7 @@ selected_users = ->
     members = []
   Meteor.users.find({_id: {$in: members}}).fetch()
 
+
 Template.footer.helpers
   selected_users: -> selected_users()
   one_selected_user: -> selected_users().length == 1

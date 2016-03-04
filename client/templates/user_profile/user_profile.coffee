@@ -10,7 +10,6 @@ Template.profilePage.events
       name = $('[name=name]').val()
       telephone_nr = $('[name=telephone_nr]').val()
       skype_id = $('[name=skype_id]').val()
-      console.log name
       Meteor.users.update @_id, {$set: { name: name, telephone_nr: telephone_nr, skype_id: skype_id }}
 
     Router.go 'memberPage', {_id: @_id}

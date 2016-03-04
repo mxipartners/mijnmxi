@@ -1,6 +1,3 @@
-Template.items_dial.onCreated ->
-  Session.setDefault 'selectedItems', []
-
 # Calculate length of vector
 length = (a, b) ->
   Math.sqrt a * a + b * b
@@ -43,19 +40,25 @@ dragStop = (center_item_id) ->
     $(this).css("top", $(this).attr("data-orig-y") + "px")
 
 Template.items_dial.onRendered ->
-  Session.set 'selectedItems', []
+  if Router.current().route.getName() is "projectPage"
+    members = []
+  else if Template.parentData()._id == Meteor.userId()
+    members = []
+  else
+    members = [Template.parentData()._id]
+  Session.set 'selectedItems', members
 
 Template.items_dial.helpers
   title: ->
     if Router.current().route.getName() is "projectPage"
-        @title
+      @title
     else
-        if @name then @name else @emails[0].address
+      if @name then @name else @emails[0].address
   item_title: ->
     if Router.current().route.getName() is "projectPage"
-        if @name then @name else @emails[0].address
+      if @name then @name else @emails[0].address
     else
-        @title
+      @title
   svg_icon: ->
     if Router.current().route.getName() is "projectPage"
       "/images/Projecticon.svg"
@@ -115,7 +118,7 @@ angle = (index, count) ->
 
 positionX = (index, count, radius) ->
   Math.cos(angle(index, count)) * radius
-  
+
 positionY = (index, count, radius) ->
   Math.sin(angle(index, count)) * radius
 
