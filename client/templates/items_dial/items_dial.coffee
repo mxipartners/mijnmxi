@@ -91,6 +91,10 @@ Template.items_dial.helpers
       $(".circular").draggable()
       $(".circular").on("dragstop", -> dragStop.apply this, [center_item_id])
     ""
+  gravatar: ->
+    hash = CryptoJS.MD5 @emails[0].address.trim().toLowerCase()
+    "http://www.gravatar.com/avatar/" + hash + "?d=mm&s=50"
+  member_page: -> Router.current().route.getName() is "memberPage"
 
 Template.items_dial.events
   'click .circular': (e) ->

@@ -7,14 +7,23 @@
     </div>
     <div class="center">
       <div class="title">
-        <span>{{title}}</span>
+        <span>
+          {{#if member_page}}
+            <img class="img-circle" src="{{gravatar}}"/><br/>
+          {{/if}}
+          {{title}}
+        </span>
       </div>
       <div class="items">
         {{#each items}}
           <div class="circular" data-id="{{_id}}" data-orig-x="{{positionX @index items.count 120}}" data-orig-y="{{positionY @index items.count 120}}" style="{{positionCircular @index items.count 120}}">
             <div class="dial_item">
               <div>
-                <img class="embed_svg {{self}}" src="{{item_svg_icon}}" alt="{{item_title}}">
+                {{#if member_page}}
+                  <img class="embed_svg {{self}}" src="{{item_svg_icon}}" alt="{{item_title}}">
+                {{else}}
+                  <img class="img-circle" src="{{gravatar}}" alt="{{item_title}}"/>
+                {{/if}}
               </div>
               <div class="text_unselectable">
                 {{item_title}}
