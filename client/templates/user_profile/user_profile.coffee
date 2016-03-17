@@ -5,6 +5,8 @@ gravatar_url = (email_address) ->
 Template.profilePage.onRendered ->
   url = gravatar_url(Template.parentData().emails[0].address)
   HTTP.get url, (error, response) ->
+    # If you're wondering why there's a 404 exception in the console log,
+    # see https://github.com/meteor/meteor/issues/6215
     if not error
       $('#gravatar_help').html('<img class="img-circle" src="' + url + '"/>
         <p>Uw avatar zoals geregistreerd bij
