@@ -79,11 +79,40 @@ Template.items_dial.helpers
       ""
   items: ->
     if Router.current().route.getName() is "projectPage"
+
+      # Read all users for current project (into array)
       project = Template.parentData()
-      Meteor.users.find {_id: {$in: project.members}}
+      users = Meteor.users.find({_id: {$in: project.members}}).map((x) -> x)
+
+      # Store length of array for later usage
+      Session.set 'membersCount', users.length
+
+      # Find current user
+      currentUserId = Meteor.userId()
+      currentUserIndex = users.reduce(((index, user, i) ->
+        if index >= 0
+          return index
+        else if user._id == currentUserId
+          return i
+        return -1), -1)
+
+      # Remove current user from array and store it separately
+      currentUser = users.splice(currentUserIndex, 1)[0];
+      
+      # Sort remaining users based on main email address
+      users.sort((a, b) ->
+        a.emails[0].address.localeCompare(b.emails[0].address))
+
+      # Insert current user at front and return result
+      users.splice(0,  0, currentUser)
+      users
     else
       user = Template.parentData()
-      Projects.find {members: user._id}
+      projects = Projects.find({members: user._id}).map((x) -> x)
+      Session.set 'membersCount', projects.length
+      projects
+  items_count: ->
+    Session.get 'membersCount'
   redraw: ->
     center_item_id = Template.parentData()._id
     Meteor.defer ->
