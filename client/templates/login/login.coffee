@@ -28,6 +28,16 @@ register = (email, password, password2) ->
       else
         Router.go 'memberPage', {_id: Meteor.userId()}
 
+recover_password = (email) ->
+  if not email
+    Session.set 'login', 'Vul email in'
+  else
+    Accounts.forgotPassword {email: email}, (error) ->
+      if error
+        Session.set 'login', 'Password reset error: ' + error
+      else
+        Session.set 'login', 'Email verzonden'
+
 Template.login.events
   'submit form': (e) ->
     e.preventDefault()
@@ -45,3 +55,9 @@ Template.login.events
     e.preventDefault()
     Session.set 'login', null
     Session.set('newUser', not Session.get 'newUser')
+
+  'click .password-recovery': (e) ->
+    e.preventDefault()
+    Session.set 'login', null
+    email = Template.instance().$('[name=email]').val()
+    recover_password email

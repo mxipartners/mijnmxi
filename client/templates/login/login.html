@@ -17,6 +17,9 @@
       <div class="buttons">
         <button class="dialog-button" type="submit">{{loginButtonText}}</button>
         <button class="dialog-button new-user">{{newUserButtonText}}</button>
+        {{#unless newUser}}
+          <button class="dialog-button password-recovery">Wachtwoord vergeten</button>
+        {{/unless}}
       </div>
     </form>
   </center>
