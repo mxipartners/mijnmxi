@@ -62,15 +62,21 @@
   stroke: #FFCF00;
 }
 
-.circular.selected img.img-overlay {
+.circular.selected span.img-selected {
   position: absolute;
-	display: block;
-  width: 60%;
-  top: -20px;
-  left: 30%;
+	display: inline-block;
+  margin-left: -3%;
+  margin-top: -4.5%;
+  width: 66%;
+  height: 99%;
+  border-radius: 50%;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #FFCF00;
+  z-index: 0;
 }
 
-.circular:not(.selected) img.img-overlay {
+.circular:not(.selected) span.img-selected {
   display: none;
 }
 
