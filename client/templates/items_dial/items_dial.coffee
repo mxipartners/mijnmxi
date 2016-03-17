@@ -135,7 +135,12 @@ Template.items_dial.helpers
       # If you're wondering why there's a 404 exception in the console log,
       # see https://github.com/meteor/meteor/issues/6215
       if not error
-        $('#' + this_id).html('<span class="img-selected"></span><img class="img-circle" src="' + url + '"/>')
+        console.log "Showing: " + this_id
+        html = ''
+        if not Router.current().route.getName() is "memberPage"
+          html = '<span class="img-selected"></span>'
+        html += '<img class="img-circle" src="' + url + '"/>'
+        $('#' + this_id).html(html)
     ""
 
 Template.items_dial.events

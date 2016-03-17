@@ -8,8 +8,9 @@
     <div class="center">
       <div class="title">
         <span>
+          <span id="{{_id}}"><img class="embed_svg {{self}}" src="{{svg_icon}}" alt="{{item_title}}"/></span>
           {{#if member_page}}
-            <img class="img-circle" src="{{gravatar}}"/><br/>
+            {{get_gravatar}}
           {{/if}}
           {{title}}
         </span>
