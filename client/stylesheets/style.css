@@ -3,7 +3,7 @@ html, body {
   background-color: #4A5C68 ! important;
   color: #666666; }
 
-.grid-block, .main, .project, .item, .item-form {
+.main {
   background-color: #fff;
   border-radius: 3px;
   padding: 10px;
@@ -89,10 +89,6 @@ center h2, .controls label {
 
 #spinner {
   height: 300px; }
-
-.add-kind {
-  margin-right: 10px;
-}
 
 .help-block.mxi {
   color: #FFCF00;
