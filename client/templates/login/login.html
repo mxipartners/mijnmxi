@@ -5,19 +5,23 @@
     <form>
       <div class="dialog">
         <span class="help-block mxi">{{errorMessage}}</span>
-        <input type="text" name="email" placeholder="Email"
-                required="required"/>
+        {{#unless resetPassword}}
+          <input type="text" name="email" placeholder="Email"
+                 required="required"/>
+        {{/unless}}
         <input type="password" name="password"
                placeholder="Wachtwoord" required="required"/>
-        {{#if newUser}}
+        {{#if newUserOrResetPassword}}
           <input type="password" name="password2"
                  placeholder="Nogmaals wachtwoord" required="required"/>
         {{/if}}
       </div>
       <div class="buttons">
         <button class="dialog-button" type="submit">{{loginButtonText}}</button>
-        <button class="dialog-button new-user">{{newUserButtonText}}</button>
-        {{#unless newUser}}
+        {{#unless resetPassword}}
+          <button class="dialog-button new-user">{{newUserButtonText}}</button>
+        {{/unless}}
+        {{#unless newUserOrResetPassword}}
           <button class="dialog-button password-recovery">Wachtwoord vergeten</button>
         {{/unless}}
       </div>
