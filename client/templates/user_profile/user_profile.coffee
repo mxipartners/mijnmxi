@@ -1,3 +1,15 @@
+gravatar_url = (email_address) ->
+  hash = CryptoJS.MD5 email_address.trim().toLowerCase()
+  "http://www.gravatar.com/avatar/" + hash + "?d=404&s=50"
+
+Template.profilePage.onRendered ->
+  url = gravatar_url(Template.parentData().emails[0].address)
+  HTTP.get url, (error, response) ->
+    if not error
+      $('#gravatar_help').html('<img class="img-circle" src="' + url + '"/>
+        <p>Uw avatar zoals geregistreerd bij
+        <a href="http://gravatar.com">gravatar.com</a>.</p>')
+
 Template.profilePage.helpers
   email: -> @emails[0].address
   readonly: -> if @_id == Meteor.userId() then '' else 'readonly'

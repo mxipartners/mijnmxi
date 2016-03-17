@@ -61,6 +61,10 @@ a:visited {
   text-decoration: underline;
 }
 
+.img-circle {
+  border-radius: 50%;
+}
+
 .dialog input {
   color: #FFFFFF;
   width: 93%;
