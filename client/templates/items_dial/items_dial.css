@@ -62,6 +62,18 @@
   stroke: #FFCF00;
 }
 
+.circular.selected img.img-overlay {
+  position: absolute;
+	display: block;
+  width: 30%;
+  top: -10px;
+  left: 20%;
+}
+
+.circular:not(.selected) img.img-overlay {
+  display: none;
+}
+
 .text_unselectable {
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;

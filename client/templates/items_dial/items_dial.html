@@ -20,9 +20,10 @@
             <div class="dial_item">
               <div>
                 {{#if member_page}}
-                  <img class="embed_svg {{self}}" src="{{item_svg_icon}}" alt="{{item_title}}">
+                  <img class="embed_svg {{self}}" src="{{item_svg_icon}}" alt="{{item_title}}"/>
                 {{else}}
                   <img class="img-circle" src="{{gravatar}}" alt="{{item_title}}"/>
+                  <img class="img-overlay" src="/images/check.png"/>
                 {{/if}}
               </div>
               <div class="text_unselectable">
