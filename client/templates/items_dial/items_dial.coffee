@@ -39,6 +39,10 @@ dragStop = (center_item_id) ->
     $(this).css("left", $(this).attr("data-orig-x") + "px")
     $(this).css("top", $(this).attr("data-orig-y") + "px")
 
+gravatar_url = (email_address) ->
+  hash = CryptoJS.MD5 email_address.trim().toLowerCase()
+  "http://www.gravatar.com/avatar/" + hash + "?d=404&s=50"
+
 Template.items_dial.onRendered ->
   if Router.current().route.getName() is "projectPage"
     members = []
@@ -95,6 +99,15 @@ Template.items_dial.helpers
     hash = CryptoJS.MD5 @emails[0].address.trim().toLowerCase()
     "http://www.gravatar.com/avatar/" + hash + "?d=mm&s=50"
   member_page: -> Router.current().route.getName() is "memberPage"
+  get_gravatar: ->
+    url = gravatar_url(@emails[0].address)
+    this_id = @_id
+    HTTP.get url, (error, response) ->
+      # If you're wondering why there's a 404 exception in the console log,
+      # see https://github.com/meteor/meteor/issues/6215
+      if not error
+        $('#' + this_id).html('<span class="img-selected"></span><img class="img-circle" src="' + url + '"/>')
+    ""
 
 Template.items_dial.events
   'click .circular': (e) ->
