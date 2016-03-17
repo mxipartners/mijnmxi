@@ -2,7 +2,7 @@ Template.addMember.helpers
   email: -> @emails[0].address
   users: ->
     project = Template.parentData()
-    Meteor.users.find {_id: {$nin: project.members}}
+    Meteor.users.find {_id: {$nin: project.members}}, {sort: {name: 1}}
 
 Template.addMember.events
   'submit form': (e) ->

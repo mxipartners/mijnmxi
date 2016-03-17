@@ -7,7 +7,7 @@
           <div class="controls">
             <select name="members" multiple="multiple" class="form-control member-select">
               {{#each users}}
-                <option value="{{_id}}">{{email}}</option>
+                <option value="{{_id}}">{{name}} &lt;{{email}}&gt;</option>
               {{/each}}
             </select>
           </div>
