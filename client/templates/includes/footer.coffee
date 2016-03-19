@@ -34,8 +34,8 @@ Template.footer.helpers
 Template.footer.events
   'click .logout': (e) ->
     e.preventDefault()
-    Meteor.logout()
-    Router.go '/'
+    Meteor.logout ->
+      Router.go '/'
 
   'click .add': (e) ->
     e.preventDefault()
