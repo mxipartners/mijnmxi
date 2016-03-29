@@ -14,7 +14,6 @@ mizzao:jquery-ui
 dsyko:jquery-ui-touch-punch
 sanjo:jasmine
 velocity:html-reporter
-standard-minifiers
 meteor-base
 mobile-experience
 mongo
@@ -29,3 +28,5 @@ spacebars
 check
 jparker:crypto-md5
 http
+standard-minifier-css
+standard-minifier-js
