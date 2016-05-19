@@ -104,6 +104,13 @@ a:visited {
   /*white-space: nowrap;*/
 }
 
+/* For 3 buttons use separate lines */
+.dialog-button:nth-child(1):nth-last-child(3),
+.dialog-button:nth-child(2):nth-last-child(2),
+.dialog-button:nth-child(3):nth-last-child(1) {
+  display: block;
+}
+
 .dialog-button:active {
   color: #FFCF00;
 }
