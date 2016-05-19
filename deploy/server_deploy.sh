@@ -62,7 +62,7 @@ tar xvzf "$1" -C "$BUNDLE_DIR"
 echo "Building local packages"
 cd "$BUNDLE_DIR/bundle/programs/server"
 echo "HACK FOR bcrypt from MacOS X"
-rm -rf npm/npm-bcrypt
+rm -rf npm/node_modules/meteor/npm-bcrypt
 npm install
 if [ "$?" != "0" ]; then
 	echo "Failed to install local packages"
