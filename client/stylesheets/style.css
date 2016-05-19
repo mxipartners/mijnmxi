@@ -94,7 +94,7 @@ a:visited {
   padding: 5px 20px 5px 20px;
   margin-top: 5px;
   text-decoration: none;
-  white-space: nowrap;
+  /*white-space: nowrap;*/
 }
 
 .dialog-button:active {
