@@ -73,6 +73,13 @@ a:visited {
   background-color: #66757E;
   border: none;
   border-radius: 0px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dialog input[type="password"] {
+  text-overflow: clip;
 }
 
 .dialog input:not(:last-child) {
