@@ -1,0 +1,25 @@
+.header .controls .control {
+  /* Make header controls visible 'above' other elements */
+  position: absolute;
+  z-index: 100;
+
+  /* Leave margin around control */
+  margin: 8px;
+}
+
+.header .controls .control.call {
+  /* Position upper left */
+  top: 0px;
+  left: 0px;
+}
+
+.header .controls .control.logout {
+  /* Position upper right */
+  top: 0px;
+  right: 0px;
+}
+
+.header .controls .control img {
+  /* Set width of image (retaining aspect ratio), based on font size */
+  width: 4em;
+}

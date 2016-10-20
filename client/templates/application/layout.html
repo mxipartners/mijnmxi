@@ -1,9 +1,16 @@
 <template name="layout">
-  <div class="container">
-    {{> errors}}
+  <div class="app_container">
+    <div class="errors">
+      {{> errors}}
+    </div>
+    <div class="header">
+      {{> header}}
+    </div>
     <div id="main">
       {{> yield}}
     </div>
-    {{> footer}}
+    <div class="footer">
+      {{> footer}}
+    </div>
   </div>
 </template>

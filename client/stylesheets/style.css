@@ -153,6 +153,11 @@ center h2, .controls label {
   100% {opacity: 0;}
 }
 
+/* Button appearance */
+a.button {
+  cursor: pointer;
+}
+
 /* Prevent 'glow' on input elements on Safari */
 *:focus {
 	outline: none;
