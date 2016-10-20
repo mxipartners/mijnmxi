@@ -2,9 +2,10 @@
   <div class="messages">
     {{#each messages}}
       <div class="message">
-        <div class="message_content">
-          {{content}}
+        <div class="message_header">
+          {{sender}} -&gt; {{recipients}}
         </div>
+        {{content}}
       </div>
     {{/each}}
   </div>

@@ -8,6 +8,8 @@
   transition: 0.3s;
   color: rgb(255, 255, 255);
   background-color: rgb(102, 117, 126);
+  /* Add some padding inside the message */
+  padding: 2px 16px;
 }
 
 /* On mouse-over, add a deeper shadow */
@@ -15,9 +17,8 @@
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
-.message_content {
-  /* Add some padding inside the message */
-  padding: 2px 16px;
+.message_header {
+  color: #FFCF00;
 }
 
 .new_message {
