@@ -2,16 +2,17 @@
   <div class="messages">
     {{#each messages}}
       <div class="message">
-        <div class="message_content">
-          {{content}}
+        <div class="message_header">
+          {{sender}} &rarr; {{recipient_names}}
         </div>
+        {{content}}
       </div>
     {{/each}}
   </div>
   <div class="new_message">
     <div class="message_holder">
       <div class="header">
-        <span class="from">Ik</span> -&gt; <span class="to">{{recipients}}</span>
+        <span class="from">Ik</span> &rarr; <span class="to">{{selected_users}}</span>
       </div>
       <div class="message_form">
         <div class="content">
