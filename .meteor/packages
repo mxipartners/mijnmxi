@@ -9,7 +9,6 @@ iron:router
 sacha:spin
 accounts-password@1.3.0
 audit-argument-checks@1.0.7
-coffeescript@1.2.4_2
 mizzao:jquery-ui
 dsyko:jquery-ui-touch-punch
 sanjo:jasmine
@@ -31,3 +30,13 @@ http@1.2.9_1
 standard-minifier-css@1.2.0_1
 standard-minifier-js@1.2.0_1
 shell-server
+coffeescript@=1.2.4_2
+babel-compiler@=6.9.1_1
+babel-runtime@=0.1.11_1
+caching-compiler@=1.1.7_1
+ecmascript@=0.5.8_1
+ecmascript-runtime@=0.3.14_1
+meteor@=1.2.17_1
+modules@=0.7.6_1
+modules-runtime@=0.7.6_1
+promise@=0.8.7
