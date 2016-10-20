@@ -1,5 +1,6 @@
 .messages {
- padding: 10px 10px;
+  height: 70%;
+  padding: 10px 10px;
 }
 
 .message {
@@ -22,4 +23,7 @@
 }
 
 .new_message {
+  height: 30%;
+  bottom: 0px;
+  background-color: #00ff00;
 }
