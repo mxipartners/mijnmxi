@@ -1,15 +1,14 @@
 @Messages = new Mongo.Collection 'messages'
 
 Messages.allow
-  update: (userId, project) -> isProjectMember userId, project
+  insert: (userId, message) -> isProjectMember userId, Projects.findOne(message.projectId)
 
 Meteor.methods
   messageInsert: (messageAttributes) ->
     check Meteor.userId(), String
     validateMessage messageAttributes
-    user = Meteor.user()
     message = _.extend messageAttributes,
-      sender: user._id
+      sender: Meteor.userId()
       sent: new Date()
     messageId = Messages.insert message
     return {_id: messageId}

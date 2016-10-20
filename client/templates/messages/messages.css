@@ -10,6 +10,7 @@
   background-color: rgb(102, 117, 126);
   /* Add some padding inside the message */
   padding: 2px 16px;
+  margin: 2px;
 }
 
 /* On mouse-over, add a deeper shadow */
