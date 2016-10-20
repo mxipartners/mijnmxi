@@ -1,11 +1,15 @@
 <template name="messagesPage">
   <div class="messages">
     {{#each messages}}
-      <div>{{content}}</div>
+      <div class="message">
+        <div class="message_content">
+          {{content}}
+        </div>
+      </div>
     {{/each}}
   </div>
   <div class="new_message">
-    <div class="message">
+    <div class="message_holder">
       <div class="header">
         <span class="from">Ik</span> -&gt; <span class="to">{{recipients}}</span>
       </div>
