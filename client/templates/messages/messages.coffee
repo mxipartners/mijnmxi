@@ -22,14 +22,14 @@ Template.messagesPage.helpers
 
 
 Template.messagesPage.events
-  'submit form': (e) ->
+  'click .send_message': (e) ->
     e.preventDefault()
     messageProperties =
       project: this._id
-      content: $(e.target).find('[name=messagecontent]').val()
+      content: $('[name=messagecontent]').val()
       recipients: Session.get('selectedItems')
     Meteor.call 'messageInsert', messageProperties, (error, result) ->
       if error
         throwError error.reason
       else
-        $(e.target).find('[name=messagecontent]').val('')
+        $('[name=messagecontent]').val('')
