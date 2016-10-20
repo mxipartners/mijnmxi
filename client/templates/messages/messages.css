@@ -1,2 +1,9 @@
+.messages {
+  height: 70%;
+}
+
 .new_message {
+  height: 30%;
+  bottom: 0px;
+  background-color: #00ff00;
 }
