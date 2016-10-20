@@ -7,4 +7,10 @@ Accounts.onCreateUser (options, user) ->
     submitted: new Date
     kind: 'project'
   projectId = Projects.insert tutorial
+  message =
+    project: projectId
+    sender: user._id
+    recipients: []
+    content: "Hallo " + user.emails[0].address + ". Welkom bij Mijn M&I/Partners."
+  Messages.insert message
   return user

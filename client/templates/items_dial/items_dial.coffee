@@ -55,7 +55,7 @@ Template.items_dial.onRendered ->
 Template.items_dial.helpers
   title: ->
     if Router.current().route.getName() is "projectPage"
-      @title
+      @title + ' (' + Messages.find().count() + ')'
     else
       if @name then @name else @emails[0].address
   item_title: ->

@@ -16,6 +16,7 @@ Router.route '/projects/:_id/edit',
 Router.route '/projects/:_id',
   name: 'projectPage'
   data: -> Projects.findOne this.params._id
+  subscriptions: -> Meteor.subscribe('messages', this.params._id)
 
 Router.route '/members/:_id/add_project',
   name: 'addProject'
