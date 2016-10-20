@@ -43,3 +43,8 @@ Template.footer.events
       Router.go 'addMember', {_id: Router.current().params._id}
     else if Router.current().route.getName() == "memberPage"
       Router.go 'addProject', {_id: Router.current().params._id}
+
+  'click .message': (e) ->
+    e.preventDefault()
+    if Router.current().route.getName() == "projectPage"
+      Router.go 'messagesPage', {_id: Router.current().params._id}

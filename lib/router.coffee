@@ -26,6 +26,11 @@ Router.route '/members/:_id',
   name: 'memberPage'
   data: -> Meteor.users.findOne this.params._id
 
+Router.route '/projects/:_id/messages',
+  name: 'messagesPage'
+  data: -> Projects.findOne this.params._id
+  subscriptions: -> Meteor.subscribe('messages', this.params._id)
+
 Router.route '/users/:_id',
   name: 'profilePage'
   data: -> Meteor.users.findOne this.params._id
