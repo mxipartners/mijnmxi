@@ -102,7 +102,7 @@ Template.items_dial.helpers
 
       # Remove current user from array and store it separately
       currentUser = users.splice(currentUserIndex, 1)[0];
-      
+
       # Sort remaining users based on main email address
       users.sort((a, b) ->
         a.emails[0].address.localeCompare(b.emails[0].address))
