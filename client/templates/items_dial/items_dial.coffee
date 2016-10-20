@@ -52,6 +52,15 @@ Template.items_dial.onRendered ->
     members = [Template.parentData()._id]
   Session.set 'selectedItems', members
 
+Template.items_dial.onCreated ->
+  # FIXME: new approach for handling page specific buttons from footer
+  #window.addHandler = (d) ->
+  #  window.alert d
+
+Template.items_dial.onDestroyed ->
+  # FIXME: new approach for handling page specific buttons from footer
+  #delete window.addHandler
+
 Template.items_dial.helpers
   title: ->
     if Router.current().route.getName() is "projectPage"

@@ -3,21 +3,7 @@ html, body {
   background-color: #4A5C68 ! important;
   color: #666666; }
 
-.main {
-  background-color: #fff;
-  border-radius: 3px;
-  padding: 10px;
-  margin-bottom: 10px;
-  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
-  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15); }
-
 .container {
-  height: 100%;
-}
-
-#main {
-  position: relative;
   height: 100%;
 }
 

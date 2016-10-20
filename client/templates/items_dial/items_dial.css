@@ -1,5 +1,4 @@
 .full {
-  position: absolute;
   width: 100%;
   height: 80vh; /* Need to change once page is full screen */
   background-color: #4A5C68;

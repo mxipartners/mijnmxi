@@ -1,6 +1,19 @@
-
-.navbar.navbar-footer {
-  background-color: #4A5C68 ;
-  border: none;
+.footer .controls {
+  /* Grow controls container to size of individual controls */
+  overflow: hidden;
+  width: 100%;
 }
-.navbar-footer img {width: 100%; max-height: 38px; border: 0px}
+
+.footer .controls .control {
+  /* Put 4 controls next to each other (put on horizontal line) */
+  float: left;
+  width: 25%;
+
+  /* Center image within control */
+  text-align: center;
+}
+
+.footer .controls .control img {
+  /* Set width of image (retaining aspect ratio), based on font size */
+  width: 4em;
+}
