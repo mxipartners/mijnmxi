@@ -5,11 +5,18 @@
   </div>
   <div class="messages">
     {{#each messages}}
-      <div class="message">
-        <div class="header">
-          {{sender}} &rarr; {{recipient_names}}
+      <div class="message_holder">
+        <div class="message">
+          <div class="header">
+            {{sender}} &rarr; {{recipient_names}}
+          </div>
+          {{content}}
         </div>
-        {{content}}
+        <div class="control">
+          <a href="#" class="btn btn-inverse btn-lg white reply_message">
+            <img src="/images/Replybutton.svg" alt="Reageer op bericht">
+          </a>
+        </div>
       </div>
     {{/each}}
   </div>

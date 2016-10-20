@@ -4,8 +4,14 @@
   font-size: 16px;
 }
 
+.messages, .new_message {
+  clear: both;
+}
+
 .messages {
   padding: 10px 10px;
+  height: 50%;
+  overflow-y: auto;
 }
 
 .messages .message {
@@ -17,6 +23,10 @@
   /* Add some padding inside the message */
   padding: 2px 16px;
   margin: 2px;
+
+  /* Position message on left */
+  float: left;
+  width: 85%;
 }
 
 /* On mouse-over, add a deeper shadow */
@@ -26,6 +36,18 @@
 
 .messages .header, .new_message .header {
   color: #FFCF00;
+}
+
+.messages .control {
+  float: right;
+}
+
+.messages .control img {
+  width: 20%;
+}
+
+.messages .message_holder {
+  clear: both;
 }
 
 .new_message {
