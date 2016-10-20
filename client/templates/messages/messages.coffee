@@ -22,18 +22,22 @@ Template.messagesPage.helpers
 
 
 Template.messagesPage.events
-  'submit form': (e) ->
+  'click .send_message': (e) ->
     e.preventDefault()
     messageProperties =
       project: this._id
-      content: $(e.target).find('[name=messagecontent]').val()
+      content: $('[name=messagecontent]').val()
       recipients: Session.get('selectedItems')
     Meteor.call 'messageInsert', messageProperties, (error, result) ->
       if error
         throwError error.reason
       else
+<<<<<<< HEAD
+        $('[name=messagecontent]').val('')
+=======
         $(e.target).find('[name=messagecontent]').val('')
 
   'click .project_title': (e) ->
     e.preventDefault()
     Router.go 'projectPage', {_id: @_id}
+>>>>>>> f6719606d16ba19720a35d8a93f8c05130d4ba5f

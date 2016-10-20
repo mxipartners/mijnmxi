@@ -8,7 +8,7 @@
   padding: 10px 10px;
 }
 
-.message {
+.messages .message {
   /* Add shadows to create the "card" effect */
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
@@ -20,33 +20,33 @@
 }
 
 /* On mouse-over, add a deeper shadow */
-.message:hover {
+.messages .message:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
-.message_header {
+.messages .header, .new_message .header {
   color: #FFCF00;
 }
 
 .new_message {
   bottom: 0px;
-  background-color: #00ff00;
   padding: 10px 10px;
 }
 
 .new_message .content {
   display: inline-block;
-  width: 84%;
+  width: 88%;
 }
 
 .new_message .control {
   display: inline-block;
-  width: 15%;
+  width: 10%;
   right: 0px;
 }
 
 .new_message .control img {
   width: 100%;
+  margin-top: auto;
 }
 
 /* FIXME: fixes issue in layout.css setting padding-bottom to 56px for all divs */
