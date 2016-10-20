@@ -14,3 +14,7 @@ Template.messagesPage.helpers
   recipient_names: ->
     names = (name(recipient) for recipient in @recipients)
     if names.length > 0 then names.join(', ') else 'Ik'
+
+  selected_users: ->
+    users = Meteor.users.find({'_id': {$in: Session.get('selectedItems')}}).fetch()
+    (name(user) for user in users).join(', ')
