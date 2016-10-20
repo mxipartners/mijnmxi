@@ -1,5 +1,4 @@
 .messages {
-  height: 70%;
   padding: 10px 10px;
 }
 
@@ -22,7 +21,27 @@
 }
 
 .new_message {
-  height: 30%;
   bottom: 0px;
   background-color: #00ff00;
+  padding: 10px 10px;
+}
+
+.new_message .content {
+  display: inline-block;
+  width: 84%;
+}
+
+.new_message .control {
+  display: inline-block;
+  width: 15%;
+  right: 0px;
+}
+
+.new_message .control img {
+  width: 100%;
+}
+
+/* FIXME: fixes issue in layout.css setting padding-bottom to 56px for all divs */
+#main > div.new_message {
+  padding-bottom: 10px;
 }
