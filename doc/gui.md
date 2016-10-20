@@ -18,10 +18,13 @@ Make application responsive:
 
 Adding logic to the GUI:
 * Use jQuery to select DOM elements using $ and selectors like below:
-          $('.messages')            # All elements with class 'messages'
-          $('.messages .message')   # All elements with class 'message' which have a parent with class 'messages'
-          $('[name=something]')     # All elements with attribute 'name' equal to 'something'
+```CoffeeScript
+    $('.messages')            # All elements with class 'messages'
+    $('.messages .message')   # All elements with class 'message' which have a parent with class 'messages'
+    $('[name=something]')     # All elements with attribute 'name' equal to 'something'
+```
 * In coffeescript file add event handler like below:
+```CoffeeScript
         Template.myTemplate.events
           'click .control.send': (e) ->
             e.preventDefault()
@@ -29,3 +32,4 @@ Adding logic to the GUI:
             Meteor.call 'sendMessage', content, (error, result) ->
               if error
                 throwError error.reason
+```
