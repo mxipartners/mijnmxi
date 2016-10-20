@@ -33,3 +33,7 @@ Template.messagesPage.events
         throwError error.reason
       else
         $(e.target).find('[name=messagecontent]').val('')
+
+  'click .project_title': (e) ->
+    e.preventDefault()
+    Router.go 'projectPage', {_id: @_id}
