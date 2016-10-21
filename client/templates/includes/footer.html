@@ -13,6 +13,13 @@
       </div>
       <div class="control call">
         <a href="#" class="button">
+          <!-- FIXME have enabled/disabled as part of pattern. Something like below:
+            <img src="/images/Callbutton - disabled.svg" alt="Selecteer eerst een persoon" data-enabled="@selected_users" data-enabled-src="/images/Callbutton.svg" data-enabled-alt="Bel"
+
+            Above makes images diabled by default. A property will specify when image/button is enabled.
+            Properties for image and alternative description are present in HTML. Attributes named "data-"
+            are generally allowed within HTML and browsers support them for storing data.
+          -->
           {{#if selected_users}}
             <img src="/images/Callbutton.svg" alt="Bel">
           {{else}}

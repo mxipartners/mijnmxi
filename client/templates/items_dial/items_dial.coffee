@@ -59,6 +59,8 @@ Template.items_dial.onCreated ->
 
 Template.items_dial.onDestroyed ->
   # FIXME: new approach for handling page specific buttons from footer
+  # Probably better to set empty default handler since it will allow a call to the handler (instead of having an exception).
+  # A general (script for all templates) with a register/unregister functionality will be best.
   #delete window.addHandler
 
 Template.items_dial.helpers
