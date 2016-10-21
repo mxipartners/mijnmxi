@@ -22,6 +22,7 @@ Adding logic to the GUI:
 $('.messages')            # All elements with class 'messages'
 $('.messages .message')   # All elements with class 'message' which have a parent with class 'messages'
 $('[name=something]')     # All elements with attribute 'name' equal to 'something'
+$(e.target).find('div')   # All div elements which are child of the current event's target (eg in click handler)
 ```
 * In coffeescript file add event handler like below (do not forget e.preventDefault() when clicking on A tags):
 ```CoffeeScript
