@@ -110,7 +110,7 @@ handleDragItem = (selection) ->
       d3.event
         .on("drag", (d) ->
           itemElement
-            .raise()
+            #.raise() # Issue with ios losing drag behaviour
             .attr("transform", (d) ->
               d.dragPosition = { x: d3.event.x, y: d3.event.y }
               "translate(" + d.dragPosition.x + "," + d.dragPosition.y + ")")
