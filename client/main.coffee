@@ -8,3 +8,12 @@ Blaze.TemplateInstance.prototype.parentTemplate = (levels) ->
     if (view.name.substring(0, 9) is "Template." && !(levels--))
       return view.templateInstance()
     view = view.parentView
+
+# Add simple localStorage implementation if one is not present
+if !window.localStorage
+  window.localStorage = {
+    keysAndValues: {}
+    getItem: (key) -> this.keysAndValues[key]
+    setItem: (key, value) -> this.keysAndValues[key] = value
+    removeItem: (key) -> delete this.keysAndValues[key]
+  }

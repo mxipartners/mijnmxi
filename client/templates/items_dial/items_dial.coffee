@@ -49,8 +49,8 @@ Template.items_dial.onRendered ->
           .attr("class", "item")
           .attr("data-id", (d) -> d._id)
           .attr("transform", "translate(-500,0)scale(0.1)")
-          .on("click", () -> selectItem(d3.select(this)))
           .call(handleDragItem)
+          .on("click", () -> selectItem(d3.select(this)))
 
     # Animate new and updating items into position
     newItems
@@ -105,20 +105,41 @@ handleDragItem = (selection) ->
   d3.drag()
     .on("start", () ->
       itemElement = d3.select(this)
+      # Test for ios buggy behaviour
+      # If ios does not drag correct (see comment at "drag" below)
+      # the current element is already marked for dragging and will
+      # be the top most element (ie no next sibling). For this to be
+      # evident, the user must drag an item, see it fail and try to
+      # drag the same item again. Exactly that behaviour is tested
+      # for below (because it seems a logical reaction for the user).
+      # This fact is then stored in localStorage (which persists
+      # across different application runs).
+      if !this.nextSibling && itemElement.classed("dragging")
+        window.localStorage.setItem("buggyDragBehaviour", "true")
       itemElement
         .classed("dragging", true)
-      d3.event
-        .on("drag", (d) ->
-          itemElement
-            #.raise() # Issue with ios losing drag behaviour
-            .attr("transform", (d) ->
-              d.dragPosition = { x: d3.event.x, y: d3.event.y }
-              "translate(" + d.dragPosition.x + "," + d.dragPosition.y + ")")
-        )
-        .on("end", () ->
-          itemElement.classed("dragging", false)
-          handleDraggedItem(itemElement)
-        )
+    )
+    .on("drag", (d) ->
+      itemElement = d3.select(this)
+      # Raise the element so it is on top of other items
+      # Under ios this raise will cause the drag event to stop working.
+      # The element will remain marked for dragging (ie class "dragging").
+      # Since on ios our finger will be on top of the dragged element
+      # it will not be a major issue that the dragged element is not
+      # the top most element (ie it will now remain at a lower z-index).
+      # Therefore if the buggy behaviour is detected (see comment at
+      # "start" above), the element is not raised.
+      if window.localStorage.getItem("buggyDragBehaviour") != "true"
+        itemElement.raise()
+      itemElement
+        .attr("transform", (d) ->
+          d.dragPosition = { x: d3.event.x, y: d3.event.y }
+          "translate(" + d.dragPosition.x + "," + d.dragPosition.y + ")")
+    )
+    .on("end", () ->
+      itemElement = d3.select(this)
+      itemElement.classed("dragging", false)
+      handleDraggedItem(itemElement)
     )(selection)
 
 # Handle related item after dragging ended
