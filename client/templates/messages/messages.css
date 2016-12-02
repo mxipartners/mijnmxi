@@ -72,6 +72,8 @@
 }
 
 /* FIXME: fixes issue in layout.css setting padding-bottom to 56px for all divs */
-#main > div.new_message {
+/*
+.main > div.new_message {
   padding-bottom: 10px;
 }
+*/

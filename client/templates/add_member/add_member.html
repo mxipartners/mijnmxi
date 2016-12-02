@@ -3,9 +3,9 @@
     <h2>Nieuwe projectleden</h2>
     <form>
       <div class="dialog">
-        <div class="form-group">
+        <div>
           <div class="controls">
-            <select name="members" multiple="multiple" class="form-control member-select">
+            <select name="members" multiple="multiple" class="member-select">
               {{#each users}}
                 <option value="{{_id}}">{{name}} &lt;{{email}}&gt;</option>
               {{/each}}
