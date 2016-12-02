@@ -32,7 +32,12 @@ Template.items_dial.onRendered ->
   # Add event handler for select-all items (and start with empty selection)
   Session.set("selectedItems", [])
   d3.select("g.select-all")
-    .on("click", () -> Session.set("selectedItems", Session.get("items").map((x) -> x._id)))
+    .on("click", () ->
+      if d3.selectAll(".selected").size() != d3.selectAll(".item").size()
+        Session.set("selectedItems", Session.get("items").map((x) -> x._id))
+      else
+        Session.set("selectedItems", [])
+    )
 
   # Update related items (reactive on "items" from session)
   this.autorun(() ->
