@@ -26,7 +26,7 @@ Template.memberPage.onCreated ->
     else
       null
   this.subjectEditTemplate = ->
-    "profilePage"
+    if this.user._id == Meteor.userId() then "editProfile" else "viewProfile"
   this.subjectEditParameters = (subject) ->
     { _id: subject._id }
   this.relatedItemTitle = (project) ->

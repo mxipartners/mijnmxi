@@ -13,14 +13,12 @@
     </h2>
     <form>
       <div class="border">
-        {{#with project}}
-          <input type="text" name="title" value="{{title}}"
-            placeholder="Projecttitel" required
-            spellcheck autocorrect="on" autofocus/>
-          <input type="text" name="description" value="{{description}}"
-            placeholder="Projectbeschrijving"
-            spellcheck autocorrect="on"/>
-        {{/with}}
+        <input type="text" name="title" value="{{project.title}}"
+          placeholder="Projecttitel" required {{input_readonly}}
+          spellcheck autocorrect="on" autofocus/>
+        <input type="text" name="description" value="{{project.description}}"
+          placeholder="Projectbeschrijving"
+          spellcheck autocorrect="on" {{input_readonly}}/>
       </div>
       <div class="buttons">
         {{#if inCreateMode}}

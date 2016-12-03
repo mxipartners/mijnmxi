@@ -33,7 +33,7 @@ Template.project.events({
 
       // Update project
       var projectId = this.project._id;
-      Projects.update(projectId, { $set: projectProperties}, function(error, result) {
+      Projects.update(projectId, { $set: projectProperties}, function(error) {
         if(error) {
           // FIXME: handle error!
           throwError(error.reason);
@@ -48,7 +48,14 @@ Template.project.events({
   "click .cancel-button": function() {
 
     // Go back to previous page
-    history.back()
+    history.back();
+  },
+
+  // Close the view of the project
+  "click .close-button": function() {
+
+    // Go back to previous page
+    history.back();
   }
-  
+
 });

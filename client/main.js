@@ -26,6 +26,11 @@ Object.keys(PageMode).forEach(function(mode) {
   });
 });
 
+// Create helper for readonly input fields
+Template.registerHelper("input_readonly", function() {
+  return this.mode === PageMode.view ? "readonly" : "";
+});
+
 // Gravatar functions ----------------------------------------------------
 
 // Retrieve gravatar for specified email address.

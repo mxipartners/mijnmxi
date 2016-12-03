@@ -5,3 +5,10 @@
 #gravatar_help img {
   width: 80px;
 }
+
+#gravatar_help p {
+  color: #ffffff;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+

@@ -43,12 +43,6 @@ html, body {
 }
 
 
-/* FIXME: still in use? */
-.border p {
-  color: #FFFFFF;
-  width: 93%;
-}
-
 a:link {
   color: ##FFCF00;
   text-decoration: underline;
