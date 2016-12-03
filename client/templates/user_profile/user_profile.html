@@ -1,12 +1,12 @@
 <template name="profilePage">
-  <center>
+  <div class="dialog center">
     {{#if readonly}}
       <h2>Profiel</h2>
     {{else}}
       <h2>Bewerk profiel</h2>
     {{/if}}
     <form>
-      <div class="dialog">
+      <div class="border">
         <input type="text" name="name" placeholder="Naam"
             value="{{name}}" {{readonly}}>
         <input type="tel" name="telephone_nr" placeholder="Telefoonnummer"
@@ -15,7 +15,7 @@
             value="{{skype_id}}" {{readonly}}>
       </div>
       {{#unless readonly}}
-        <div class="dialog" id="gravatar_help">
+        <div class="border" id="gravatar_help">
           <p>Registreer uw email-adres en avatar bij
             <a href="http://gravatar.com">gravatar.com</a>
             om deze te gebruiken in plaats van het standaard icoon.
@@ -29,5 +29,5 @@
         {{/unless}}
       </div>
     </form>
-  </center>
+  </div>
 </template>

@@ -18,20 +18,33 @@ html, body {
   max-width: 400px;
 }
 
-.dialog {
-  border: 2px #FFCF00 solid;
-  -webkit-border-radius: 10;
-  -moz-border-radius: 10;
-  border-radius: 10px;
-  padding: 5px;
-  background-color: #66757E;
+/* Position a block (div) centered */
+.center {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 
-.dialog + .dialog {
+/* Display a block (div) bordered (yellow/orange) */
+.border {
+  border-width: 2px;
+  border-color: #ffcf00;
+  border-style: solid;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  padding: 5px;
+  background-color: #66757e;
+}
+
+/* Add space between 2 consecutive bordered elements */
+.border + .border {
   margin-top: 5px;
 }
 
-.dialog p {
+
+/* FIXME: still in use? */
+.border p {
   color: #FFFFFF;
   width: 93%;
 }
@@ -88,10 +101,12 @@ a:visited {
   /*white-space: nowrap;*/
 }
 
-/* For 3 or more buttons use separate lines */
+/* For 3 or more buttons use separate (centered) lines */
 .dialog-button:first-child:nth-last-child(n + 3),
 .dialog-button:first-child:nth-last-child(n + 3) ~ .dialog-button {
   display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .dialog-button:active {
@@ -102,7 +117,7 @@ a:visited {
 	display: none;
 }
 
-center h2, .controls label {
+.dialog h2, .controls label {
   color: #fff;
   font-weight: normal;
 }

@@ -1,0 +1,40 @@
+<template name="project">
+  <div class="dialog center">
+    <h2>
+      {{#if inCreateMode}}
+        Maak project
+      {{/if}}
+      {{#if inEditMode}}
+        Bewerk project
+      {{/if}}
+      {{#if inViewMode}}
+        Bekijk project
+      {{/if}}
+    </h2>
+    <form>
+      <div class="border">
+        {{#with project}}
+          <input type="text" name="title" value="{{title}}"
+            placeholder="Projecttitel" required
+            spellcheck autocorrect="on" autofocus/>
+          <input type="text" name="description" value="{{description}}"
+            placeholder="Projectbeschrijving"
+            spellcheck autocorrect="on"/>
+        {{/with}}
+      </div>
+      <div class="buttons">
+        {{#if inCreateMode}}
+          <button class="dialog-button submit-button" type="submit">OK</button>
+          <button class="dialog-button cancel-button" type="button">Annuleer</button>
+        {{/if}}
+        {{#if inEditMode}}
+          <button class="dialog-button submit-button" type="submit">OK</button>
+          <button class="dialog-button cancel-button" type="button">Annuleer</button>
+        {{/if}}
+        {{#if inViewMode}}
+          <button class="dialog-button close-button" type="button">OK</button>
+        {{/if}}
+      </div>
+    </form>
+  </div>
+</template>

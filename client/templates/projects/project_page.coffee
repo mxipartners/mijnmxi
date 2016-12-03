@@ -46,7 +46,9 @@ Template.projectPage.onCreated ->
   this.subjectEmailAddress = ->
     null
   this.subjectEditTemplate = ->
-    "projectEdit"
+    "editProject"
+  this.subjectEditParameters = (subject) ->
+    { _project_id: subject._id }
   this.relatedItemTitle = (user) ->
     user.name || user.emails[0].address.replace(/@.*$/, "")
   this.relatedItemIcon = (user) ->

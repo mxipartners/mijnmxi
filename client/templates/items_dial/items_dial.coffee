@@ -16,7 +16,7 @@ Template.items_dial.onRendered ->
       .attr("class", "subject")
       .attr("data-id", subject._id)
       .on("click", () ->
-        Router.go parentTemplate.subjectEditTemplate(), { _id: subject._id }
+        Router.go parentTemplate.subjectEditTemplate(), parentTemplate.subjectEditParameters(subject)
       )
   subjectGroup
     .append("text")

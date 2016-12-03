@@ -1,9 +1,9 @@
 <template name="login">
   <img src="/images/Logobig.svg" class="img-responsive center-block" alt="Logo"
        style="max-width: 50%; max-height: 50%" vspace="50"/>
-  <center>
+  <div class="dialog center">
     <form>
-      <div class="dialog">
+      <div class="border">
         <span class="help-block mxi">{{errorMessage}}</span>
         {{#unless resetPassword}}
           <input type="text" name="email" placeholder="Email"
@@ -26,5 +26,5 @@
         {{/unless}}
       </div>
     </form>
-  </center>
+  </div>
 </template>

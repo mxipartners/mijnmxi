@@ -27,6 +27,8 @@ Template.memberPage.onCreated ->
       null
   this.subjectEditTemplate = ->
     "profilePage"
+  this.subjectEditParameters = (subject) ->
+    { _id: subject._id }
   this.relatedItemTitle = (project) ->
     project.title
   this.relatedItemIcon = (project) ->
