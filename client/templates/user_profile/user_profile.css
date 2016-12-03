@@ -1,3 +1,7 @@
 #gravatar_help {
   text-align: center;
 }
+
+#gravatar_help img {
+  width: 80px;
+}

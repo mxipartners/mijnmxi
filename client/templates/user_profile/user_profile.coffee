@@ -1,16 +1,9 @@
-gravatar_url = (email_address) ->
-  hash = CryptoJS.MD5 email_address.trim().toLowerCase()
-  "http://www.gravatar.com/avatar/" + hash + "?d=404&s=50"
-
 Template.profilePage.onRendered ->
-  url = gravatar_url(Template.parentData().emails[0].address)
-  HTTP.get url, (error, response) ->
-    # If you're wondering why there's a 404 exception in the console log,
-    # see https://github.com/meteor/meteor/issues/6215
-    if not error
-      $('#gravatar_help').html('<img class="img-circle" src="' + url + '"/>
-        <p>Uw avatar zoals geregistreerd bij
-        <a href="http://gravatar.com">gravatar.com</a>.</p>')
+  Gravatar.retrieve(Template.parentData().emails[0].address, (imageDataURL) ->
+    d3.select('#gravatar_help').html('<img class="img-circle" src="' + imageDataURL + '"/>
+      <p>Uw avatar zoals geregistreerd bij
+      <a href="http://gravatar.com">gravatar.com</a>.</p>')
+  )
 
 Template.profilePage.helpers
   email: -> @emails[0].address

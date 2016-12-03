@@ -179,38 +179,10 @@ replaceIconByGravatar = (iconElement, emailAddress) ->
   if !emailAddress || !emailAddress.length
     return
 
-  # Calculate hash for gravatar and check if it is in cache
-  hash = CryptoJS.MD5 emailAddress.trim().toLowerCase()
-  if window.gravatarCache
-    imageDataURL = window.gravatarCache[hash]
-    if imageDataURL != undefined
-      if imageDataURL.length > 0
-        replaceIconByImageData(iconElement, imageDataURL)
-      return
-  else
-    window.gravatarCache = {}
-
-  # Retrieve gravatar
-  url = "http://www.gravatar.com/avatar/" + hash + "?d=404&s=160"
-  d3.request(url)
-    .mimeType("image/jpeg")
-    .responseType("arraybuffer")
-    .get((error, data) ->
-
-      # Store gravatar (or "" in absence) in cache for later usage
-      if !error && data && data.response
-        arrayBuffer = new Uint8Array(data.response)
-        binary = ""
-        for i in [0..arrayBuffer.length]
-          binary += String.fromCharCode(arrayBuffer[i])
-        imageDataURL = "data:image/jpeg;base64," + window.btoa(binary)
-        window.gravatarCache[hash] = imageDataURL
-
-        # Gravatar found replace icon with new gravatar
-        replaceIconByImageData(iconElement, imageDataURL)
-      else if error && error.target && error.target.status == 404
-        window.gravatarCache[hash] = ""
-    )
+  # Replace icon by gravatar
+  Gravatar.retrieve(emailAddress, (imageDataURL) ->
+    replaceIconByImageData(iconElement, imageDataURL)
+  )
 
 replaceIconByImageData = (iconElement, imageDataURL) ->
   d3.select(iconElement.node().parentNode)
