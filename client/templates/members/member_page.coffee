@@ -29,6 +29,10 @@ Template.memberPage.onCreated ->
     if this.user._id == Meteor.userId() then "editProfile" else "viewProfile"
   this.subjectEditParameters = (subject) ->
     { _id: subject._id }
+  this.subjectLongPressEditTemplate = ->
+    if this.user._id == Meteor.userId() then "editProfile" else "viewProfile"
+  this.subjectLongPressEditParameters = (subject) ->
+    { _id: subject._id }
   this.relatedItemTitle = (project) ->
     project.title
   this.relatedItemIcon = (project) ->

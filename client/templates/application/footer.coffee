@@ -57,4 +57,4 @@ Template.footer.events
   'click .control.message': (e) ->
     e.preventDefault()
     if Router.current().route.getName() == "projectPage"
-      Router.go 'messagesPage', {_id: Router.current().params._id}
+      Router.go 'messagesPage', {_project_id: Router.current().params._id}
