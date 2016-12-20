@@ -2,4 +2,4 @@
 
 DEV_DIR=..
 
-meteor build $DEV_DIR/build
+meteor build --server mijn.mxi.nl $DEV_DIR/build
