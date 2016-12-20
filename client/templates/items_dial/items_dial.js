@@ -17,6 +17,7 @@ Template.items_dial.onRendered(function() {
     .append("g")
       .attr("class", "subject")
       .attr("data-id", subject._id)
+      .attr("transform", "translate(0,30)")
       .on("mousedown", function() {
         // Keep track of time when clicking (to distinguish short/long press)
         var element = d3.select(this);
