@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DEV_DIR=..
+DEV_DIR=../..
 DEV_USER=deploy
 DEPLOY_FILE=$DEV_DIR/build/mijnmxi.tar.gz
 KEY_FILE=$HOME/.mijn.mxi.nl.key_rsa
