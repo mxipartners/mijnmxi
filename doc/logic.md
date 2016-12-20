@@ -5,6 +5,7 @@ Some logic (Javascript) guidelines for mijn.mxi.nl application.
 General guidelines:
 * Use braces for blocks (also single line if-statements)
 * Use double quotes for strings (except if string contains only a single double quote like `'"'`)
+* Use === and !== for comparison
 
 Add event handlers to page:
 ```Javascript

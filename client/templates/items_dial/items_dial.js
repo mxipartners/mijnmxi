@@ -52,7 +52,7 @@ Template.items_dial.onRendered(function() {
   Session.set("selectedItems", []);
   d3.select("g.select-all")
     .on("click", function() {
-      if(d3.selectAll(".selected").size() != d3.selectAll(".item").size()) {
+      if(d3.selectAll(".selected").size() !== d3.selectAll(".item").size()) {
         Session.set("selectedItems", Session.get("items").map(function(x) { return x._id; }));
       } else {
         Session.set("selectedItems", []);
@@ -129,7 +129,7 @@ var selectItem = function(itemElement) {
   var currentSelectedItems = Session.get("selectedItems");
   if(itemElement.classed("selected")) {
     itemElement.classed("selected", false);
-    currentSelectedItems = currentSelectedItems.filter(function(x) { return x != id; });
+    currentSelectedItems = currentSelectedItems.filter(function(x) { return x !== id; });
     Session.set("selectedItems", currentSelectedItems);
   } else {
     itemElement.classed("selected", true);
@@ -169,7 +169,7 @@ var handleDragItem = function(selection) {
       // the top most element (ie it will now remain at a lower z-index).
       // Therefore if the buggy behaviour is detected (see comment at
       // "start" above), the element is not raised.
-      if(window.localStorage.getItem("buggyDragBehaviour") != "true") {
+      if(window.localStorage.getItem("buggyDragBehaviour") !== "true") {
         itemElement.raise();
       }
       itemElement

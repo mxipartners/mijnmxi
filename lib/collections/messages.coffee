@@ -10,5 +10,6 @@ Meteor.methods
     message = _.extend messageAttributes,
       sender: Meteor.userId()
       sent: new Date()
+    message.recipients = message.recipients.filter((recipient) -> recipient != Meteor.userId())
     messageId = Messages.insert message
     return {_id: messageId}
