@@ -35,3 +35,11 @@ g.item, g.subject {
 g.item.dragging, g.subject.dragging {
   cursor: move;
 }
+
+g.select-all path.selected {
+  fill: #ffcf00;
+}
+
+g.select-all path:not(.selected) {
+  fill: #66757e;
+}

@@ -52,10 +52,16 @@ Template.items_dial.onRendered(function() {
   Session.set("selectedItems", []);
   d3.select("g.select-all")
     .on("click", function() {
-      if(d3.selectAll(".selected").size() !== d3.selectAll(".item").size()) {
+      if(d3.selectAll(".item.selected").size() !== d3.selectAll(".item").size()) {
         Session.set("selectedItems", Session.get("items").map(function(x) { return x._id; }));
+
+        // Make select all button highlighted
+        d3.select("g.select-all path").classed("selected", true);
       } else {
         Session.set("selectedItems", []);
+
+        // Make select all button normal (not highlighted)
+        d3.select("g.select-all path").classed("selected", false);
       }
     })
   ;
