@@ -4,76 +4,96 @@
   font-size: 16px;
 }
 
-.messages, .new_message {
-  clear: both;
-}
-
 .messages {
-  padding: 10px 10px;
   height: 50%;
-  overflow-y: auto;
+  width: 100%;
+  overflow: auto;
 }
 
 .messages .message {
-  /* Add shadows to create the "card" effect */
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
+  position: relative;
   color: rgb(255, 255, 255);
   background-color: rgb(102, 117, 126);
+
   /* Add some padding inside the message */
-  padding: 2px 16px;
-  margin: 2px;
+  padding: 4px 16px;
+  margin-top: 2px;
+  left: 15%;
+  width: 70%;
 
-  /* Position message on left */
-  float: left;
-  width: 85%;
-}
-
-/* On mouse-over, add a deeper shadow */
-.messages .message:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  /* Create round corners */
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
 }
 
 .messages .header, .new_message .header {
   color: #FFCF00;
 }
 
-.messages .control {
-  float: right;
+.messages .message.position-left:before,
+.messages .message.position-right:before {
+  /* Create empty (0x0 size) block */
+  content: '';
+  position: absolute;
+  z-index: 10;
+  width: 0px;
+  height: 0px;
+
+  /* Position slightly down, will be positioned horizontally later */
+  margin-top: 5px;
 }
 
-.messages .control img {
-  width: 20%;
+.messages .message.position-left:before {
+  /* Position block horizontally */
+  left: 0px;
+
+  /* Create 4 borders of which 1 has color to make triangle */
+  border-top-width: 5px;
+  border-top-style: solid;
+  border-top-color: #4a5c68;
+  border-left-width: 0px;
+  border-left-style: solid;
+  border-left-color: #4a5c68;
+  margin-left: -40px; /* Move to left same size as border-right-width to align correctly */
+  border-right-width: 40px;
+  border-right-style: solid;
+  border-right-color: rgb(102, 117, 126);
+  border-bottom-width: 20px;
+  border-bottom-style: solid;
+  border-bottom-color: #4a5c68;
 }
 
-.messages .message_holder {
-  clear: both;
+.messages .message.position-right:before {
+  /* Position block horizontally */
+  left: 100%;
+
+  /* Create 4 borders of which 1 has color to make triangle */
+  border-top-width: 5px;
+  border-top-style: solid;
+  border-top-color: #4a5c68;
+  border-right-width: 0px;
+  border-right-style: solid;
+  border-right-color: #4a5c68;
+  border-left-width: 40px;
+  border-left-style: solid;
+  border-left-color: rgb(102, 117, 126);
+  border-bottom-width: 20px;
+  border-bottom-style: solid;
+  border-bottom-color: #4a5c68;
+}
+
+.messages .content {
+  overflow-wrap: break-word;
 }
 
 .new_message {
-  bottom: 0px;
-  padding: 10px 10px;
-}
-
-.new_message .content {
-  display: inline-block;
-  width: 88%;
-}
-
-.new_message .control {
-  display: inline-block;
-  width: 10%;
-  right: 0px;
+  position: relative;
+  left: 2%;
+  width: 96%;
 }
 
 .new_message .control img {
-  width: 100%;
-  margin-top: auto;
+  float: right;
+  width: 10%;
 }
-
-/* FIXME: fixes issue in layout.css setting padding-bottom to 56px for all divs */
-/*
-.main > div.new_message {
-  padding-bottom: 10px;
-}
-*/
