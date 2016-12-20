@@ -19,22 +19,27 @@ Make application responsive:
 Adding logic to the GUI:
 * Use D3 to select DOM elements using `d3.select()` and `d3.selectAll()` like below:
 ```Javascript
-d3.selectAll('.messages')            // All elements with class 'messages'
-d3.selectAll('.messages .message')   // All elements with class 'message' which have a parent with class 'messages'
-d3.select('[name=something]')        // First element with attribute 'name' equal to 'something'
-d3.select(e.target).selectAll('div') // All div elements which are child of the current event's target (eg in click handler)
+d3.selectAll(".messages")            // All elements with class "messages"
+d3.selectAll(".messages .message")   // All elements with class "message" which have a parent with class "messages"
+d3.select("[name=something]")        // First element with attribute "name" equal to "something"
+d3.select(e.target).selectAll("div") // All div elements which are child of the current event's target (eg in click handler)
 ```
 * In Javascript file add event handler like below (do not forget e.preventDefault() when clicking on A tags):
 ```Javascript
 Template.myTemplate.events({
-  'click .control.send': function(e) {
+  "click .control.send": function(e) {
     e.preventDefault();
-    var content = d3.select('input[name=content]').property('value');
-    Meteor.call('sendMessage', content, function(error, result) {
+    var content = d3.select("input[name=content]").property("value");
+    Meteor.call("sendMessage", content, function(error, result) {
       if(error) {
         throwError error.reason
       }
     });
   }
 });
+```
+
+* Go back to previous page (do not use Router!), but simply:
+```Javascript
+history.back();
 ```
