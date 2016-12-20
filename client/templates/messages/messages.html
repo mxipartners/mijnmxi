@@ -5,8 +5,14 @@
   </div>
   <div class="messages">
     {{#each messages}}
-      <div class="message_holder">
-        <div class="message position-{{sender_location}}">
+      <div class="message_holder position-{{sender_location}}">
+        <!-- Position reply control (aligned) on top of message -->
+        <div class="control">
+          <a href="#" class="reply_message">
+            <img src="/images/Replybutton.svg" alt="Beantwoord bericht">
+          </a>
+        </div>
+        <div class="message">
           <div class="header">
             {{sender}} &rarr; {{recipient_names}}
           </div>
@@ -28,11 +34,11 @@
             <textarea name="messagecontent" rows="3" placeholder="Type je bericht..."></textarea>
           </form>
         </div>
-        <div class="control">
-          <a href="#" class="btn btn-inverse btn-lg white send_message">
-            <img src="/images/Messagebutton.svg" alt="Stuur bericht">
-          </a>
-        </div>
+      </div>
+      <div class="control">
+        <a href="#" class="send_message">
+          <img src="/images/Messagebutton.svg" alt="Stuur bericht">
+        </a>
       </div>
     </div>
   </div>

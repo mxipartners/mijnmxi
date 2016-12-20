@@ -31,8 +31,8 @@
   color: #FFCF00;
 }
 
-.messages .message.position-left:before,
-.messages .message.position-right:before {
+.message_holder.position-left .message:before,
+.message_holder.position-right .message:before {
   /* Create empty (0x0 size) block */
   content: '';
   position: absolute;
@@ -44,7 +44,7 @@
   margin-top: 5px;
 }
 
-.messages .message.position-left:before {
+.message_holder.position-left .message:before {
   /* Position block horizontally */
   left: 0px;
 
@@ -64,7 +64,7 @@
   border-bottom-color: #4a5c68;
 }
 
-.messages .message.position-right:before {
+.message_holder.position-right .message:before {
   /* Position block horizontally */
   left: 100%;
 
@@ -93,7 +93,25 @@
   width: 96%;
 }
 
+.message_holder.position-left .control {
+  right: 5%;
+}
+
+.message_holder.position-right .control {
+  left: 5%;
+}
+
+.messages .control {
+  position: absolute;
+  width: 10%;
+  max-width: 40px;
+}
+
 .new_message .control img {
   float: right;
   width: 10%;
+}
+
+.control {
+  cursor: pointer;
 }
