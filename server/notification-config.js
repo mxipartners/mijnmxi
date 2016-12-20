@@ -1,11 +1,11 @@
 Push.Configure({
-  //apn: {
-  //  certData: Assets.getText('apnDevCert.pem'),
-  //  keyData: Assets.getText('apnDevKey.pem'),
-  //  passphrase: 'xxxxxxxxx',
-  //  production: true,
-    //gateway: 'gateway.push.apple.com',
-  //},
+  apn: {
+    certData: Assets.getText('meteorApp-cert-prod.pem'),
+    keyData: Assets.getText('meteorApp-key-prod.pem'),
+    passphrase: 'Eric0809',
+    production: true,
+    gateway: 'gateway.push.apple.com',
+  },
   gcm: {
     apiKey: 'AIzaSyA0XAhhMwxCv5VFuUMYiasoBk012GeJSvg',
     projectNumber: 470168538554

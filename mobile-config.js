@@ -17,6 +17,21 @@ App.icons({
   'android_xxxhdpi': 'public/icons/android-chrome-192x192.png'
 });
 
+App.launchScreens({
+  'iphone_2x': 'public/splash/iphone - 2x - 640 bij 960.png',
+  'iphone5': 'public/splash/iphone5 - 640 bij 1136.png',
+  'iphone6': 'public/splash/iphone6 - 750 bij 1334.png',
+  'android_mdpi_portrait': 'public/splash/android - mdpi - 320 bij 470.9.png',
+  'android_mdpi_landscape': 'public/splash/android - mdpi - 470 bij 320.9.png',
+  'android_hdpi_portrait': 'public/splash/android - hdpi - 480 bij 640.9.png',
+  'android_hdpi_landscape': 'public/splash/android - hdpi - 640 bij 480.9.png',
+  'android_xhdpi_portrait': 'public/splash/android - xhdpi - 720 bij 960.9.png',
+  'android_xhdpi_landscape': 'public/splash/android - xhdpi - 960 bij 720.9.png',
+  'android_xxhdpi_portrait': 'public/splash/android - xxhdpi - 1080 bij 1440.9.png',
+  'android_xxhdpi_landscape': 'public/splash/android - xxhdpi - 1440 bij 1080.9.png'
+
+})
+
 App.configurePlugin('phonegap-plugin-push', {
   SENDER_ID: '470168538554'
 });
