@@ -1,56 +1,200 @@
-# Calculate length of vector
-length = (a, b) ->
-  Math.sqrt a * a + b * b
+# Retrieve parent template
+parentTemplate = null
 
-# Handle drag stop on item(s)
-dragStop = (center_item_id) ->
-  # Test if item is dropped within circle
-  left = parseFloat $(this).css "left"
-  top = parseFloat $(this).css "top"
-  if length(left, top) < 70
-    template = if Router.current().route.getName() is "projectPage" then "memberPage" else "projectPage"
-    Router.go template, { _id: $(this).attr("data-id") }
-  else if length(left, top) > 200
-    if Router.current().route.getName() is "projectPage"
-      projectId = center_item_id
-      userId = $(this).attr("data-id")
-    else
-      projectId = $(this).attr("data-id")
-      userId = center_item_id
-
-    project = Projects.findOne projectId
-    members = (member for member in project.members when member != userId)
-    if members.length > 0
-      projectProperties =
-        members: members
-      Projects.update projectId, {$set: projectProperties}, (error) ->
-        if error
-          throwError error.reason
-        else
-          if Meteor.userId() not in members
-            Router.go 'memberPage', {_id: Meteor.userId}
-    else
-      Projects.remove projectId, (error) ->
-        if error
-          throwError error.reason
-        else
-          Router.go 'memberPage', {_id: userId}
-  else
-    $(this).css("left", $(this).attr("data-orig-x") + "px")
-    $(this).css("top", $(this).attr("data-orig-y") + "px")
-
-gravatar_url = (email_address) ->
-  hash = CryptoJS.MD5 email_address.trim().toLowerCase()
-  "http://www.gravatar.com/avatar/" + hash + "?d=404&s=50"
-
+# Initialize page for rendering
 Template.items_dial.onRendered ->
-  if Router.current().route.getName() is "projectPage"
-    members = []
-  else if Template.parentData()._id == Meteor.userId()
-    members = []
+
+  # Start with subject (if missing move to 'home' page)
+  parentTemplate = Template.instance().parentTemplate()
+  subject = parentTemplate.subject()
+  if !subject
+    Router.go "memberPage", {_id: Meteor.userId()}
+
+  # Show subject in centre of page (add handler to replace icon by gravatar)
+  subjectGroup = d3.select("g.center")
+    .append("g")
+      .attr("class", "subject")
+      .attr("data-id", subject._id)
+      .on("click", () ->
+        Router.go parentTemplate.subjectEditTemplate(), parentTemplate.subjectEditParameters(subject)
+      )
+  subjectGroup
+    .append("text")
+      .attr("y", 80)
+      .attr("text-anchor", "middle")
+      .text(parentTemplate.subjectTitle())
+  subjectGroup
+    .append("use")
+      .attr("y", -30)
+      .attr("xlink:href", parentTemplate.subjectIcon())
+      .each(() -> replaceItemIconByGravatar(d3.select(this)))
+
+  # Add event handler for select-all items (and start with empty selection)
+  Session.set("selectedItems", [])
+  d3.select("g.select-all")
+    .on("click", () ->
+      if d3.selectAll(".selected").size() != d3.selectAll(".item").size()
+        Session.set("selectedItems", Session.get("items").map((x) -> x._id))
+      else
+        Session.set("selectedItems", [])
+    )
+
+  # Update related items (reactive on "items" from session)
+  this.autorun(() ->
+    items = Session.get("items")
+    selectedItems = Session.get("selectedItems")
+    itemCount = items.length
+    itemElements = d3.select("g.center").selectAll(".item")
+      .data(items, (d) -> d._id)
+
+    # Add new items (add click/select and drag handlers)
+    newItems = itemElements
+      .enter()
+        .append("g")
+          .attr("class", "item")
+          .attr("data-id", (d) -> d._id)
+          .attr("transform", "translate(-500,0)scale(0.1)")
+          .call(handleDragItem)
+          .on("click", () -> selectItem(d3.select(this)))
+
+    # Animate new and updating items into position
+    newItems
+      .merge(itemElements)
+        .classed("selected", (d) -> selectedItems.indexOf(d._id) >= 0)
+        .transition()
+          .duration(300)
+          .attr("transform", (d, i) ->
+            d.position = { x: positionX(i, itemCount, 365), y: positionY(i, itemCount, 365) }
+            "translate(" + d.position.x + "," + d.position.y + ")scale(1)")
+
+    # Append text and icon to new items (add handler to replace icon by gravatar)
+    newItems
+      .append("text")
+        .attr("y", 80)
+        .attr("text-anchor", "middle")
+        .text((d) -> parentTemplate.relatedItemTitle(d))
+    newItems
+      .append("use")
+        .attr("y", -30)
+        .attr("xlink:href", (d) -> parentTemplate.relatedItemIcon(d))
+        .each((d) -> replaceRelatedItemIconByGravatar(d3.select(this), d))
+
+    # Remove old items by animation
+    itemElements
+      .exit()
+        .transition()
+          .duration(300)
+          .attr("transform", "translate(500,0)scale(0.1)")
+          .on("end", () ->
+            d3.select(this).remove()
+          )
+  )
+
+# Deselect/Select related item (store list of selected items in session)
+selectItem = (itemElement) ->
+  if d3.event.defaultPrevented  # Needed because of dragging
+    return
+  id = itemElement.datum()._id
+  currentSelectedItems = Session.get("selectedItems")
+  if itemElement.classed("selected")
+    itemElement.classed("selected", false)
+    currentSelectedItems = currentSelectedItems.filter((x) -> x != id)
+    Session.set("selectedItems", currentSelectedItems)
   else
-    members = [Template.parentData()._id]
-  Session.set 'selectedItems', members
+    itemElement.classed("selected", true)
+    currentSelectedItems.push(id)
+    Session.set("selectedItems", currentSelectedItems)
+
+# Handle drag of related item
+handleDragItem = (selection) ->
+  d3.drag()
+    .on("start", () ->
+      itemElement = d3.select(this)
+      # Test for ios buggy behaviour
+      # If ios does not drag correct (see comment at "drag" below)
+      # the current element is already marked for dragging and will
+      # be the top most element (ie no next sibling). For this to be
+      # evident, the user must drag an item, see it fail and try to
+      # drag the same item again. Exactly that behaviour is tested
+      # for below (because it seems a logical reaction for the user).
+      # This fact is then stored in localStorage (which persists
+      # across different application runs).
+      if !this.nextSibling && itemElement.classed("dragging")
+        window.localStorage.setItem("buggyDragBehaviour", "true")
+      itemElement
+        .classed("dragging", true)
+    )
+    .on("drag", (d) ->
+      itemElement = d3.select(this)
+      # Raise the element so it is on top of other items
+      # Under ios this raise will cause the drag event to stop working.
+      # The element will remain marked for dragging (ie class "dragging").
+      # Since on ios our finger will be on top of the dragged element
+      # it will not be a major issue that the dragged element is not
+      # the top most element (ie it will now remain at a lower z-index).
+      # Therefore if the buggy behaviour is detected (see comment at
+      # "start" above), the element is not raised.
+      if window.localStorage.getItem("buggyDragBehaviour") != "true"
+        itemElement.raise()
+      itemElement
+        .attr("transform", (d) ->
+          d.dragPosition = { x: d3.event.x, y: d3.event.y }
+          "translate(" + d.dragPosition.x + "," + d.dragPosition.y + ")")
+    )
+    .on("end", () ->
+      itemElement = d3.select(this)
+      itemElement.classed("dragging", false)
+      handleDraggedItem(itemElement)
+    )(selection)
+
+# Handle related item after dragging ended
+handleDraggedItem = (itemElement) ->
+  dragItem = itemElement.datum()
+  dragPosition = dragItem.dragPosition
+  if !dragPosition
+    return
+  radius = length(dragPosition.x, dragPosition.y)
+  if radius > 520
+    # FIXME: check if user is allowed to remove relation (or should drag be prevented)?
+    parentTemplate.removeItemRelation(dragItem)
+    # FIXME: which page to show after remove (now a check is made for empty data in project_page and member_page)?
+  else if radius > 190
+    position = dragItem.position
+    itemElement.transition()
+      .duration(300)
+        .attr("transform", "translate(" + position.x + "," + position.y + ")")
+  else
+    Router.go parentTemplate.relatedItemTemplate(dragItem), { _id: dragItem._id }
+
+# Replace icon by gravator
+replaceItemIconByGravatar = (iconElement) ->
+  emailAddress = parentTemplate.subjectEmailAddress()
+  replaceIconByGravatar(iconElement, emailAddress)
+
+replaceRelatedItemIconByGravatar = (iconElement, relatedItem) ->
+  emailAddress = parentTemplate.relatedItemEmailAddress(relatedItem)
+  replaceIconByGravatar(iconElement, emailAddress)
+
+replaceIconByGravatar = (iconElement, emailAddress) ->
+  if !emailAddress || !emailAddress.length
+    return
+
+  # Replace icon by gravatar
+  Gravatar.retrieve(emailAddress, (imageDataURL) ->
+    replaceIconByImageData(iconElement, imageDataURL)
+  )
+
+replaceIconByImageData = (iconElement, imageDataURL) ->
+  d3.select(iconElement.node().parentNode)
+    .append("image")
+      .attr("xlink:href", imageDataURL)
+      .attr("width", 160)
+      .attr("height", 160)
+      .attr("clip-path", "url(#clip-circle)")
+      .attr("transform", "translate(-80,-110)")
+
+  # Update icon to be a kind of halo around gravatar (so selections can be made visible)
+  iconElement.attr("xlink:href", "#person-image")
 
 Template.items_dial.onCreated ->
   # FIXME: new approach for handling page specific buttons from footer
@@ -63,116 +207,9 @@ Template.items_dial.onDestroyed ->
   # A general (script for all templates) with a register/unregister functionality will be best.
   #delete window.addHandler
 
-Template.items_dial.helpers
-  title: ->
-    if Router.current().route.getName() is "projectPage"
-      @title + ' (' + Messages.find().count() + ')'
-    else
-      if @name then @name else @emails[0].address
-  item_title: ->
-    if Router.current().route.getName() is "projectPage"
-      if @name then @name else @emails[0].address
-    else
-      @title
-  svg_icon: ->
-    if Router.current().route.getName() is "projectPage"
-      "/images/Projecticon.svg"
-    else
-      "/images/Personicon.svg"
-  item_svg_icon: ->
-    if Router.current().route.getName() is "projectPage"
-      if @_id == Meteor.userId()
-        "/images/Selficon.svg"
-      else
-        "/images/Personicon.svg"
-    else
-      "/images/Projecticon.svg"
-  self: ->
-    if @_id == Meteor.userId()
-      "self"
-    else
-      ""
-  items: ->
-    if Router.current().route.getName() is "projectPage"
-
-      # Read all users for current project (into array)
-      project = Template.parentData()
-      users = Meteor.users.find({_id: {$in: project.members}}).map((x) -> x)
-
-      # Store length of array for later usage
-      Session.set 'membersCount', users.length
-
-      # Find current user
-      currentUserId = Meteor.userId()
-      currentUserIndex = users.reduce(((index, user, i) ->
-        if index >= 0
-          return index
-        else if user._id == currentUserId
-          return i
-        return -1), -1)
-
-      # Remove current user from array and store it separately
-      currentUser = users.splice(currentUserIndex, 1)[0];
-
-      # Sort remaining users based on main email address
-      users.sort((a, b) ->
-        a.emails[0].address.localeCompare(b.emails[0].address))
-
-      # Insert current user at front and return result
-      users.splice(0,  0, currentUser)
-      users
-    else
-      user = Template.parentData()
-      projects = Projects.find({members: user._id}).map((x) -> x)
-      Session.set 'membersCount', projects.length
-      projects
-  items_count: ->
-    Session.get 'membersCount'
-  redraw: ->
-    center_item_id = Template.parentData()._id
-    Meteor.defer ->
-      SVGInjector $(".embed_svg:not(.injected-svg)"), { evalScipts: 'never' }
-      $(".circular").draggable()
-      $(".circular").on("dragstop", -> dragStop.apply this, [center_item_id])
-    ""
-  gravatar: ->
-    hash = CryptoJS.MD5 @emails[0].address.trim().toLowerCase()
-    "http://www.gravatar.com/avatar/" + hash + "?d=mm&s=50"
-  member_page: -> Router.current().route.getName() is "memberPage"
-  get_gravatar: ->
-    url = gravatar_url(@emails[0].address)
-    this_id = @_id
-    HTTP.get url, (error, response) ->
-      # If you're wondering why there's a 404 exception in the console log,
-      # see https://github.com/meteor/meteor/issues/6215
-      if not error
-        html = ''
-        if Router.current().route.getName() != "memberPage"
-          html += '<span class="img-selected"></span>'
-        html += '<img class="img-circle" src="' + url + '"/>'
-        $('#' + this_id).html(html)
-    ""
-
-Template.items_dial.events
-  'click .circular': (e) ->
-    e.preventDefault()
-    item_id = $(e.currentTarget).attr("data-id")
-    if Router.current().route.getName() is "projectPage" and item_id != Meteor.userId()
-      $(e.currentTarget).toggleClass "selected"
-      selected_items = Session.get('selectedItems').slice()
-      if $(e.currentTarget).hasClass "selected"
-        selected_items.push item_id
-      else
-        index = selected_items.indexOf item_id
-        selected_items.splice(index, 1)
-      Session.set 'selectedItems', selected_items
-
-  'click .title': (e) ->
-    e.preventDefault()
-    if Router.current().route.getName() is "projectPage"
-      Router.go 'projectEdit', {_id: @_id}
-    else
-      Router.go 'profilePage', {_id: @_id}
+# Helper functions for positioning
+length = (a, b) ->
+  Math.sqrt a * a + b * b
 
 angle = (index, count) ->
   Math.PI * 2 / count * index - Math.PI / 2
@@ -182,14 +219,3 @@ positionX = (index, count, radius) ->
 
 positionY = (index, count, radius) ->
   Math.sin(angle(index, count)) * radius
-
-Handlebars.registerHelper "positionX", (index, count, radius) ->
-  positionX index, count, radius
-
-Handlebars.registerHelper "positionY", (index, count, radius) ->
-  positionY index, count, radius
-
-Handlebars.registerHelper "positionCircular", (index, count, radius) ->
-  left = positionX index, count, radius
-  top = positionY index, count, radius
-  "left:" + left + "px;top:" + top + "px"

@@ -1,15 +1,21 @@
+*, *:before, *:after
+{
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
 html, body {
   height: 100%;
-  background-color: #4A5C68 ! important;
-  color: #666666; }
-
-.container {
-  height: 100%;
+  background-color: #4a5c68;
+  color: #666666;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .page {
   position: absolute;
   top: 0px;
+  left: 0px;
   width: 100%;
   height: 100%;
 }
@@ -19,28 +25,35 @@ html, body {
   max-width: 400px;
 }
 
-.dialog {
-  border: 2px #FFCF00 solid;
-  -webkit-border-radius: 10;
-  -moz-border-radius: 10;
-  border-radius: 10px;
-  padding: 5px;
-  background-color: #66757E;
+/* Position a block (div) centered */
+.center {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 
-.dialog + .dialog {
+/* Display a block (div) bordered (yellow/orange) */
+.border {
+  border-width: 2px;
+  border-color: #ffcf00;
+  border-style: solid;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  padding: 5px;
+  background-color: #66757e;
+}
+
+/* Add space between 2 consecutive bordered elements */
+.border + .border {
   margin-top: 5px;
 }
 
-.dialog p {
-  color: #FFFFFF;
-  width: 93%;
-}
 
 a:link {
   color: ##FFCF00;
   text-decoration: underline;
-  }
+}
 
 a:visited {
   color: #FFFFFF;
@@ -81,7 +94,6 @@ a:visited {
   -webkit-border-radius: 5;
   -moz-border-radius: 5;
   border-radius: 5px;
-  font-family: Arial;
   color: #ffffff;
   border: solid #ffffff 0px;
   padding: 5px 20px 5px 20px;
@@ -90,10 +102,12 @@ a:visited {
   /*white-space: nowrap;*/
 }
 
-/* For 3 or more buttons use separate lines */
+/* For 3 or more buttons use separate (centered) lines */
 .dialog-button:first-child:nth-last-child(n + 3),
 .dialog-button:first-child:nth-last-child(n + 3) ~ .dialog-button {
   display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .dialog-button:active {
@@ -104,13 +118,14 @@ a:visited {
 	display: none;
 }
 
-center h2, .controls label {
+.dialog h2, .controls label {
   color: #fff;
   font-weight: normal;
 }
 
 #spinner {
-  height: 300px; }
+  height: 300px;
+}
 
 .help-block.mxi {
   color: #FFCF00;
@@ -120,7 +135,7 @@ center h2, .controls label {
   text-align: center;
 }
 
-.jumbotron h2{
+.jumbotron h2 {
   font-size: 60px;
   font-weight: 100;
 }
@@ -142,6 +157,29 @@ center h2, .controls label {
 /* Button appearance */
 a.button {
   cursor: pointer;
+}
+
+/* Input elements */
+button, input, select, textarea {
+  margin: 0px;
+  width: 100%;
+  font: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+select[multiple] {
+  height: auto;
+}
+
+.text_unselectable {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 /* Prevent 'glow' on input elements on Safari */

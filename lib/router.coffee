@@ -9,18 +9,26 @@ Router.route '/projects/:_id/add_member',
   name: 'addMember'
   data: -> Projects.findOne this.params._id
 
-Router.route '/projects/:_id/edit',
-  name: 'projectEdit'
-  data: -> Projects.findOne this.params._id
+Router.route '/project/:_project_id',
+  name: 'editProject'
+  template: 'project'
+  data: ->
+    project: Projects.findOne this.params._project_id
+    user: Meteor.users.findOne Meteor.userId()
+    mode: PageMode.edit
+
+Router.route '/project/for/:_user_id',
+  name: 'addProject'
+  template: 'project'
+  data: ->
+    project: {}
+    user: Meteor.users.findOne this.params._user_id
+    mode: PageMode.create
 
 Router.route '/projects/:_id',
   name: 'projectPage'
   data: -> Projects.findOne this.params._id
   subscriptions: -> Meteor.subscribe('messages', this.params._id)
-
-Router.route '/members/:_id/add_project',
-  name: 'addProject'
-  data: -> Meteor.users.findOne this.params._id
 
 Router.route '/members/:_id',
   name: 'memberPage'
@@ -31,9 +39,19 @@ Router.route '/projects/:_id/messages',
   data: -> Projects.findOne this.params._id
   subscriptions: -> Meteor.subscribe('messages', this.params._id)
 
-Router.route '/users/:_id',
-  name: 'profilePage'
-  data: -> Meteor.users.findOne this.params._id
+Router.route '/edit/user/:_id',
+  name: 'editProfile'
+  template: 'profilePage'
+  data: ->
+    user: Meteor.users.findOne this.params._id
+    mode: PageMode.edit
+
+Router.route '/view/user/:_id',
+  name: 'viewProfile'
+  template: 'profilePage'
+  data: ->
+    user: Meteor.users.findOne this.params._id
+    mode: PageMode.view
 
 Router.route '/', ->
   if Meteor.user()

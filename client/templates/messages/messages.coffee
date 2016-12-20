@@ -11,6 +11,9 @@ Template.messagesPage.helpers
   sender: ->
     name(Meteor.users.findOne({_id: @sender}))
 
+  sender_location: ->
+    if @sender == Meteor.userId() then "right" else "left"
+
   recipient_names: ->
     recipients = Meteor.users.find({'_id': {$in: @recipients}}).fetch()
     names = (name(recipient) for recipient in recipients)

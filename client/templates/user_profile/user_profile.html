@@ -1,33 +1,39 @@
 <template name="profilePage">
-  <center>
-    {{#if readonly}}
-      <h2>Profiel</h2>
-    {{else}}
-      <h2>Bewerk profiel</h2>
-    {{/if}}
+  <div class="dialog center">
+    <h2>
+      {{#if inEditMode}}
+        Bewerk profiel
+      {{/if}}
+      {{#if inViewMode}}
+        Bekijk profiel
+      {{/if}}
+    </h2>
     <form>
-      <div class="dialog">
+      <div class="border">
         <input type="text" name="name" placeholder="Naam"
-            value="{{name}}" {{readonly}}>
+            value="{{user.name}}" {{input_readonly}}>
         <input type="tel" name="telephone_nr" placeholder="Telefoonnummer"
-            value="{{telephone_nr}}" {{readonly}}>
+            value="{{user.telephone_nr}}" {{input_readonly}}>
         <input type="text" name="skype_id" placeholder="Skype ID"
-            value="{{skype_id}}" {{readonly}}>
+            value="{{user.skype_id}}" {{input_readonly}}>
       </div>
-      {{#unless readonly}}
-        <div class="dialog" id="gravatar_help">
+      {{#if inEditMode}}
+        <div class="border" id="gravatar_help">
           <p>Registreer uw email-adres en avatar bij
-            <a href="http://gravatar.com">gravatar.com</a>
+            <a href="https://gravatar.com">gravatar.com</a>
             om deze te gebruiken in plaats van het standaard icoon.
           </p>
         </div>
-      {{/unless}}
+      {{/if}}
       <div class="buttons">
-        <button type="submit" class="dialog-button">OK</button>
-        {{#unless readonly}}
-          <button class="dialog-button cancel">Annuleer</button>
-        {{/unless}}
+        {{#if inEditMode}}
+          <button class="dialog-button submit-button" type="submit">OK</button>
+          <button class="dialog-button cancel-button" type="button">Annuleer</button>
+        {{/if}}
+        {{#if inViewMode}}
+          <button class="dialog-button close-button" type="button">OK</button>
+        {{/if}}
       </div>
     </form>
-  </center>
+  </div>
 </template>
