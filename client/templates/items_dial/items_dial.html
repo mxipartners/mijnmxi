@@ -1,4 +1,16 @@
 <template name="items_dial">
+  <div class="controls top">
+    <div class="control call">
+      <a href="#" class="button">
+        <img src="/images/CallMXIbutton.svg" alt="Bel M&I/Partners">
+      </a>
+    </div>
+    <div class="control logout">
+      <a href="#" class="button">
+        <img src="/images/Logoutbutton.svg" alt="Log uit">
+      </a>
+    </div>
+  </div>
   <div class="full_screen">
     <svg class="fill_parent" viewBox="0 0 1024 1024">
       <!-- Definitions for clippings and icons -->
@@ -37,5 +49,42 @@
         </g>
       </g>
     </svg>
+  </div>
+  <div class="controls bottom">
+    <div class="control me_focus">
+      <a href="#" class="button">
+        <img src="/images/Selficon.svg" alt="Ik in het midden">
+      </a>
+    </div>
+    <div class="control message">
+      <a href="#" class="button">
+        <img src="/images/Messagebutton.svg" alt="Stuur bericht">
+      </a>
+    </div>
+    <div class="control call">
+      <a href="#" class="button">
+        <!-- FIXME have enabled/disabled as part of pattern. Something like below:
+          <img src="/images/Callbutton - disabled.svg" alt="Selecteer eerst een persoon" data-enabled="@selected_users" data-enabled-src="/images/Callbutton.svg" data-enabled-alt="Bel"
+
+          Above makes images diabled by default. A property will specify when image/button is enabled.
+          Properties for image and alternative description are present in HTML. Attributes named "data-"
+          are generally allowed within HTML and browsers support them for storing data.
+        -->
+        {{#if selected_users}}
+          <img src="/images/Callbutton.svg" alt="Bel">
+        {{else}}
+          <img src="/images/Callbutton - disabled.svg" alt="Selecteer eerst een persoon">
+        {{/if}}
+      </a>
+    </div>
+    <div class="control add">
+      <a href="#" class="button">
+        {{#if project_or_member_page}}
+          <img src="/images/Addbutton.svg" alt="Voeg toe">
+        {{else}}
+          <img src="/images/Addbutton - disabled.svg" alt="Navigeer eerst naar persoon of project">
+        {{/if}}
+      </a>
+    </div>
   </div>
 </template>

@@ -69,7 +69,7 @@ window.Gravatar = {
     // Returns 404 if no gravatar is present (as specified in URL below).
     // A number of browsers will show the 404 in the console since it is
     // an error to receive a 404 on retrieving a resource.
-    var url = "http://www.gravatar.com/avatar/" + hash + "?d=404&s=160";
+    var url = "https://www.gravatar.com/avatar/" + hash + "?d=404&s=160";
     d3.request(url)
       .mimeType("image/jpeg")
       .responseType("arraybuffer")

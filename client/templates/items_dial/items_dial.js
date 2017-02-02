@@ -29,10 +29,11 @@ Template.items_dial.onRendered(function() {
         // Check for short press (< 1 second)
         if(now - element.datum().clickStart < 1000) {
           Router.go(parentTemplate.subjectEditTemplate(), parentTemplate.subjectEditParameters(subject));
+          return;
         } else {
           Router.go(parentTemplate.subjectLongPressEditTemplate(), parentTemplate.subjectLongPressEditParameters(subject));
+          return;
         }
-        return;
       })
   ;
   subjectGroup
@@ -65,6 +66,16 @@ Template.items_dial.onRendered(function() {
       }
     })
   ;
+
+  // Add event handler for buttons
+  d3.select(".control.message").on("click", function() {
+    //Router.go("messagesPage", { _project_id: 
+	d3.event.preventDefault();
+	var subject = parentTemplate.subject();
+	console.log(subject);
+	Router.go("messagesPage", { _project_id: subject._id });
+    return;
+  });
 
   // Update related items (reactive on "items" from session)
   this.autorun(function() {

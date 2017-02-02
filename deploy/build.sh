@@ -6,4 +6,4 @@ if [ ! -d $DEV_DIR ]; then
   mkdir $DEV_DIR
 fi
 
-meteor build --server mijn.mxi.nl $DEV_DIR/build
+meteor build --server https://mijn.mxi.nl --debug $DEV_DIR/build

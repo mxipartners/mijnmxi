@@ -13,8 +13,8 @@ Meteor.methods
     message.recipients = message.recipients.filter((recipient) -> recipient != Meteor.userId())
     messageId = Messages.insert message
 
-    if recipients.length is 0
-      project = Projects.findOne(message.projectId)
+    if message.recipients.length is 0
+      project = Projects.findOne(message.project)
       message.recipients = project.members
 
     Push.send({

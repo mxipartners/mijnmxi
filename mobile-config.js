@@ -42,3 +42,5 @@ App.launchScreens({
 App.configurePlugin('phonegap-plugin-push', {
   SENDER_ID: '470168538554'
 });
+
+App.setPreference("android-targetSdkVersion", "23");
