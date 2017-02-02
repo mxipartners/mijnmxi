@@ -68,6 +68,9 @@ Template.items_dial.onRendered(function() {
   ;
 
   // Add event handler for buttons
+  d3.select(".controls.top .control.call").on("click", function() {
+    window.location.href = "tel:+31302270500";
+  });
   d3.select(".controls.bottom .control.me_focus").on("click", function() {
     Router.go("memberPage", { _id: Meteor.userId });
   });
