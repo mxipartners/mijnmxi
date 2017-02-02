@@ -3,14 +3,12 @@
     <h2>Nieuwe projectleden</h2>
     <form>
       <div class="border">
-        <div>
-          <div class="controls">
-            <select name="members" multiple="multiple" class="member-select">
-              {{#each users}}
-                <option value="{{_id}}">{{name}} &lt;{{email}}&gt;</option>
-              {{/each}}
-            </select>
-          </div>
+        <div class="member-selection">
+          <select name="members" multiple="true" class="member-select">
+            {{#each users}}
+              <option value="{{_id}}">{{name}} &lt;{{email}}&gt;</option>
+            {{/each}}
+          </select>
         </div>
       </div>
       <div class="buttons">
