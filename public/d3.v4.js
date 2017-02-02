@@ -7327,7 +7327,6 @@ var point$5 = function(node, event) {
 var mouse = function(node) {
   var event = sourceEvent();
   if (event.changedTouches) {
-    console.log("changedTouches");
     event = event.changedTouches[0];
   }
   return point$5(node, event);
@@ -8035,7 +8034,6 @@ var selectAll = function(selector) {
 };
 
 var touch = function(node, touches, identifier) {
-  console.log("touch");
   if (arguments.length < 3) identifier = touches, touches = sourceEvent().changedTouches;
 
   for (var i = 0, n = touches ? touches.length : 0, touch; i < n; ++i) {
@@ -10860,7 +10858,6 @@ var noevent = function() {
 };
 
 var dragDisable = function(view) {
-  console.log("in dragDisable");
   var root = view.document.documentElement,
       selection$$1 = select(view).on("dragstart.drag", noevent, true);
   if ("onselectstart" in root) {
@@ -10934,7 +10931,6 @@ var drag = function() {
       touchending;
 
   function drag(selection$$1) {
-    console.log("in drag")
     selection$$1
         .on("mousedown.drag", mousedowned)
         .on("touchstart.drag", touchstarted)
@@ -10944,7 +10940,6 @@ var drag = function() {
   }
 
   function mousedowned() {
-    console.log("in mousedowned")
     if (touchending || !filter.apply(this, arguments)) return;
     var gesture = beforestart("mouse", container.apply(this, arguments), mouse, this, arguments);
     if (!gesture) return;
@@ -10956,14 +10951,12 @@ var drag = function() {
   }
 
   function mousemoved() {
-    console.log("in mousemoved")
     noevent();
     mousemoving = true;
     gestures.mouse("drag");
   }
 
   function mouseupped() {
-    console.log("in mouseupped")
     select(exports.event.view).on("mousemove.drag mouseup.drag", null);
     yesdrag(exports.event.view, mousemoving);
     noevent();
@@ -10971,9 +10964,7 @@ var drag = function() {
   }
 
   function touchstarted() {
-    console.log("in touchstarted");
     if (!filter.apply(this, arguments)) return;
-    console.log("in touchstarted2");
     var touches$$1 = exports.event.changedTouches,
         c = container.apply(this, arguments),
         n = touches$$1.length, i, gesture;
@@ -10987,7 +10978,6 @@ var drag = function() {
   }
 
   function touchmoved() {
-    console.log("in touchmoved")
     var touches$$1 = exports.event.changedTouches,
         n = touches$$1.length, i, gesture;
 
@@ -11000,7 +10990,6 @@ var drag = function() {
   }
 
   function touchended() {
-    console.log("in touchended")
     var touches$$1 = exports.event.changedTouches,
         n = touches$$1.length, i, gesture;
 
@@ -11015,7 +11004,6 @@ var drag = function() {
   }
 
   function beforestart(id, container, point, that, args) {
-    console.log("in beforestart");
     var p = point(container, id), s, dx, dy,
         sublisteners = listeners.copy();
 
@@ -11025,7 +11013,6 @@ var drag = function() {
       dy = s.y - p[1] || 0;
       return true;
     })) return;
-    console.log("in beforestart2");
 
     return function gesture(type) {
       var p0 = p, n;
@@ -12382,7 +12369,6 @@ var zoom = function() {
   }
 
   function touchstarted() {
-    console.log("in touchstarted other");
     if (!filter.apply(this, arguments)) return;
     var g = gesture(this, arguments),
         touches$$1 = exports.event.changedTouches,
@@ -12415,7 +12401,6 @@ var zoom = function() {
   }
 
   function touchmoved() {
-    console.log("in touchmoved other");
     var g = gesture(this, arguments),
         touches$$1 = exports.event.changedTouches,
         n = touches$$1.length, i, t, p, l;
@@ -12443,7 +12428,6 @@ var zoom = function() {
   }
 
   function touchended() {
-    console.log("in touchended other");
     var g = gesture(this, arguments),
         touches$$1 = exports.event.changedTouches,
         n = touches$$1.length, i, t;
@@ -12794,7 +12778,6 @@ function brush$1(dim) {
   };
 
   function started() {
-    console.log("in started");
     if (exports.event.touches) { if (exports.event.changedTouches.length < exports.event.touches.length) return noevent$2(); }
     else if (touchending) return;
     if (!filter.apply(this, arguments)) return;
@@ -12864,7 +12847,6 @@ function brush$1(dim) {
     emit.start();
 
     function moved() {
-      console.log("in moved");
       var point1 = mouse(that);
       if (shifting && !lockX && !lockY) {
         if (Math.abs(point1[0] - point[0]) > Math.abs(point1[1] - point[1])) lockY = true;
@@ -12937,7 +12919,6 @@ function brush$1(dim) {
         if (exports.event.touches.length) return;
         if (touchending) clearTimeout(touchending);
         touchending = setTimeout(function() { touchending = null; }, 500); // Ghost clicks are delayed!
-        console.log("remove touchmove");
         group.on("touchmove.brush touchend.brush touchcancel.brush", null);
       } else {
         yesdrag(exports.event.view, moving);
