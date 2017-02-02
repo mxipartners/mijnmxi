@@ -1,12 +1,12 @@
 App.accessRule('*');
 
 App.info({
-  id: 'com.mxi.mijnmxi',
+  id: 'nl.mxi.mijn',
   name: 'MijnMXI',
   description: 'Voor en door M&I',
   author: 'M&I/Partners',
-  email: 'contact@example.com',
-  website: 'http://example.com'
+  email: 'info@mxi.nl',
+  website: 'http://mijn.mxi.nl'
 });
 
 App.icons({
