@@ -1,11 +1,6 @@
+Push.debug = true;
+
 Push.Configure({
-  //apn: {
-  //  certData: Assets.getText('apnDevCert.pem'),
-  //  keyData: Assets.getText('apnDevKey.pem'),
-  //  passphrase: 'xxxxxxxxx',
-  //  production: true,
-    //gateway: 'gateway.push.apple.com',
-  //},
   gcm: {
     apiKey: 'AIzaSyA0XAhhMwxCv5VFuUMYiasoBk012GeJSvg',
     projectNumber: 470168538554
