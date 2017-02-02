@@ -68,13 +68,36 @@ Template.items_dial.onRendered(function() {
   ;
 
   // Add event handler for buttons
-  d3.select(".control.message").on("click", function() {
-    //Router.go("messagesPage", { _project_id: 
-	d3.event.preventDefault();
-	var subject = parentTemplate.subject();
-	console.log(subject);
-	Router.go("messagesPage", { _project_id: subject._id });
-    return;
+  d3.select(".controls.bottom .control.me_focus").on("click", function() {
+    Router.go("memberPage", { _id: Meteor.userId });
+  });
+  d3.select(".controls.bottom .control.message").on("click", function() {
+    // If subject is project, members will be selectable for messages
+    if(parentTemplate.subjectIsProject()) {
+      var subject = parentTemplate.subject();
+      Router.go("messagesPage", { _project_id: subject._id });  // Call messages page with project id
+    }
+  });
+  d3.select(".controls.bottom .control.call").on("click", function() {
+    // If subject is project, members will be selectable for call
+    if(parentTemplate.subjectIsProject()) {
+      var selectedMembers = Session.get("selectedItems");
+      var users = Meteor.users.find({_id: {$in: selectedMembers}}).fetch();
+      if(users.length === 1) {
+        window.location.href = "tel:#" + users[0].telephone_nr;
+      } else if(users.length > 1) {
+        window.location.href = "skype:#" + users.map(function(user) { return user.skype_id; }).filter(function(skype_id) { return skype_id && skype_id.trim().length > 0; }).join(";");
+      }
+    }
+  });
+  d3.select(".controls.bottom .control.add").on("click", function() {
+    // If subject is project, add members otherwise add project
+    var subjectId = parentTemplate.subject()._id;
+    if(parentTemplate.subjectIsProject()) {
+      Router.go("addMember", {_id: subjectId });
+    } else {
+      Router.go("addProject", {_user_id: subjectId });
+    }
   });
 
   // Update related items (reactive on "items" from session)

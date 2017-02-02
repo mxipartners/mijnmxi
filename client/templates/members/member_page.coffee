@@ -15,6 +15,8 @@ Template.memberPage.onCreated ->
   )
   this.subject = ->
     this.user
+  this.subjectIsProject = ->
+    false
   this.subjectTitle = ->
     this.user.name || this.user.emails[0].address.replace(/@.*$/, "")
   this.subjectIcon = ->

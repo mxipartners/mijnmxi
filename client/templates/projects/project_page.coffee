@@ -38,6 +38,8 @@ Template.projectPage.onCreated ->
   )
   this.subject = ->
     this.project
+  this.subjectIsProject = ->
+    true
   this.subjectTitle = ->
     messageCount = Messages.find().count()
     this.project.title + (if messageCount > 0 then " (" + messageCount + ")" else "")
