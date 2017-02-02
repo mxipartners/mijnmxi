@@ -19,7 +19,7 @@ Meteor.methods
 
     Push.send({
       title: 'Nieuw bericht in MijnMxI',
-      text: message.text,
+      text: message.content,
       from: 'server',
       query: {
         userId: recipient
