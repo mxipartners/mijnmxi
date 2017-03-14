@@ -179,10 +179,10 @@ Template.items_dial.onRendered(function() {
     ;
   });
 
-  // Update icons based on selected items
+  // Update icons based on selected items (one or more persons)
   this.autorun(function() {
     var currentSelectedItems = Session.get("selectedItems");
-    var enabled = currentSelectedItems.length > 0;
+    var enabled = currentSelectedItems.length > 0 && parentTemplate.subjectIsProject();
     var attr = enabled ? "data-enabled-src" : "data-disabled-src";
     d3.selectAll(".controls.bottom .control.message,.controls.bottom .control.call")
       .classed("enabled", enabled)
