@@ -80,6 +80,12 @@ Template.items_dial.onRendered(function() {
     Router.go("memberPage", { _id: Meteor.userId });
   });
   d3.select(".controls.bottom .control.message").on("click", function() {
+    // Only if items are selected
+    if(Session.get("selectedItems").length === 0) {
+      d3.event.preventDefault();
+      return;
+    }
+
     // If subject is project, members will be selectable for messages
     if(parentTemplate.subjectIsProject()) {
       var subject = parentTemplate.subject();
@@ -87,6 +93,12 @@ Template.items_dial.onRendered(function() {
     }
   });
   d3.select(".controls.bottom .control.call").on("click", function() {
+    // Only if items are selected
+    if(Session.get("selectedItems").length === 0) {
+      d3.event.preventDefault();
+      return;
+    }
+
     // If subject is project, members will be selectable for call
     if(parentTemplate.subjectIsProject()) {
       var selectedMembers = Session.get("selectedItems");
@@ -164,6 +176,20 @@ Template.items_dial.onRendered(function() {
           .on("end", function() {
             d3.select(this).remove();
           })
+    ;
+  });
+
+  // Update icons based on selected items
+  this.autorun(function() {
+    var currentSelectedItems = Session.get("selectedItems");
+    var enabled = currentSelectedItems.length > 0;
+    var attr = enabled ? "data-enabled-src" : "data-disabled-src";
+    d3.selectAll(".controls.bottom .control.message,.controls.bottom .control.call")
+      .classed("enabled", enabled)
+      .select("img")
+        .attr("src", function() {
+          return d3.select(this).attr(attr);
+        })
     ;
   });
 });

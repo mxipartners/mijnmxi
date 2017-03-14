@@ -51,23 +51,10 @@
       <img src="/images/Selficon.svg" alt="Ik in het midden">
     </div>
     <div class="control message">
-      <img src="/images/Messagebutton.svg" alt="Stuur bericht">
+      <img src="" alt="Stuur bericht" data-enabled-src="/images/Messagebutton.svg" data-disabled-src="/images/Messagebutton - disabled.svg">
     </div>
     <div class="control call">
-      <!-- FIXME have enabled/disabled as part of pattern. Something like below:
-        <img src="/images/Callbutton - disabled.svg" alt="Selecteer eerst een persoon" data-enabled="@selected_users" data-enabled-src="/images/Callbutton.svg" data-enabled-alt="Bel"
-
-        Above makes images diabled by default. A property will specify when image/button is enabled.
-        Properties for image and alternative description are present in HTML. Attributes named "data-"
-        are generally allowed within HTML and browsers support them for storing data.
-
-      {{#if selected_users}}
-        <img src="/images/Callbutton.svg" alt="Bel">
-      {{else}}
-        <img src="/images/Callbutton - disabled.svg" alt="Selecteer eerst een persoon">
-      {{/if}}
-      -->
-      <img src="/images/Callbutton.svg" alt="Bel">
+      <img src="" alt="Bel" data-enabled-src="/images/Callbutton.svg" data-disabled-src="/images/Callbutton - disabled.svg">
     </div>
     <div class="control add">
       <!-- FIXME
