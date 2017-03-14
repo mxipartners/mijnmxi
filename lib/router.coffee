@@ -28,16 +28,17 @@ Router.route '/project/for/:_user_id',
 Router.route '/projects/:_id',
   name: 'projectPage'
   data: -> Projects.findOne this.params._id
-  subscriptions: -> Meteor.subscribe('messages', this.params._id)
+  subscriptions: -> Meteor.subscribe('allMessages')
 
 Router.route '/members/:_id',
   name: 'memberPage'
   data: -> Meteor.users.findOne this.params._id
+  subscriptions: -> Meteor.subscribe('allMessages')
 
 Router.route '/projects/:_project_id/messages',
   name: 'messagesPage'
   data: -> Projects.findOne this.params._project_id
-  subscriptions: -> Meteor.subscribe('messages', this.params._project_id)
+  subscriptions: -> Meteor.subscribe('projectMessages', this.params._project_id)
 
 Router.route '/edit/user/:_id',
   name: 'editProfile'

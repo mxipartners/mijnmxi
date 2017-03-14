@@ -179,6 +179,16 @@ Template.items_dial.onRendered(function() {
     ;
   });
 
+  // Update counts when messages change (new messages arrive)
+  this.autorun(function() {
+    // Trigger to perform this method (any update in messages)
+    messageCount = Messages.find().count()
+
+    // Update titles on existing elements
+    d3.select("g.subject text").text(parentTemplate.subjectTitle());
+    d3.selectAll("g.item text").text(function(d) { return parentTemplate.relatedItemTitle(d); });
+  });
+
   // Update icons based on selected items (one or more persons)
   this.autorun(function() {
     var currentSelectedItems = Session.get("selectedItems");
