@@ -29,11 +29,12 @@
   float: left;
   width: 25%;
   margin: 0px;
+  text-align: center;
 }
 
 .controls .control img {
   /* Set width of image (retaining aspect ratio), based on font size */
-  width: 4em;
+  width: 2.5em;
 }
 
 .full_screen {
