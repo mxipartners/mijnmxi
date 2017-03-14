@@ -18,8 +18,9 @@
   /* Add some padding inside the message */
   padding: 4px 16px;
   margin-top: 2px;
-  left: 15%;
-  width: 70%;
+  left: 4em;
+  width: calc(100% - 8em);
+  min-height: 2.5em;
 
   /* Create round corners */
   -webkit-border-radius: 10px;
@@ -55,8 +56,8 @@
   border-left-width: 0px;
   border-left-style: solid;
   border-left-color: #4a5c68;
-  margin-left: -40px; /* Move to left same size as border-right-width to align correctly */
-  border-right-width: 40px;
+  margin-left: -2.5em; /* Move to left same size as border-right-width to align correctly */
+  border-right-width: 2.5em;
   border-right-style: solid;
   border-right-color: rgb(102, 117, 126);
   border-bottom-width: 20px;
@@ -75,7 +76,7 @@
   border-right-width: 0px;
   border-right-style: solid;
   border-right-color: #4a5c68;
-  border-left-width: 40px;
+  border-left-width: 2.5em;
   border-left-style: solid;
   border-left-color: rgb(102, 117, 126);
   border-bottom-width: 20px;
@@ -94,17 +95,16 @@
 }
 
 .message_holder.position-left .control {
-  right: 5%;
+  right: 1em;
 }
 
 .message_holder.position-right .control {
-  left: 5%;
+  left: 1em;
 }
 
 .messages .control {
   position: absolute;
-  width: 10%;
-  max-width: 40px;
+  width: 2.5em;
 }
 
 .new_message .control img {
