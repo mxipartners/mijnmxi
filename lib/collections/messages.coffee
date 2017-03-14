@@ -4,6 +4,9 @@ Messages.allow
   insert: (userId, message) -> isProjectMember userId, Projects.findOne(message.projectId)
 
 Meteor.methods
+  messageCount: (userId, projectId) ->
+    Messages.find {$and: [{$or: [{recipients: {$in: [userId]}}, {sender: userId}]}, {project: projectId}]}
+
   messageInsert: (messageAttributes) ->
     check Meteor.userId(), String
     validateMessage messageAttributes

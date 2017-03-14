@@ -36,7 +36,12 @@ Template.memberPage.onCreated ->
   this.subjectLongPressEditParameters = (subject) ->
     { _id: subject._id }
   this.relatedItemTitle = (project) ->
-    project.title
+    userId = Meteor.userId()
+    projectId = project._id
+    messageCount = Messages.find {$and: [{$or: [{recipients: {$in: [userId]}}, {sender: userId}]}, {project: projectId}]}
+    messageCount = messageCount.count()
+    console.log("Project id: " + project._id + " ---- Aantal berichten: " + messageCount)
+    project.title + (if messageCount > 0 then " (" + messageCount + ")" else "")
   this.relatedItemIcon = (project) ->
     "#project"
   this.relatedItemEmailAddress = (project) ->
