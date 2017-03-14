@@ -2,7 +2,18 @@ var name = function(user) {
   if(user._id === Meteor.userId()) {
     return "Ik";
   } else {
-    return user.name ? user.name : user.emails[0].address;
+    if(user.name) {
+      return user.name;
+    }
+    var emailAddress = user.emails[0].address;
+    var cleanedName = emailAddress
+      .replace(/@.*$/, "")              // Remove @domain.com
+      .replace(/\./g, " ")              // Replace . with space
+      .replace(/(^.| .)/g, function(match, firstChar) {
+        return firstChar.toLocaleUpperCase();
+      })
+    ;
+    return cleanedName;
   }
 };
 
@@ -30,6 +41,9 @@ Template.messagesPage.helpers({
   },
 
   recipient_names: function() {
+    if(!this.recipients) {
+      return "Iedereen";
+    }
     var recipients = Meteor.users.find({"_id": {$in: this.recipients}}).fetch();
     var names = recipients.map(function(recipient) { return name(recipient); });
     return names.length > 0 ? names.join(", ") : "Iedereen";
@@ -37,7 +51,7 @@ Template.messagesPage.helpers({
 
   selected_users: function() {
     var selectedItems = Session.get("selectedItems");
-    if(selectedItems.length === 0) {
+    if(selectedItems.length === 0 || selectedItems.length === Session.get("items").length) {
       return "Iedereen";
     } else {
       var users = Meteor.users.find({"_id": {$in: selectedItems}}).fetch();
