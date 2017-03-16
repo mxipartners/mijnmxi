@@ -51,7 +51,7 @@ Template.messagesPage.helpers({
 
   selected_users: function() {
     var selectedItems = Session.get("selectedItems");
-    if(selectedItems.length === 0 || selectedItems.length === Session.get("items").length) {
+    if(!selectedItems || selectedItems.length === 0 || selectedItems.length === Session.get("items").length) {
       return "Iedereen";
     } else {
       var users = Meteor.users.find({"_id": {$in: selectedItems}}).fetch();
