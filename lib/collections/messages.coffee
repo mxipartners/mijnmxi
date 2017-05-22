@@ -12,6 +12,7 @@ Meteor.methods
       sent: new Date()
     message.recipients = message.recipients.filter((recipient) -> recipient != Meteor.userId())
     messageId = Messages.insert message
+    UserChannels.update({ projectId: message.project }, { $set: { lastMessageTimestamp: message.sent } })
 
     if message.recipients.length is 0
       project = Projects.findOne(message.project)

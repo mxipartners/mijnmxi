@@ -36,7 +36,8 @@ Template.memberPage.onCreated ->
   this.subjectLongPressEditParameters = (subject) ->
     { _id: subject._id }
   this.relatedItemTitle = (project) ->
-    messageCount = Messages.find({ project: project._id }).count()
+    # messageCount = Messages.find({ project: project._id }).count()
+    messageCount = UserChannels.findOne({ projectId: project._id }).messageCount
     project.title + (if messageCount > 0 then " (" + messageCount + ")" else "")
   this.relatedItemIcon = (project) ->
     "#project"

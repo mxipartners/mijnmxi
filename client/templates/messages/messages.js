@@ -115,4 +115,16 @@ Template.messagesPage.events({
 
 Template.messagesPage.onRendered(function() {
   scrollToBottom();
+
+  // Mark all messages for this project/channel as read after 2 seconds
+  var projectId = this.data._id;
+  window.setTimeout(function() {
+    var id = UserChannels.findOne({ projectId: projectId })._id;
+    UserChannels.update(id, { $set: { lastSeen: new Date() } }, function(error) {
+      if(error) {
+        // FIXME: handle error!
+        throwError(error.reason);
+      }
+    });
+  }, 2000);
 });

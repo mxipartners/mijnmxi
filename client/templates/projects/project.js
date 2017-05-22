@@ -33,7 +33,7 @@ Template.project.events({
 
       // Update project
       var projectId = this.project._id;
-      Projects.update(projectId, { $set: projectProperties}, function(error) {
+      Projects.update(projectId, { $set: projectProperties }, function(error) {
         if(error) {
           // FIXME: handle error!
           throwError(error.reason);

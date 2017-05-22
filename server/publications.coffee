@@ -1,6 +1,9 @@
 Meteor.publish 'projects', ->
     Projects.find {members: this.userId}
 
+Meteor.publish 'channels', ->
+    UserChannels.find({ userId: this.userId })
+
 Meteor.publish 'projectMessages', (projectId) ->
     check projectId, String
     # Find all messages for the current project which have our user as sender or recipient
