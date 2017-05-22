@@ -26,8 +26,8 @@
   /* Add some padding inside the message */
   padding: 4px 16px;
   margin-top: 2px;
-  left: 4em;
-  width: calc(100% - 8em);
+  left: 3.2em;
+  width: calc(100% - 6.4em);	/* Subtract 2 * left */
   min-height: 2.5em;
 
   /* Create round corners */
@@ -102,21 +102,21 @@
 }
 
 .message_holder.position-left .control {
-  right: 1em;
+  right: 0.8em;
 }
 
 .message_holder.position-right .control {
-  left: 1em;
+  left: 0.8em;
 }
 
 .messages .control {
   position: absolute;
-  width: 2.5em;
+  width: 2em;
 }
 
 .new_message .control img {
   float: right;
-  width: 3em;
+  width: 2.5em;
 }
 
 .control {
