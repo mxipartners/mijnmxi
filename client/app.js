@@ -17,7 +17,7 @@ Meteor.startup(function() {
 
     // In-app notificaties ontvangen
     Push.addListener('message', function(notification) {
-        alert('in-app notificatie!');
+        alert('Nieuw bericht ontvangen');
     });
 
 });
