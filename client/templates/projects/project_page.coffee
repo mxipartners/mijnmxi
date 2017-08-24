@@ -42,7 +42,8 @@ Template.projectPage.onCreated ->
     true
   this.subjectTitle = ->
     # messageCount = Messages.find({ project: this.project._id }).count()
-    messageCount = UserChannels.findOne({ projectId: this.project._id }).messageCount
+    #messageCount = UserChannels.findOne({ projectId: this.project._id }).messageCount
+    messageCount = 0
     this.project.title + (if messageCount > 0 then " (" + messageCount + ")" else "")
   this.subjectIcon = ->
     "#project"
@@ -60,7 +61,7 @@ Template.projectPage.onCreated ->
     user.name || user.emails[0].address.replace(/@.*$/, "")
   this.relatedItemIcon = (user) ->
     "#person"
-  this.relatedItemEmailAddress = (user) -> 
+  this.relatedItemEmailAddress = (user) ->
     emails = user.emails
     if emails && emails.length > 0
       emails[0].address

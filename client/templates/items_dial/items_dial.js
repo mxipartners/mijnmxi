@@ -104,7 +104,13 @@ Template.items_dial.onRendered(function() {
       var selectedMembers = Session.get("selectedItems");
       var users = Meteor.users.find({_id: {$in: selectedMembers}}).fetch();
       if(users.length === 1) {
-        window.location.href = "tel:#" + users[0].telephone_nr;
+        var telnr = users[0].telephone_nr;
+        if(telnr == "") {
+          alert("Deze persoon heeft geen telefoonnummer ingevuld.");
+        }
+        else {
+          window.location.href = "tel:" + users[0].telephone_nr;
+        }
       } else if(users.length > 1) {
         window.location.href = "skype:#" + users.map(function(user) { return user.skype_id; }).filter(function(skype_id) { return skype_id && skype_id.trim().length > 0; }).join(";");
       }
