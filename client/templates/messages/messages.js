@@ -137,13 +137,20 @@ Template.messagesPage.onRendered(function() {
 
   // Mark all messages for this project/channel as read after 2 seconds
   var projectId = this.data._id;
-  window.setTimeout(function() {
-    var id = UserChannels.findOne({ projectId: projectId })._id;
-    UserChannels.update(id, { $set: { lastSeen: new Date() } }, function(error) {
+  Template.messagesPage.unreadTimer = window.setTimeout(function() {
+    Meteor.call("messagesRead", projectId, function(error, result) {
       if(error) {
-        // FIXME: handle error!
         throwError(error.reason);
       }
     });
   }, 2000);
+});
+
+Template.messagesPage.onDestroyed(function() {
+
+  // Stop and remove timer
+  if(Template.messagesPage.unreadTimer) {
+    window.clearTimeout(Template.messagesPage.unreadTimer);
+    delete Template.messagesPage.unreadTimer;
+  }
 });
