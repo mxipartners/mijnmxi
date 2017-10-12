@@ -13,4 +13,5 @@ Accounts.onCreateUser (options, user) ->
     recipients: []
     content: "Hallo " + user.emails[0].address + ". Welkom bij Mijn M&I/Partners."
   Messages.insert message
+  # Meteor.call("messageInsert", message)
   return user

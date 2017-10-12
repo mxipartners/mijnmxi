@@ -30,7 +30,7 @@ Router.route '/projects/:_id',
   data: -> Projects.findOne this.params._id
   subscriptions: -> [
     Meteor.subscribe('allMessages'),
-    Meteor.subscribe('channels')
+    Meteor.subscribe('unreadItems')
   ]
 
 Router.route '/members/:_id',
@@ -38,7 +38,7 @@ Router.route '/members/:_id',
   data: -> Meteor.users.findOne this.params._id
   subscriptions: -> [
     Meteor.subscribe('allMessages'),
-    Meteor.subscribe('channels')
+    Meteor.subscribe('unreadItems')
   ]
 
 Router.route '/projects/:_project_id/messages',
@@ -46,7 +46,7 @@ Router.route '/projects/:_project_id/messages',
   data: -> Projects.findOne this.params._project_id
   subscriptions: -> [
     Meteor.subscribe('projectMessages', this.params._project_id),
-    Meteor.subscribe('channels')
+    Meteor.subscribe('unreadItems')
   ]
 
 Router.route '/edit/user/:_id',

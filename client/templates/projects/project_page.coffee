@@ -41,8 +41,11 @@ Template.projectPage.onCreated ->
   this.subjectIsProject = ->
     true
   this.subjectTitle = ->
-    # messageCount = Messages.find({ project: this.project._id }).count()
-    messageCount = UserChannels.findOne({ projectId: this.project._id }).messageCount
+    unreadItems = UnreadItems.findOne({ projectId: this.project._id })
+    if(unreadItems)
+      messageCount = unreadItems.messages.length
+    else
+      messageCount = 0
     this.project.title + (if messageCount > 0 then " (" + messageCount + ")" else "")
   this.subjectIcon = ->
     "#project"
