@@ -130,10 +130,10 @@ function updateNewMessageForm(force) {
 }
 
 Template.messagesPage.onRendered(function() {
-  scrollToBottom();
-
   // Decide to show or hide the new message form
   updateNewMessageForm();
+
+  scrollToBottom();
 
   // Mark all messages for this project/channel as read after 2 seconds
   var projectId = this.data._id;
