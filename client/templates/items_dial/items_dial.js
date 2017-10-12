@@ -3,9 +3,9 @@ var parentTemplate = null;
 
 // Initialize page for rendering
 Template.items_dial.onRendered(function() {
-
   // Start with subject (if missing move to 'home' page)
   parentTemplate = Template.instance().parentTemplate();
+
   var subject = parentTemplate.subject();
   if(!subject) {
     Router.go("memberPage", {_id: Meteor.userId()});
@@ -19,21 +19,16 @@ Template.items_dial.onRendered(function() {
       .attr("data-id", subject._id)
       .attr("transform", "translate(0,30)")
       .on("mousedown", function() {
-        // Keep track of time when clicking (to distinguish short/long press)
-        var element = d3.select(this);
-        element.datum({ clickStart: Date.now() });
+        processTouchStart(this);
       })
-      .on("click", function() {
-        var element = d3.select(this);
-        var now = Date.now();
-        // Check for short press (< 1 second)
-        if(now - element.datum().clickStart < 1000) {
-          Router.go(parentTemplate.subjectEditTemplate(), parentTemplate.subjectEditParameters(subject));
-          return;
-        } else {
-          Router.go(parentTemplate.subjectLongPressEditTemplate(), parentTemplate.subjectLongPressEditParameters(subject));
-          return;
-        }
+      .on("mouseup", function() {
+        processTouchEnd(this);
+      })
+      .on("touchstart", function() {
+        processTouchStart(this);
+      })
+      .on("touchend", function() {
+        processTouchEnd(this);
       })
   ;
   subjectGroup
@@ -126,8 +121,71 @@ Template.items_dial.onRendered(function() {
     }
   });
 
+function processTouchEnd(e) {
+    var element = d3.select(e);
+    var now = Date.now();
+    // Check for short press (< 1 second)
+    var diff = now - element.datum().clickStart;
+    if(diff < 500) {
+      Router.go(parentTemplate.subjectEditTemplate(), parentTemplate.subjectEditParameters(subject));
+      return;
+    } else {
+      Router.go(parentTemplate.subjectLongPressEditTemplate(), parentTemplate.subjectLongPressEditParameters(subject));
+      return;
+    }
+  }
+
+  function processTouchStart(e) {
+    d3.event.preventDefault();
+    // Keep track of time when clicking (to distinguish short/long press)
+    var element = d3.select(e);
+    element.datum({ clickStart: Date.now() });
+  }
+
   // Update related items (reactive on "items" from session)
   this.autorun(function() {
+    // Renew parentTemplate and subject in case the onRendered is not activated
+    parentTemplate = Template.instance().parentTemplate();
+    subject = parentTemplate.subject();
+
+    // Redraw the central icon in case onRendered is not activated
+    subjectGroup = d3.select("g.center")
+      .select("g")
+        .attr("class", "subject")
+        .attr("data-id", subject._id)
+        .attr("transform", "translate(0,30)")
+        .on("mousedown", function() {
+          processTouchStart(this);
+        })
+        .on("mouseup", function() {
+          processTouchEnd(this);
+        })
+        .on("touchstart", function() {
+          processTouchStart(this);
+        })
+        .on("touchend", function() {
+          processTouchEnd(this);
+        })
+    ;
+    subjectGroup
+      .select("text")
+        .attr("y", 80)
+        .attr("text-anchor", "middle")
+        .text(parentTemplate.subjectTitle())
+    ;
+
+    var currGravatar = document.getElementById("gravatar");
+    if(currGravatar != null){
+      currGravatar.parentNode.removeChild(currGravatar);
+    }
+
+    subjectGroup
+      .select("use")
+        .attr("y", -30)
+        .attr("xlink:href", parentTemplate.subjectIcon())
+        .each(function() { replaceItemIconByGravatar(d3.select(this)); })
+    ;
+
     var items = Session.get("items");
     var selectedItems = Session.get("selectedItems");
     var itemCount = items.length;
@@ -325,6 +383,7 @@ var replaceIconByGravatar = function(iconElement, emailAddress) {
 var replaceIconByImageData = function(iconElement, imageDataURL) {
   d3.select(iconElement.node().parentNode)
     .append("image")
+      .attr("id", "gravatar")
       .attr("xlink:href", imageDataURL)
       .attr("width", 160)
       .attr("height", 160)

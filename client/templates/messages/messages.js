@@ -40,6 +40,10 @@ Template.messagesPage.helpers({
     return this._id;
   },
 
+  sent_formatted: function() {
+    return this.sent.getDate() + "/" + (this.sent.getMonth()+1) + " " + this.sent.getHours() + ":" + this.sent.getMinutes();
+  },
+
   recipient_names: function() {
     if(!this.recipients) {
       return "Iedereen";
@@ -81,6 +85,9 @@ Template.messagesPage.events({
     // Set recipients as new selected users
     Session.set("selectedItems", recipients);
 
+    // Decide to show or hide the new message form
+    updateNewMessageForm(true);
+
     // Scroll to bottom to show message entry field and focus field
     scrollToBottom();
   },
@@ -113,8 +120,20 @@ Template.messagesPage.events({
   }
 });
 
+// Show or do not show the form to send a new message (force used in case of reply)
+function updateNewMessageForm(force) {
+  if(force || Session.get("selectedItems").length > 0) {
+    document.getElementById("new_message").style.display = "block";
+  } else {
+    document.getElementById("new_message").style.display = "none";
+  }
+}
+
 Template.messagesPage.onRendered(function() {
   scrollToBottom();
+
+  // Decide to show or hide the new message form
+  updateNewMessageForm();
 
   // Mark all messages for this project/channel as read after 2 seconds
   var projectId = this.data._id;

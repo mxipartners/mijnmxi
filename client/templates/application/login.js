@@ -1,6 +1,7 @@
 Template.login.onCreated(function() {
   Session.set('newUser', false);
   if(Accounts._resetPasswordToken) {
+    console.log("Token: " + Accounts._resetPasswordToken);
     Session.set('resetPassword', Accounts._resetPasswordToken);
   }
 });
