@@ -193,3 +193,17 @@ select[multiple] {
 *:focus {
 	outline: none;
 }
+
+/* Placeholder color forced */
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #BBB;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: #BBB;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: #BBB;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: #BBB;
+}

@@ -1,7 +1,7 @@
 App.accessRule('*');
 
 App.info({
-  id: 'nl.mxi.mijn',
+  id: 'com.mxi.mijnmxi',
   name: 'MijnMXI',
   description: 'Voor en door M&I',
   author: 'M&I/Partners',

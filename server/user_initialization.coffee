@@ -11,6 +11,7 @@ Accounts.onCreateUser (options, user) ->
     project: projectId
     sender: user._id
     recipients: []
+    sent: new Date
     content: "Hallo " + user.emails[0].address + ". Welkom bij Mijn M&I/Partners."
   Messages.insert message
   # Meteor.call("messageInsert", message)

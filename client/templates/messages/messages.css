@@ -38,6 +38,11 @@
 
 .messages .header, .new_message .header {
   color: #FFCF00;
+  font-size:11px;
+}
+
+.messages .header .timestamp {
+  color: #FFF;
 }
 
 .message_holder.position-left .message:before,
@@ -97,6 +102,7 @@
 }
 
 .new_message {
+  display: none;
   left: 2%;
   width: 96%;
 }
